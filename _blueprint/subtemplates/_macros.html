@@ -1,0 +1,24 @@
+{% macro cta(header="Help support great journalism", text=False, link="https://checkout.chicagotribune.com/subscriptionPanel/?presentation=MTRDigital&PID=6354&zipCode=00000&int=ct_digitaladshouse_4-weeks-99_acquisition-subscriber_ngux_text-link_editorial_______multimedia-all", link_text="Subscribe", align_right=False) %}
+    <aside class='cta {% if align_right %}cta--right{% endif %}'>
+        {% if header %}<p class='cta__header'>{{ header }}</p>{% endif %}
+        {% if text %}<p class='cta__text'>{{ text }}</p>{% endif %}
+        <a class='cta__button' href="{{ link }}" target="_blank">{{ link_text }}</a>
+    </aside>
+{% endmacro %}
+
+{% macro keep_scrolling(direction="down") %}
+    {% if direction == 'down' %}
+        {% set add_class = "" %}
+    {% else %}
+        {% set add_class = "keep-scrolling-icon--back" %}
+        <a href="#intro" title="Return to the top">
+            <span class='sr-only'>Return to the top</span>
+    {% endif %}
+    <svg class='keep-scrolling-icon {{ add_class }}'>
+        <use xlink:href="#arrow-down" />
+    </svg>
+
+    {% if direction != 'down' %}
+        </a>
+    {% endif %}
+{% endmacro%}

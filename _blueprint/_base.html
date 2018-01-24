@@ -1,3 +1,4 @@
+{# Scrub the (possibly) missing pub dates #}
 {% if date_pub == undefined %}
     {% set date_published = 546322 %}
 {% else %}
@@ -9,8 +10,11 @@
 {% else %}
     {% set date_modified = date_mod %}
 {% endif %}
-
-
+{# 
+    Useful macros 
+#}
+{% from 'subtemplates/_macros.html' import cta as refer with context %}
+{% from 'subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
@@ -23,9 +27,11 @@
         <meta property="fb:app_id" content="306836229411287">
         {% set url = "http://" ~ ROOT_URL ~ "/" ~ PATH %}
         <link rel="canonical" href="{{ url }}" />
-        {% block title %}<title>{{ title }} -- Chicago Tribune</title>{% endblock title %}
-            <meta name="google-site-verification" content="TKTKTK">
+        <meta name="google-site-verification" content="TKTKTK">
     {% endblock meta %}
+
+    {% block title %}<title>{{ title }} -- Chicago Tribune</title>{% endblock title %}
+
     
     {% block favicon %}
     <link rel="shortcut icon" href="img/favicon.ico" />
