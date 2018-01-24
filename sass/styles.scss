@@ -44,11 +44,58 @@
 	}
 }
 
+.row {
+	display: block;
+}
+
+.races {
+	width: 100%;
+
+	&__col {
+		width: 100%;
+		background-color: blue;
+		height: 250px;
+	}
+}
+
+.bigstar {
+	height: 30px;
+	background-color: green;
+	margin: 30px 0;
+}
+
+.editorials {
+	width: 100%;
+
+	&__col {
+		background-color: gray;
+		height: 250px;
+	}
+}
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+	.row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.editorials {
+		width: 33%;
+	}
+
+	.races {
+		width: 64%;
+
+		&__col {
+			width: 48%;
+		}
+	}
+
+
 }
 
 @media all and (min-width: $desktop-min-width){
 	// ONLY CHANGES FOR DESKTOPS
+
 }
