@@ -1,3 +1,4 @@
+{% from 'subtemplates/_macros.html' import stars_topper as stars_topper %}
 {% extends "_base.html" %}
 
 {% block library_scripts %}
@@ -19,8 +20,38 @@
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
 		</div>
 	</section>
+	<section id='content' class='content container'>
+		<div class='row'>
+			<div class='races'>
+				<div class='category'>
+					{{stars_topper('federal')}}
+					<div class='row'>
+						<div class='races__col'>
+						</div>
+						<div class='races__col'>
+						</div>
+					</div>
+				</div>
+				<div class='category'>
+					<div class='bigstar topper'>
+					</div>
+					<div class='row'>
+						<div class='races__col'>
+						</div>
+						<div class='races__col'>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='editorials'>
+				<div class='bigstar topper'>
+				</div>
+				<div class='editorials__col'>
+				</div>
+			</div>
+		</div>
+	</section>
 	{{ refer() }}
-	<section id='content' class='content container'></section>
 	<section id='credits' class='credits container'>
 		<div class='river'>
 			{% if note %}{{ note|markdown }}{% endif %}

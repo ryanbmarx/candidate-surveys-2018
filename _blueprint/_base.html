@@ -13,8 +13,8 @@
 {# 
     Useful macros 
 #}
-{% from 'subtemplates/_macros.html' import cta as refer with context %}
-{% from 'subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
+{% from 'base-subtemplates/_macros.html' import cta as refer with context %}
+{% from 'base-subtemplates/_macros.html' import keep_scrolling as keep_scrolling with context %}
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
@@ -153,19 +153,19 @@
         {% include 'img/base-sprite.svg' ignore missing %}
     </div>
  
-    {% block nav scoped%}{% include "subtemplates/_navbar.html" %}{% endblock %}
+    {% block nav scoped%}{% include "base-subtemplates/_navbar.html" %}{% endblock %}
 
     {% block content %}{% endblock content %}
 
     {% block comments %}
         {# Requires the meter to work, thus it will not load on local. #}
-        {% include 'subtemplates/_solid-opinion-comments.html' %}
+        {% include 'base-subtemplates/_solid-opinion-comments.html' %}
     {% endblock comments %}
 
 
     {% block footer %}
     <footer class='page-footer'>
-        {% include "subtemplates/_footer.html" %}
+        {% include "base-subtemplates/_footer.html" %}
     </footer>
     {% endblock footer %}
    
