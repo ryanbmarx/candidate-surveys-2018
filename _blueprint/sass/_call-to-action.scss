@@ -1,0 +1,99 @@
+
+
+.cta{
+	background: $cta-background-color;
+	text-align:center;
+	box-sizing:border-box;
+	padding: $grid-gap;
+	margin: $grid-gap 0;
+
+	
+
+	&__header{
+		@include serif-text(20px, 1.3em, bold);
+		margin: 0;
+		color: $cta-text-color;
+	}
+
+	&__text{
+		@include serif();
+		margin: #{$grid-gap / 2} 0 0 0;
+		color: $cta-text-color;
+	}
+
+	&__button{
+		@include sans-serif();
+		text-align: center;
+		max-width:280px;
+	    width: 100%;
+		display:block;
+		padding:#{$grid-gap / 2} 0;
+		margin: #{$grid-gap / 2} auto 0 auto;
+
+		background:$cta-button-color;
+		transition: background-color 150ms ease;
+		color:$cta-button-color-text;
+		cursor:pointer;
+		
+		text-decoration:none;
+		&:hover, &:focus{
+			color:$cta-button-hover-color-text;
+			text-decoration: none;
+			background:$cta-button-hover-color;			
+			transition: background-color 150ms ease;
+		}
+	}
+}
+
+
+@media all and (min-width: $phablet-min-width){
+
+}
+
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+	.cta{
+		$and: &;
+		&__header{
+			font-size: 25px;
+		}
+		
+		&:not(.cta--right){
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+
+			
+
+			// #{$and}__header{
+			// 	margin-right: $grid-gap / 2;
+			// }
+
+			#{$and}__button{
+				margin: 0 0 0 #{$grid-gap / 2};
+				max-width:150px;
+			}
+
+			.cta__header + .cta__text {
+				width: 100%;
+			}
+
+			.cta__text + .cta__button{
+				// If the button is next to the readout, then center everything again.
+				margin: #{$grid-gap / 2} auto 0 auto;
+			}
+		}
+	}
+	.cta--right{
+		display:block;
+		float:right;
+		max-width: $cta-right-max-width;
+		margin: 0 0 #{$grid-gap} #{$grid-gap};
+	}
+
+}
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+}

@@ -1,0 +1,151 @@
+// Enables Tribune colors, but is required for everything.
+@import 'base-variables';
+
+// ---- ADD MORE VARIABLES HERE ---------------------------------------------
+
+// Breakpoints
+$phablet-min-width:450px !default;
+$tablet-min-width:650px !default;
+$desktop-min-width:850px !default;
+
+// TYPOGRAPHY
+$sans-serif-fonts: "Arial", "Helvetica", sans-serif !default;
+$serif-fonts: "Georgia", serif !default;
+$color-links: $trib-blue4 !default;
+
+// SCAFFOLDING
+$grid-gap: 30px !default;
+$container-max-width: 1500px !default;
+$container_padding_h: $grid-gap / 2 !default;
+
+// FOOTER
+$footer-background-color: $trib-blue1 !default;
+
+// NAVBAR
+$navbar_background_color: $trib-blue2 !default;
+$navbar_inner_height: 35px !default; // This does NOT include padding top/bottom
+$navbar_tab_width: 260px !default;
+$navbar_padding_h: 0 !default;
+$navbar_padding_v: 10px !default;
+$border-radius--small: 5px;
+$border-radius--large: $grid-gap / 2;
+$navbar-overall-height: $navbar_inner_height + $navbar_padding_v + $navbar_padding_v;
+$hamburger-background-color: rgba($trib-blue1, .9) !default;
+
+// SOCIAL SHARE ICONS
+$social_icon_base_color: $trib-gray3 !default;
+$social-icon-width: 25px !default;
+$social_colors: (
+	twitter: #76A9EA,
+	facebook: #475993,
+	google: #DC4E41,
+	email: black
+) !default;
+
+
+// COMMENTS
+$comments-button-color: $trib-blue2 !default;
+$comments-button-text-color: black !default;
+
+// CALLS TO ACTION
+
+$cta-background-color: $trib-blue4 !default;
+$cta-text-color: set-text-color($cta-background-color, true);
+$cta-button-base-color: $trib-orange !default;
+$cta-button-color: lighten($cta-button-base-color, 5%) !default;
+$cta-button-color-text: set-text-color($cta-button-color, true) !default;
+$cta-button-hover-color: $cta-button-base-color !default;
+$cta-button-hover-color-text: set-text-color($cta-button-base-color, true) !default;
+$cta-right-max-width: ($tablet-min-width / 2) - $grid-gap !default;
+
+// Required for everything, too, but can be broken down into smaller explicit imports if desired. 
+@import 'base-mixins';
+
+@import 'scaffolding';
+@import 'footer';
+@import 'navbar';
+@import 'social';
+@import 'byline';
+@import 'adverts';
+@import 'comments';
+@import 'call-to-action';
+@import 'hamburger';
+
+
+body{
+	margin: 0;
+}
+
+
+.sr-only{
+	// Use this to hide elements from everything except screen readers.
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// TYPOGRAPHY
+
+p{
+	font: 15px/1.6em $serif-fonts;
+	margin: 0 0 #{$grid-gap / 2} 0;
+}
+
+a{
+	color: $color-links;
+	text-decoration: none;
+
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+
+#credits, .credits {
+	p{
+		@include agate();
+	}
+}
+
+// This is the paywall/meter/registration sticky note at the bottom of the page
+.met-flyout .met-promo-content{
+	p {
+		line-height: 1.3em;
+		font-family: "Arial", sans-serif;
+		span{
+			font: 14px/1.3em "Arial", sans-serif;
+			color:white;
+			width:100%;
+			margin: 0;
+
+			&:first-of-type{
+				font-weight: 700;
+			}
+
+			a {
+				font: 14px/1.3em "Arial", sans-serif !important;
+				
+			}
+		}
+	}
+}
+
+@media all and (min-width: $phablet-min-width){
+	p{
+		font-size: 18px;
+		line-height: 1.5em;
+	}
+}
+
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+}
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+}

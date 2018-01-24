@@ -1,0 +1,32 @@
+%container{
+	max-width: $container_max_width;
+	margin:0 auto;
+	padding: 0 $container_padding_h;
+	box-sizing:border-box;
+	position:relative;
+}
+
+.container{
+	@extend %container;
+}
+
+
+.river{
+	max-width: $phablet-min-width;
+	margin: 0 auto;
+}
+
+header{
+	margin-bottom:$grid-gap;
+}
+
+section{
+	margin-bottom: $grid-gap;
+}
+
+
+@media all and (min-width: $tablet-min-width){
+	.river{
+		max-width: $tablet-min-width;
+	}
+}
