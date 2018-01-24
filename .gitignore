@@ -3,6 +3,7 @@
 .DS_Store
 *.swp
 .sass-cache
+tarbell_config.pyc
 
 #artifact from excel
 ~$_spreadsheet.xlsx
