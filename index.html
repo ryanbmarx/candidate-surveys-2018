@@ -3,7 +3,15 @@
 
 {% block content %}
 	{# YOUR STUFF GOES HERE #}
-	<section id='intro' class='intro container'></section>
+	<section id='intro' class='intro container'>
+		<div class='river'>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
+		</div>
+	</section>
+	{{ refer() }}
 	<section id='content' class='content container'></section>
 	<section id='credits' class='credits container'>
 		{% if note %}{{ note|markdown }}{% endif %}
@@ -11,6 +19,7 @@
 		{% if credit %}{{ credit|markdown }}{% endif %}
 	</section>
 {% endblock content %}
+
 
 {% block scripts %}
 {% endblock %}

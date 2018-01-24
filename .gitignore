@@ -4,6 +4,9 @@
 *.swp
 .sass-cache
 
+#artifact from excel
+~$_spreadsheet.xlsx
+
 # Ignore build dependencies 
 node_modules
 
