@@ -22,9 +22,11 @@
 	{{ refer() }}
 	<section id='content' class='content container'></section>
 	<section id='credits' class='credits container'>
-		{% if note %}{{ note|markdown }}{% endif %}
-		{% if sources %}{{ sources|markdown }}{% endif %}
-		{% if credit %}{{ credit|markdown }}{% endif %}
+		<div class='river'>
+			{% if note %}{{ note|markdown }}{% endif %}
+			{% if sources %}{{ sources|markdown }}{% endif %}
+			{% if credit %}{{ credit|markdown }}{% endif %}
+		</div>
 	</section>
 {% endblock content %}
 
