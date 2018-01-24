@@ -1,0 +1,76 @@
+.candidate{
+	@extend %container;
+	margin: $grid-gap auto;
+}
+
+@media all and (min-width:$tablet-min-width){
+
+	// UNIVERSAL STYLES
+	// UNIVERSAL STYLES
+	.candidate{
+		&__right-column-inner {
+			// Stick the opponents nav 
+			position: sticky;
+			top: $navbar_overall_height + $grid-gap;
+		}
+	}
+	@supports(display:grid){
+		// ONLY FOR GRID
+		.candidate{
+			display:grid;
+			grid-template-columns: [main-start] 1fr [right-start] 200px;
+			grid-template-rows: auto auto;
+			grid-gap: $grid-gap;
+
+			&__left-column{
+				grid-column: main-start;
+				grid-row: 1/1;
+			}
+
+			&__main-column{
+				grid-column: main-start;
+				grid-row: 2/-1;
+			}
+			&__right-column{
+				grid-column: right-start;
+				grid-row: 1/-1;
+			}
+		}
+	}
+}
+@media all and (min-width:$desktop-min-width){
+
+	// UNIVERSAL STYLES
+	.candidate{
+		&__left-column-inner, &__right-column-inner {
+			position: sticky;
+			top: $navbar_overall_height + $grid-gap;
+		}
+	}
+
+
+	@supports(display:grid){
+
+		// If we support grid, then do the grid, with two columns
+		.candidate{
+			display:grid;
+			grid-template-columns: [left-start] 200px [main-start] 1fr [right-start] 200px;
+			// grid-template-rows: auto;
+			// grid-gap: $grid-gap;
+
+			&__left-column{
+				grid-column: left-start;
+				grid-row: 1/-1;
+			}
+
+			&__main-column{
+				grid-column: main-start;
+				grid-row: 1/-1;
+			}
+			&__right-column{
+				grid-column: right-start;
+				grid-row: 1/-1;
+			}
+		}
+	}
+}

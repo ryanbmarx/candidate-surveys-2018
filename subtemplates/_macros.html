@@ -1,5 +1,17 @@
 {% macro stars_topper(label) %}
-	<div class='xx'>
-		<h4>{{label}}</h4>
+<div class='row jumptarget' id='{{label}}'>
+	<div class='bigstar topper'>
+		<h4>
+			<span class='stars left'>
+				<i class='glyphicon glyphicon__star'></i>
+				<i class='glyphicon glyphicon__star'></i>
+			</span>
+			{{label|upper}}
+			<span class='stars right'>
+				<i class='glyphicon glyphicon__star'></i>
+				<i class='glyphicon glyphicon__star'></i>
+			</span>
+		</h4>
 	</div>
+</div>
 {% endmacro %}

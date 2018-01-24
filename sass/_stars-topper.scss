@@ -1,0 +1,39 @@
+.bigstar {
+	margin: 30px 0;
+	text-align: center;
+	position: relative;
+	z-index: -1;
+
+	h4 {
+		display: inline;
+		background-color: white;
+	}
+}
+
+.bigstar:before {
+	border-top: 2px solid $trib_gray3;
+	content: "";
+	display: inline;
+	margin: 0 auto;
+	position: absolute;
+	top: 7px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: -2;
+}
+
+.glyphicon {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: 'Arial', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+
+	&__star:before {
+		content: "X";
+	}
+}

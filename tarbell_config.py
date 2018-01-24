@@ -8,9 +8,9 @@ from flask import Blueprint, g, render_template
 
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
-
-# Google spreadsheet key
 SPREADSHEET_KEY = "1QcrOV8ERi1DtosEBUe0qH2Cz22ISyXqRLL4SpUIT0mg"
+# Google spreadsheet key
+# SPREADSHEET_KEY = "11TAK4CxsSFhZOMXeGVN2ejmqb-NU2WmiXcFzSB_GavQ"
 
 # Exclude these files from publication
 EXCLUDES = ["*.md", "requirements.txt"]

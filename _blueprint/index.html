@@ -1,5 +1,12 @@
-{% extends "templates/_base-elex.html" %}
+{% extends "_base.html" %}
 
+{% block library_scripts %}
+	{# <script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script> #}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+{% endblock stylesheets %}
 
 
 {% block content %}
@@ -12,36 +19,8 @@
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
 		</div>
 	</section>
-	<section id='content' class='content container'>
-		<div class='row'>
-			<div class='races'>
-				<div class='category'>
-					{{stars_topper('federal')}}
-					<div class='row'>
-						<div class='races__col'>
-						</div>
-						<div class='races__col'>
-						</div>
-					</div>
-				</div>
-				<div class='category'>
-				{{stars_topper('Title goes here')}}
-					<div class='row'>
-						<div class='races__col'>
-						</div>
-						<div class='races__col'>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class='editorials'>
-				{{stars_topper('editorials')}}
-				<div class='editorials__col'>
-				</div>
-			</div>
-		</div>
-	</section>
 	{{ refer() }}
+	<section id='content' class='content container'></section>
 	<section id='credits' class='credits container'>
 		<div class='river'>
 			{% if note %}{{ note|markdown }}{% endif %}
@@ -51,3 +30,7 @@
 	</section>
 {% endblock content %}
 
+
+{% block scripts %}
+	{# <script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script> #}
+{% endblock %}
