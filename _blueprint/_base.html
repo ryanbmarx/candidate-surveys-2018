@@ -38,15 +38,18 @@
     {% endblock %}
 
     {% block prefetch %}
-        {# TODO: Check on preconnect, dns-prefetch #}
+        {% if not PREVIEW_SERVER %}
         <link rel="dns-prefetch" href="//static.chartbeat.com">
         <link rel="dns-prefetch" href="//www.google-analytics.com">
         <link rel="dns-prefetch" href="http://ssor.tribdss.com">
         <link rel="dns-prefetch" href="http://www.tribdss.com">
+        {% endif %}
     {% endblock prefetch %}
 
     {% block preconnect %}
-        {# <link rel="preconnect" href="https://www.google-analytics.com"> #}
+        {% if not PREVIEW_SERVER %}
+        <link rel="preconnect" href="https://www.google-analytics.com">
+        {% endif %}
     {% endblock preconnect %}
 
 
@@ -121,7 +124,8 @@
     </script>
 
     {% block omniture_config %}
-        {# OMNITURE #}
+        {# OMNITURE but not if running locally #}
+        {% if not PREVIEW_SERVER %}
         <script type="text/javascript">
             ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
                     pageName: 'ct:apps:news:{{ name }}:articleproject.',
@@ -141,6 +145,7 @@
                     events:''
             });  
         </script>
+        {% endif %}
     {% endblock omniture_config %}
 </head>
 
@@ -168,21 +173,20 @@
     <meta itemprop="image" content="http://{{ ROOT_URL }}/img/thumb.jpg" />
     
     {% if self.comments() %}
+    {# // Check for comments button. If found, trigger comments #}
     <script>
-        {# // Check for comments button. If found, trigger comments #}
-        if (document.getElementById('comments-button')){
-            document.getElementById('comments-button').addEventListener('click', function(e){
-                document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
-                (window.registration || (registration = [])).push('solidopinion');
-            }, false);
-        }
+        document.getElementById('comments-button').addEventListener('click', function(e){
+            document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
+            (window.registration || (registration = [])).push('solidopinion');
+        }, false);
     </script>
     {% endif %}
-
+{# 9792248 #}
     {% block scripts %}{% endblock scripts %}
 
     {% block chartbeat %}
-        {# CHARTBEAT #}
+        {% if not PREVIEW_SERVER %}
+        {# CHARTBEAT, but not if running locally #}
         {# Inserts own <script> tag at end of <body> #}
         <script type='text/javascript'>
             var _sf_async_config = _sf_async_config || {};
@@ -211,11 +215,21 @@
                     };
             })();
         </script>  
+        {% endif %}
     {% endblock chartbeat %}
     
+    {% block google_analytics %}
+        {% if not PREVIEW_SERVER %}
+        
+        {% endif %}
+    {% endblock google_analytics %}
+
 
     {% block omniture_scripts %}
-        <script src="//www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script>
+        {# OMNITURE but not if running locally. This also loads code needed for comments. #}
+        {% if not PREVIEW_SERVER %}
+            <script src="//www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script>
+        {% endif %}
     {% endblock omniture_scripts %}
 
   </body>
