@@ -1,6 +1,15 @@
 {% from 'subtemplates/_macros.html' import stars_topper as stars_topper %}
 {% extends "_base.html" %}
 
+{% block library_scripts %}
+	{# <script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script> #}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+{% endblock stylesheets %}
+
+
 {% block content %}
 	{# YOUR STUFF GOES HERE #}
 	<section id='intro' class='intro container'>
@@ -44,12 +53,15 @@
 	</section>
 	{{ refer() }}
 	<section id='credits' class='credits container'>
-		{% if note %}{{ note|markdown }}{% endif %}
-		{% if sources %}{{ sources|markdown }}{% endif %}
-		{% if credit %}{{ credit|markdown }}{% endif %}
+		<div class='river'>
+			{% if note %}{{ note|markdown }}{% endif %}
+			{% if sources %}{{ sources|markdown }}{% endif %}
+			{% if credit %}{{ credit|markdown }}{% endif %}
+		</div>
 	</section>
 {% endblock content %}
 
 
 {% block scripts %}
+	{# <script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script> #}
 {% endblock %}
