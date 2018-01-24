@@ -24,8 +24,6 @@ from tribune_viztools.tarbell.hooks import (
     update_facebook,
 )
 
-
-
 NAME = "Tribune Off-Platform Tarbell Blueprint, version 2"
 
 blueprint = TribuneTarbellBlueprint('blueprint', __name__)
@@ -40,33 +38,31 @@ except locale.Error:
 
 
 
-# NEWPROJECT_HOOKS = (
-#     copy_front_end_build_script_templates,
-#     create_front_end_files,
-#     create_readme,
-#     create_unfuddle_project,
-#     newproject_add_excludes,
-#     newproject_add_default_omniture_config,
-# )
+NEWPROJECT_HOOKS = (
+    copy_front_end_build_script_templates,
+    create_front_end_files,
+    create_readme,
+    create_unfuddle_project,
+    newproject_add_excludes,
+    newproject_add_default_omniture_config,
+)
 
-# GENERATE_HOOKS = (
-#     merge_extra_context,
-# )
+GENERATE_HOOKS = (
+    merge_extra_context,
+)
 
-# PUBLISH_HOOKS = (
-#     update_facebook,
-# )
+PUBLISH_HOOKS = (
+    update_facebook,
+)
 
-# for f in NEWPROJECT_HOOKS:
-#     register_hook('newproject')(f)
+for f in NEWPROJECT_HOOKS:
+    register_hook('newproject')(f)
 
-# for f in GENERATE_HOOKS:
-#     register_hook('generate')(f)
+for f in GENERATE_HOOKS:
+    register_hook('generate')(f)
 
-# for f in PUBLISH_HOOKS:
-#     register_hook('publish')(f)
-
-""
+for f in PUBLISH_HOOKS:
+    register_hook('publish')(f)
 
 @blueprint.app_template_filter('get_thumbnail_info')
 def get_thumbnail_info(image):
