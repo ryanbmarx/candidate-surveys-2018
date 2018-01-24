@@ -6,12 +6,12 @@
     </aside>
 {% endmacro %}
 
-{% macro keep_scrolling(direction="down") %}
+{% macro keep_scrolling(direction="down", target="#intro") %}
     {% if direction == 'down' %}
         {% set add_class = "" %}
     {% else %}
         {% set add_class = "keep-scrolling-icon--back" %}
-        <a href="#intro" title="Return to the top">
+        <a href="{{ target }}" title="Return to the top">
             <span class='sr-only'>Return to the top</span>
     {% endif %}
     <svg class='keep-scrolling-icon {{ add_class }}'>
