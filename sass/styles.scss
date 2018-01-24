@@ -16,6 +16,7 @@
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT ---------------------------------------------
 @import 'base';
+@import 'stars-topper';
 
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';
@@ -56,12 +57,6 @@
 		background-color: blue;
 		height: 250px;
 	}
-}
-
-.bigstar {
-	height: 30px;
-	background-color: green;
-	margin: 30px 0;
 }
 
 .editorials {
