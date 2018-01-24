@@ -3,9 +3,14 @@
 """
 Tarbell project configuration
 """
+from flask import Blueprint, g, render_template
+
+
+blueprint = Blueprint('candidate-surveys-2018', __name__)
+
 
 # Google spreadsheet key
-#SPREADSHEET_KEY = "None"
+SPREADSHEET_KEY = "1QcrOV8ERi1DtosEBUe0qH2Cz22ISyXqRLL4SpUIT0mg"
 
 # Exclude these files from publication
 EXCLUDES = ["*.md", "requirements.txt"]

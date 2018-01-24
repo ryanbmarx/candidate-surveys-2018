@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+
+{% block content %}
+	{# YOUR STUFF GOES HERE #}
+	<section id='intro' class='intro container'></section>
+	<section id='content' class='content container'></section>
+	<section id='credits' class='credits container'>
+		{% if note %}{{ note|markdown }}{% endif %}
+		{% if sources %}{{ sources|markdown }}{% endif %}
+		{% if credit %}{{ credit|markdown }}{% endif %}
+	</section>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock %}
