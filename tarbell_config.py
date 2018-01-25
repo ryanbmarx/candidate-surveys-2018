@@ -4,16 +4,49 @@
 Tarbell project configuration
 """
 from flask import Blueprint, g, render_template
-
+import os.path # for testing for images
 
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
-SPREADSHEET_KEY = "1QcrOV8ERi1DtosEBUe0qH2Cz22ISyXqRLL4SpUIT0mg"
-# Google spreadsheet key
-# SPREADSHEET_KEY = "11TAK4CxsSFhZOMXeGVN2ejmqb-NU2WmiXcFzSB_GavQ"
+
+@blueprint.app_template_filter('get_opponents')
+def make_photo_slug(candidates, c):
+    """
+        Takes the current candidate (c) and returns a list of their opponents.
+        it also marks the candidate on whose page this is displaying.
+    """
+    retval=[]
+    race = c['race']
+    for key in candidates.keys():
+        candidate = candidates[key]
+        if candidate == c:
+            candidate['current'] = True
+        if candidate['race'] == race:
+            retval.append(candidate)
+    return retval
+
+
+
+
+@blueprint.app_template_filter('make_photo_slug')
+def make_photo_slug(name_str):
+    """
+        takes a name, and formats it to be filename compatible
+    """
+    retval = name_str.lower().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
+    if os.path.isfile('img/candidates/' + retval + ".jpg"):
+        return retval
+    return "missing"
+
+
+# BACKUP FO DEV PURPOSES:
+# SPREADSHEET_KEY = "1QcrOV8ERi1DtosEBUe0qH2Cz22ISyXqRLL4SpUIT0mg"
+
+# REAL Google spreadsheet key:
+SPREADSHEET_KEY = "11TAK4CxsSFhZOMXeGVN2ejmqb-NU2WmiXcFzSB_GavQ"
 
 # Exclude these files from publication
-EXCLUDES = ["*.md", "requirements.txt"]
+EXCLUDES = ['*.md', 'subtemplates', 'img/svgs' ,'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'package-lock.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4

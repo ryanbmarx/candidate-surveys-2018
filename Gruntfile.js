@@ -115,7 +115,7 @@ module.exports = function(grunt) {
       tasks: ['browserify:app']
     },
     svg: {
-      files: ['img/src/**/*.svg'],
+      files: ['img/svgs/**/*.svg'],
       tasks: ['svgstore']
     }
   };
@@ -127,7 +127,7 @@ module.exports = function(grunt) {
     },
     min: {
       // Target-specific file lists and/or options go here. 
-      src:['img/src/**/*.svg'],
+      src:['img/svgs/**/*.svg'],
       dest:'img/sprite.svg'
     },
   };
@@ -135,13 +135,13 @@ module.exports = function(grunt) {
   grunt.initConfig(config);
 
   grunt.loadNpmTasks('grunt-sass');
-  // grunt.loadNpmTasks('grunt-svgstore');
+  grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-postcss');
 
   var defaultTasks = [];
-  // defaultTasks.push('svgstore');
+  defaultTasks.push('svgstore');
   defaultTasks.push('sass');
   defaultTasks.push('browserify');
   defaultTasks.push('postcss');

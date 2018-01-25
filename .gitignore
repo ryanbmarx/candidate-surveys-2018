@@ -13,6 +13,7 @@ node_modules
 
 # Ignore artifacts from the build process
 .sass-cache
+
 # You probably want to ignore files created by the front-end build
 # process.  Uncomment these lines to do so:
 css
@@ -20,6 +21,9 @@ app.min.js
 vendor.min.js
 js/*.map 
 .DS_Store
+
+# Don't keep generated content
+sprite.svg
 
 # Local storage of assets, such as .PSDs
 _vault
