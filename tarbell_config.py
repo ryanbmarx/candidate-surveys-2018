@@ -4,7 +4,7 @@
 Tarbell project configuration
 """
 from flask import Blueprint, g, render_template
-
+import os.path # for testing for images
 
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
@@ -33,8 +33,10 @@ def make_photo_slug(name_str):
     """
         takes a name, and formats it to be filename compatible
     """
-    return name_str.lower().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
-
+    retval = name_str.lower().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
+    if os.path.isfile('img/candidates/' + retval + ".jpg"):
+        return retval
+    return "missing"
 
 
 # BACKUP FO DEV PURPOSES:

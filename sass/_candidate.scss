@@ -64,6 +64,7 @@
 
 	&__race{
 		@include sans-serif();
+		font-weight: bold;
 		margin: 0 0 #{$grid-gap / 2} 0;
 	}
 
@@ -131,54 +132,28 @@
 		}
 	}
 
-	// @supports(display:grid){
-	// 	// ONLY FOR GRID
-	// 	.candidate{
-	// 		display:grid;
-	// 		grid-template-columns: [main-start] 1fr [right-start] #{$candidate-column-width};
-	// 		grid-template-rows: auto auto;
-	// 		grid-gap: $grid-gap;
-
-	// 		&__left-column{
-	// 			grid-column: main-start;
-	// 			grid-row: 1/1;
-	// 		}
-
-	// 		&__main-column{
-	// 			grid-column: main-start;
-	// 			grid-row: 2/-1;
-	// 		}
-	// 		&__right-column{
-	// 			grid-column: right-start;
-	// 			grid-row: 1/-1;
-	// 		}
-	// 	}
-	// }
-
-	// @supports not (display:grid){
-		// FALLBACK TO FLEX;
-		.candidate{
-			display:flex;
-			justify-content: center;
-			align-items: stretch;
+	// FALLBACK TO FLEX;
+	.candidate{
+		display:flex;
+		justify-content: center;
+		align-items: stretch;
 
 
-			&__left-column{
-				width: $candidate-column-width;
-				margin-right: $grid-gap;
+		&__left-column{
+			width: $candidate-column-width;
+			margin-right: $grid-gap;
 
-			}
-
-			&__main-column{
-				flex:1;
-				max-width: $tablet-min-width;
-			}
-			&__right-column{
-				width: $candidate-column-width;
-				margin-left: $grid-gap;
-			}
 		}
-	// }
+
+		&__main-column{
+			flex:1;
+			max-width: $tablet-min-width;
+		}
+		&__right-column{
+			width: $candidate-column-width;
+			margin-left: $grid-gap;
+		}
+	}
 }
 @media all and (min-width:$desktop-min-width){
 

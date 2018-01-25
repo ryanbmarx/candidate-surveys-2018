@@ -23,37 +23,42 @@
 	<div class='candidate__main-column'>
 		
 		{{ candidate_info }}
-		{% include "base-subtemplates/_social-share.html" %}
-		<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
-			{% set office_sought =  candidate_info.race_office %}
-		{% if candidate_info.race_district %}
-			{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
-		{% endif %}
-		<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
+		<section>
+			{% include "base-subtemplates/_social-share.html" %}
+			<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
+				{% set office_sought =  candidate_info.race_office %}
+			{% if candidate_info.race_district %}
+				{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
+			{% endif %}
+			<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
 
-		{% if candidate_info.running_mate %}
+			{% if candidate_info.running_mate %}
+				<dl class='candidate__meta'>
+					<dt>Running mate</dt>
+					<dd>{{ candidate_info.running_mate }}</dd>
+				</dl>
+			{% endif %}
+		</section>
+		<section>
 			<dl class='candidate__meta'>
-				<dt>Running mate</dt>
-				<dd>{{ candidate_info.running_mate }}</dd>
+				<dt>Education</dt>
+				<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
 			</dl>
-		{% endif %}
-		<dl class='candidate__meta'>
-			<dt>Education</dt>
-			<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
-		</dl>
-		<dl class='candidate__meta'>
-			<dt>Occupation</dt>
-			<dd>LOREM</dd>
-		</dl>
-		<dl class='candidate__meta'>
-			<dt>Home</dt>
-			<dd>LOREM LOREM</dd>
-		</dl>
-		<dl class='candidate__meta'>
-			<dt>Past Political/Civic Experience</dt>
-			<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
-		</dl>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			<dl class='candidate__meta'>
+				<dt>Occupation</dt>
+				<dd>LOREM</dd>
+			</dl>
+			<dl class='candidate__meta'>
+				<dt>Home</dt>
+				<dd>LOREM LOREM</dd>
+			</dl>
+			<dl class='candidate__meta'>
+				<dt>Past Political/Civic Experience</dt>
+				<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
+			</dl>
+		</section>
+		<section class='responses'>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
@@ -79,9 +84,8 @@
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!etur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
+		</section>
 	</div>
 	<div class='candidate__right-column'>
 		<div class='candidate__right-column-inner'>
