@@ -35,6 +35,7 @@ $extra-wide-min-width: $tablet-min-width + ($candidate-column-width * 2) + ($gri
 @import 'base';
 @import 'stars-topper';
 @import 'candidate';
+@import 'race';
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';
 // @import 'trib-buttons';
@@ -71,7 +72,6 @@ $extra-wide-min-width: $tablet-min-width + ($candidate-column-width * 2) + ($gri
 
 	&__col {
 		width: 100%;
-		background-color: blue;
 		height: 250px;
 	}
 }
