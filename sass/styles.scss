@@ -1,5 +1,22 @@
+// Our starting point
+@import 'base';
+
 // Enables Tribune colors, but is required for everything.
 @import 'base-variables';
+
+$candidate-colors:(
+	democrat: $trib-blue2,
+	democratic: $trib-blue2,
+	republican: $trib-red2,
+	libertarian: $trib-yellow1,
+	green: $trib-green1,
+	default: $trib-gray3
+);
+
+// SCAFFOLDING, BREAKPOINTS AND WIDTHS
+$container-max-width: 1100px;
+$candidate-column-width: 150px;
+$extra-wide-min-width: $tablet-min-width + ($candidate-column-width * 2) + ($grid-gap * 2);
 
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
 // Breakpoints
@@ -15,7 +32,6 @@
 
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT ---------------------------------------------
-@import 'base';
 @import 'candidate';
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';

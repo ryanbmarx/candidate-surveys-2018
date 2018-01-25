@@ -1,11 +1,126 @@
+.bio{
+	margin: 0 0 #{$grid-gap / 2} 0;
+	padding: 0;
+
+	dt, dd{
+		@include serif();
+		display:inline;
+		margin: 0;
+		padding: 0;
+	}
+
+	dt{
+		@include sans-serif();
+		font-weight: bold;
+		&:after{
+			content: ": ";
+		}
+	}
+}
+
+
+.candidate__endorsed{
+	box-sizing:border-box;
+	padding: #{($grid-gap / 2) + 5px} #{$grid-gap / 2} #{$grid-gap / 2} #{$grid-gap / 2};
+	background: $trib-gray4;
+	position: relative;
+	border-radius: 5px;
+
+	a{
+		font-weight: bold;
+	}
+
+	p{
+		@include sans-serif();
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.candidate__endorsed-icon{
+    height: 2em;
+    width: 2em;
+    // float: left;
+    // margin: .25em .5em 0 0;	
+    position: absolute;
+top: 0;
+left: 50%;
+transform: translate(-50%, -50%);
+
+border: 7px solid $trib-gray4;
+border-radius: 50%;
+background: white;
+}
+
 .candidate{
 	@extend %container;
 	margin: $grid-gap auto;
+
+	&__name{
+		@include responsive-font(4vw, 35px, 45px, 30px);
+		margin: 0 0 #{$grid-gap / 2} 0;
+
+	}
+
+	&__race{
+		@include sans-serif();
+		margin: 0 0 #{$grid-gap / 2} 0;
+	}
+
+	&__mug{
+	    max-width: 100%;
+	    margin: 0 0 25px 0;
+	}
+
+	&__opponents{
+		margin:0;
+		padding: 0;
+	}
+}
+
+.opponent{
+	// This is the li element of the opponents list
+
+	@include sans-serif();
+	list-style: none;
+	padding: 3px 0 5px 6px;
+	margin: 0 0 5px 0;
+	border-left: 6px solid #{map-get($candidate-colors, default)};
+	border-radius: 5px;
+	cursor:pointer;
+
+	&--current, &.opponent--current:hover{
+		font-weight: bold;
+		background: $trib-gray3;
+		a {
+			color: set-text-color($trib-gray3, true);
+		}
+	}
+
+	&--muted, &.opponent--muted:hover{
+		opacity: .5;
+		background: none;
+	}
+
+	&:hover{
+		background:$trib-gray4;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+
+	}
+}
+
+
+// Make the variant classes to assign colors 
+@each $key, $color in $candidate-colors{
+	.opponent--#{$key}{ border-color: #{$color}; }
 }
 
 @media all and (min-width:$tablet-min-width){
 
-	// UNIVERSAL STYLES
 	// UNIVERSAL STYLES
 	.candidate{
 		&__right-column-inner {
@@ -14,29 +129,55 @@
 			top: $navbar_overall_height + $grid-gap;
 		}
 	}
-	@supports(display:grid){
-		// ONLY FOR GRID
+
+	// @supports(display:grid){
+	// 	// ONLY FOR GRID
+	// 	.candidate{
+	// 		display:grid;
+	// 		grid-template-columns: [main-start] 1fr [right-start] #{$candidate-column-width};
+	// 		grid-template-rows: auto auto;
+	// 		grid-gap: $grid-gap;
+
+	// 		&__left-column{
+	// 			grid-column: main-start;
+	// 			grid-row: 1/1;
+	// 		}
+
+	// 		&__main-column{
+	// 			grid-column: main-start;
+	// 			grid-row: 2/-1;
+	// 		}
+	// 		&__right-column{
+	// 			grid-column: right-start;
+	// 			grid-row: 1/-1;
+	// 		}
+	// 	}
+	// }
+
+	// @supports not (display:grid){
+		// FALLBACK TO FLEX;
 		.candidate{
-			display:grid;
-			grid-template-columns: [main-start] 1fr [right-start] 200px;
-			grid-template-rows: auto auto;
-			grid-gap: $grid-gap;
+			display:flex;
+			justify-content: center;
+			align-items: stretch;
+
 
 			&__left-column{
-				grid-column: main-start;
-				grid-row: 1/1;
+				width: $candidate-column-width;
+				margin-right: $grid-gap;
+
 			}
 
 			&__main-column{
-				grid-column: main-start;
-				grid-row: 2/-1;
+				flex:1;
+				max-width: $tablet-min-width;
 			}
 			&__right-column{
-				grid-column: right-start;
-				grid-row: 1/-1;
+				width: $candidate-column-width;
+				margin-left: $grid-gap;
 			}
 		}
-	}
+	// }
 }
 @media all and (min-width:$desktop-min-width){
 
@@ -49,28 +190,59 @@
 	}
 
 
-	@supports(display:grid){
+	// @supports(display:grid){
+	// 	// If we support grid, then do the grid, with two columns
+	// 	.candidate{
+	// 		grid-template-columns: [left-start] 1fr [main-start] #{$phablet-min-width} [right-start] 1fr;
 
-		// If we support grid, then do the grid, with two columns
-		.candidate{
-			display:grid;
-			grid-template-columns: [left-start] 200px [main-start] 1fr [right-start] 200px;
-			// grid-template-rows: auto;
-			// grid-gap: $grid-gap;
+	// 		&__left-column{
+	// 			grid-column: left-start;
+	// 			grid-row: 1/-1;
+	// 		}
 
-			&__left-column{
-				grid-column: left-start;
-				grid-row: 1/-1;
-			}
+	// 		&__main-column{
+	// 			grid-column: main-start;
+	// 			grid-row: 1/-1;
+	// 		}
+	// 		&__right-column{
+	// 			grid-column: right-start;
+	// 			grid-row: 1/-1;
+	// 		}
+	// 	}
+	// }
 
-			&__main-column{
-				grid-column: main-start;
-				grid-row: 1/-1;
-			}
-			&__right-column{
-				grid-column: right-start;
-				grid-row: 1/-1;
-			}
-		}
-	}
+	// @supports not (display:grid){
+
+	// 	.candidate{
+	// 		&__left-column{
+	// 			width: $candidate-column-width;
+	// 			// margin-right: $grid-gap;
+	// 		}
+
+	// 		&__right-column{
+	// 			width: $candidate-column-width;
+	// 			// margin-left: $grid-gap;
+	// 		}
+	// 	}
+
+	// }
+}
+
+@media all and (min-width:$extra-wide-min-width){
+
+	// // UNIVERSAL STYLES
+	// .candidate{
+	// 	&__left-column-inner, &__right-column-inner {
+	// 		position: sticky;
+	// 		top: $navbar_overall_height + $grid-gap;
+	// 	}
+	// }
+
+
+	// @supports(display:grid){
+	// 	// If we support grid, then do the grid, with two columns
+	// 	.candidate{
+	// 		grid-template-columns: [left-start] #{$candidate-column-width} [main-start] 1fr [right-start] #{$candidate-column-width};
+	// 	}
+	// }
 }

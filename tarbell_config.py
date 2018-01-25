@@ -8,12 +8,43 @@ from flask import Blueprint, g, render_template
 
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
-SPREADSHEET_KEY = "1QcrOV8ERi1DtosEBUe0qH2Cz22ISyXqRLL4SpUIT0mg"
-# Google spreadsheet key
-# SPREADSHEET_KEY = "11TAK4CxsSFhZOMXeGVN2ejmqb-NU2WmiXcFzSB_GavQ"
+
+@blueprint.app_template_filter('get_opponents')
+def make_photo_slug(candidates, c):
+    """
+        takes the current candidate (c) and returns a list of their opponents
+    """
+    retval=[]
+    race = c['race']
+    for key in candidates.keys():
+        candidate = candidates[key]
+        if candidate == c:
+            candidate['current'] = True
+        if candidate['race'] == race:
+            retval.append(candidate)
+
+    return retval
+
+
+
+
+@blueprint.app_template_filter('make_photo_slug')
+def make_photo_slug(name_str):
+    """
+        takes a name, and formats it to be filename compatible
+    """
+    return name_str.lower().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
+
+
+
+# BACKUP FO DEV PURPOSES:
+# SPREADSHEET_KEY = "1QcrOV8ERi1DtosEBUe0qH2Cz22ISyXqRLL4SpUIT0mg"
+
+# REAL Google spreadsheet key:
+SPREADSHEET_KEY = "11TAK4CxsSFhZOMXeGVN2ejmqb-NU2WmiXcFzSB_GavQ"
 
 # Exclude these files from publication
-EXCLUDES = ["*.md", "requirements.txt"]
+EXCLUDES = ['*.md', 'subtemplates', 'img/svgs' ,'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'package-lock.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4

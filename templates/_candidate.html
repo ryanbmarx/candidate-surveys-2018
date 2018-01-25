@@ -1,58 +1,102 @@
 {% extends "templates/_base-elex.html" %}
 
 {% macro endorsed(link) %}
-	<div class='candidate__endorsed'>
-		<p>Endorsed by the Chicago Tribune editorial board. <a href="{{ link }}">Read our endorsement »</a></p>
-	</div>
+<div class='candidate__endorsed'>
+	<svg class='candidate__endorsed-icon'>
+		<use xlink:href="#checkmark" />
+	</svg>
+	<p>Endorsed by the Chicago Tribune editorial board. <a href="{{ link }}">Read our endorsement »</a></p>
+</div>
 {% endmacro %}
 
 {% block content %}
+<div style="display:none;">{% include 'img/sprite.svg' %}</div>
 <div class='candidate'>
 	<div class='candidate__left-column'>
 		<div class='candidate__left-column-inner'>
-			<img src="http://{{ ROOT_URL }}/img/candidates/raja-krishnamoorthi.jpg">
-			{{ endorsed("#") }}
+			<img class='candidate__mug' alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}.jpg">
+			{% if candidate_info.endorsed == 1 %}
+			{{ endorsed(candidate_info.endorsement_link) }}
+			{% endif %}
 		</div>
 	</div>
 	<div class='candidate__main-column'>
+		
+		{{ candidate_info }}
+
+
+		{% include "base-subtemplates/_social-share.html" %}
+		<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
+		<h2 class='candidate__race'>{{  candidate_info.party }} candidate for {{ candidate_info.race_office }}</h2>
+
+		{% if candidate_info.running_mate %}
+			<dl class='bio'>
+				<dt>Running mate</dt>
+				<dd>{{ candidate_info.running_mate }}</dd>
+			</dl>
+		{% endif %}
+		<dl class='bio'>
+			<dt>Education</dt>
+			<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
+		</dl>
+		<dl class='bio'>
+			<dt>Occupation</dt>
+			<dd>LOREM</dd>
+		</dl>
+		<dl class='bio'>
+			<dt>Home</dt>
+			<dd>LOREM LOREM</dd>
+		</dl>
+		<dl class='bio'>
+			<dt>Past Political/Civic Experience</dt>
+			<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
+		</dl>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
 	</div>
 	<div class='candidate__right-column'>
-		<div class=' candidate__right-column-inner'>
-		{% block opponents %}
+		<div class='candidate__right-column-inner'>
+			<p class='candidate_opponents-label'>Candidates for {{ candidate_info.race_office }}</p>
 			<ul class="candidate__opponents">
-				<li class='opponent opponent--current'><a href="#">XXXXXX</a></li>
-				<li class='opponent'><a href="#">XXXXXX</a></li>
+				{# Filter to the list of opponents #}
+				{% for opponent in candidates|get_opponents(candidate_info)|sort(attribute="name_last") %}
+				{% if opponent.completed_survey == 1 %}
+				{% set completed = True %}
+				{% else %}
+				{% set completed = False %}
+				{% endif  %}
+				<li class='opponent {% if not completed %}opponent--muted{% endif %} {% if opponent.current %}opponent--current{% endif %} opponent--{{ opponent.party|lower }}'>
+					{% if completed %}<a href="#">{% endif %}{{ opponent.name }}{% if completed %}</a>{% endif %}
+				</li>
+				{% endfor %}
 			</ul>
-		{% endblock opponents %}
 		</div>
 	</div>
 
