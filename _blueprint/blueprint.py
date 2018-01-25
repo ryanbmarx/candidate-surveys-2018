@@ -36,8 +36,6 @@ except locale.Error:
 
 
 
-
-
 NEWPROJECT_HOOKS = (
     copy_front_end_build_script_templates,
     create_front_end_files,
