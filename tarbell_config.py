@@ -5,9 +5,77 @@ Tarbell project configuration
 """
 from flask import Blueprint, g, render_template
 import os.path # for testing for images
-
+import jinja2 #for context-getting
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
+
+
+@blueprint.app_template_filter('get_survey_keys')
+@jinja2.contextfilter
+def get_survey_keys(context, candidate_key):
+    candidate_info = context['candidates'][candidate_key]
+    ss_tab = candidate_info['race_category']
+
+    # A temporary hack for our test data
+    if ss_tab == "Statewide":
+        ss_tab = "fpo_statewide"
+
+    candidate_keys = context["control"][ss_tab]["survey_questions"]
+
+    return candidate_keys.split(",")
+
+
+@blueprint.app_template_filter('get_survey_questions')
+@jinja2.contextfilter
+def get_survey_questions(context, candidate_key):
+    candidate_info = context['candidates'][candidate_key]
+    ss_tab = candidate_info['race_category']
+
+    # A temporary hack for our test data
+    if ss_tab == "Statewide":
+        ss_tab = "fpo_statewide"
+
+    candidate_questions = context[ss_tab][0]
+
+    return candidate_questions
+
+
+@blueprint.app_template_filter('get_survey_responses')
+@jinja2.contextfilter
+def get_survey_responses(context, candidate_key):
+    candidate_info = context['candidates'][candidate_key]
+    ss_tab = candidate_info['race_category']
+
+    # A temporary hack for our test data
+    if ss_tab == "Statewide":
+        ss_tab = "fpo_statewide"
+
+    responses = "Null"
+
+    for c in context[ss_tab]:
+        if c['contact_email'] == candidate_info['key']:
+            return c
+
+    return False
+
+    
+
+@blueprint.app_template_filter('get_candidate_bio')
+@jinja2.contextfilter
+def get_candidate_bio(context, candidate_key):
+    candidate_info = context['candidates'][candidate_key]
+    ss_tab = candidate_info['race_category']
+
+    # A temporary hack for our test data
+    if ss_tab == "Statewide":
+        ss_tab = "fpo_statewide"
+
+    responses = "Null"
+
+    for c in context[ss_tab]:
+        if c['contact_email'] == candidate_info['key']:
+            responses = c
+    return responses
 
 @blueprint.app_template_filter('get_opponents')
 def make_photo_slug(candidates, c):
@@ -24,8 +92,6 @@ def make_photo_slug(candidates, c):
         if candidate['race'] == race:
             retval.append(candidate)
     return retval
-
-
 
 
 @blueprint.app_template_filter('make_photo_slug')

@@ -36,6 +36,7 @@ $extra-wide-min-width: $tablet-min-width + ($candidate-column-width * 2) + ($gri
 @import 'stars-topper';
 @import 'candidate';
 @import 'race';
+@import 'opponent-list';
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';
 // @import 'trib-buttons';
@@ -55,6 +56,7 @@ $extra-wide-min-width: $tablet-min-width + ($candidate-column-width * 2) + ($gri
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 // MOBILE/DEFAULT STYLES ARE HERE.
+
 
 
 .trb_mainContent .credits {

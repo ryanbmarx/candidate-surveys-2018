@@ -1,0 +1,29 @@
+.race {
+	h5 {
+		@include serif-text(22px, 1.3em);
+	}
+
+}
+
+.basic {
+	margin-left: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+.roster {
+	@include sans-serif-text(16px, 1.4em);
+
+	span {
+		display: block;
+		width: 10px;
+	}
+}
+
+.dblock span {
+	background-color: map-get($candidate-colors, 'democrat');
+}
+
+.rblock span {
+	background-color: map-get($candidate-colors, 'republican');
+}

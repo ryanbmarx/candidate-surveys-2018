@@ -18,7 +18,19 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
+    {% block google_analytics %}
+        {% if not PREVIEW_SERVER %}
+        {# <!-- Global site tag (gtag.js) - Google Analytics --> #}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9792248-18"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
+          gtag('config', 'UA-9792248-18');
+        </script>
+        {% endif %}
+    {% endblock google_analytics %}
     {% block meta scoped %}
         <meta charset="UTF-8" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -225,13 +237,6 @@
         </script>  
         {% endif %}
     {% endblock chartbeat %}
-    
-    {% block google_analytics %}
-        {% if not PREVIEW_SERVER %}
-        
-        {% endif %}
-    {% endblock google_analytics %}
-
 
     {% block omniture_scripts %}
         {# OMNITURE but not if running locally. This also loads code needed for comments. #}
