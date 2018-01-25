@@ -9,6 +9,29 @@ import jinja2 #for context-getting
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
 
+@blueprint.app_template_filter('has_any')
+def has_any(candidates, category, office):
+    """
+    returns true if there is even one single lousy candidate who meets the criteria
+    """
+    for c in candidates:
+        if c['race_category'] == category and c['race_office'] == office:
+            return True
+    return False
+
+@blueprint.app_template_filter('get_unique_values')
+def get_unique_values(candidates, column):
+    filtered_data = []
+    for c in candidates:
+        try:
+            filtered_data.append(c[column])
+        except:
+            print "skipping", c
+    
+    filtered_data = set(filtered_data)
+    
+    return filtered_data
+
 
 @blueprint.app_template_filter('get_survey_keys')
 @jinja2.contextfilter
