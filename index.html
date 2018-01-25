@@ -3,13 +3,45 @@
 
 
 {% block content %}
-	{# YOUR STUFF GOES HERE #}
+	<style type="text/css">
+		.category{
+			display:flex;
+			align-items: stretch;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
+		.jumptarget{
+			width: 100%;
+		}
+		.office{
+			width: calc((100% - 30px) / 2);
+			/*margin-right: 30px;*/
+		}
+	</style>
+
 	<section id='intro' class='intro container'>
 		<div class='river'>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolores ipsum quo? Accusamus, excepturi impedit a magni exercitationem molestiae repellendus cumque, sed ullam ex dicta dolore minus esse fugit, et.</p>
+			
+		{% set categories = candidates|get_unique_values('race_category') %}
+		{% set offices = candidates|get_unique_values('race_office') %}
+			
+		{% for category in categories %}
+			<div class='category category--{{ category|lower }}'>
+			{{ stars_topper(category) }}
+			{% for office in offices %}
+				{# Check if any candidates are in the category > office #}
+				{% if candidates|has_any(category, office) %}
+					<div class='office office--{{ office|lower }}'>
+						<h2><strong>{{ office }}</strong></h2>
+						{% for c in candidates|sort(attribute="name_last") if c.race_category == category and c.race_office == office %}
+							<p>{{ c.name }}</p>
+						{% endfor %}
+					</div>
+					{% endif %}
+			{% endfor %}
+			</div>
+		{% endfor %}
+
 		</div>
 	</section>
 	<section id='content' class='content container'>
