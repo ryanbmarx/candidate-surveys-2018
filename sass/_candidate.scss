@@ -121,6 +121,18 @@
 	.opponent--#{$key}{ border-color: #{$color}; }
 }
 
+.question{
+	@include sans-serif();
+	font-weight: bold;
+	border-left: 6px solid grey;
+	padding-left: $grid-gap / 2;
+	margin-top: $grid-gap;
+
+	&:before{
+		content: "Q: ";
+	}
+}
+
 @media all and (min-width:$tablet-min-width){
 
 	// UNIVERSAL STYLES
