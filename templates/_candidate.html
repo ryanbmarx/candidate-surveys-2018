@@ -23,11 +23,13 @@
 	<div class='candidate__main-column'>
 		
 		{{ candidate_info }}
-
-
 		{% include "base-subtemplates/_social-share.html" %}
 		<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
-		<h2 class='candidate__race'>{{  candidate_info.party }} candidate for {{ candidate_info.race_office }}</h2>
+			{% set office_sought =  candidate_info.race_office %}
+		{% if candidate_info.race_district %}
+			{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
+		{% endif %}
+		<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
 
 		{% if candidate_info.running_mate %}
 			<dl class='candidate__meta'>
@@ -83,7 +85,7 @@
 	</div>
 	<div class='candidate__right-column'>
 		<div class='candidate__right-column-inner'>
-			<p class='candidate_opponents-label'>Candidates for {{ candidate_info.race_office }}</p>
+			<p class='candidate_opponents-label'>Candidates for {{ office_sought }}</p>
 			<ul class="candidate__opponents">
 				{# Filter to the list of opponents #}
 				{% for opponent in candidates|get_opponents(candidate_info)|sort(attribute="name_last") %}
@@ -93,7 +95,9 @@
 				{% set completed = False %}
 				{% endif  %}
 				<li class='opponent {% if not completed %}opponent--muted{% endif %} {% if opponent.current %}opponent--current{% endif %} opponent--{{ opponent.party|lower }}'>
-					{% if completed %}<a href="#">{% endif %}{{ opponent.name }}{% if completed %}</a>{% endif %}
+					{% if completed %}<a href="#">{% endif %}
+						{{ opponent.name }}
+					{% if completed %}</a>{% endif %}
 				</li>
 				{% endfor %}
 			</ul>

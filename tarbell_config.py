@@ -12,7 +12,8 @@ blueprint = Blueprint('candidate-surveys-2018', __name__)
 @blueprint.app_template_filter('get_opponents')
 def make_photo_slug(candidates, c):
     """
-        takes the current candidate (c) and returns a list of their opponents
+        Takes the current candidate (c) and returns a list of their opponents.
+        it also marks the candidate on whose page this is displaying.
     """
     retval=[]
     race = c['race']
@@ -22,7 +23,6 @@ def make_photo_slug(candidates, c):
             candidate['current'] = True
         if candidate['race'] == race:
             retval.append(candidate)
-
     return retval
 
 
