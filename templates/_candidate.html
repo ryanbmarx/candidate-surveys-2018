@@ -100,7 +100,7 @@
 	<div class='candidate__right-column'>
 		<div class='candidate__right-column-inner'>
 			<p class='candidate_opponents-label'>Candidates for {{ office_sought }}</p>
-			<ul class="candidate__opponents">
+			<ul class="opponents">
 				{# Filter to the list of opponents #}
 				{% for opponent in candidates|get_opponents(candidate_info)|sort(attribute="name_last") %}
 				{% if opponent.completed_survey == 1 %}

@@ -1,0 +1,46 @@
+
+.opponents{
+	margin: 0;
+	padding: 0;
+}
+
+.opponent{
+	// This is the li element of the opponents list
+
+	@include sans-serif();
+	list-style: none;
+	padding: 3px 0 5px 6px;
+	margin: 0 0 5px 0;
+	border-left: 6px solid #{map-get($candidate-colors, default)};
+	border-radius: 5px;
+	cursor:pointer;
+
+	&--current, &.opponent--current:hover{
+		font-weight: bold;
+		background: $trib-gray3;
+		a {
+			color: set-text-color($trib-gray3, true);
+		}
+	}
+
+	&--muted, &.opponent--muted:hover{
+		opacity: .5;
+		background: none;
+		cursor: default;
+	}
+
+	&:hover{
+		background:$trib-gray4;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+
+	}
+}
+
+// Make the variant classes to assign colors 
+@each $key, $color in $candidate-colors{
+	.opponent--#{$key}{ border-color: #{$color}; }
+}
