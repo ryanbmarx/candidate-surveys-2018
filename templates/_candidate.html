@@ -1,4 +1,20 @@
+{# http://pinterest.com/pin/create/button/?url=http://elections.chicagotribune.com/candidates/raja-krishnamoorthi/description=Learn+About+Raja%20Krishnamoorthi+In+The+Chicago+Tribune%27s+Election+Center #}
 {% extends "templates/_base-elex.html" %}
+
+{# GET CANDIDATE INFORMATIONS #}
+{% set candidate_info = candidates[candidate_key] %}
+{% set candidate_bio = candidate_key|get_candidate_bio %}
+{% set candidate_question_keys = candidate_key|get_survey_keys %}
+{% set candidate_questions = candidate_key|get_survey_questions %}
+{% set candidate_responses = candidate_key|get_survey_responses %}
+
+
+
+{% set office_sought =  candidate_info.race_office %}
+{% if candidate_info.race_district %}
+	{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
+{% endif %}
+
 
 {% macro endorsed(link) %}
 <div class='candidate__endorsed'>
@@ -15,21 +31,29 @@
 	<div class='candidate__left-column'>
 		<div class='candidate__left-column-inner'>
 			<img class='candidate__mug' alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}.jpg">
+			<p>{{ candidate_info.name }}</p>
+			<p>{{ candidate_info.party }} candidate for {{ office_sought }}</p>
+
 			{% if candidate_info.endorsed == 1 %}
-			{{ endorsed(candidate_info.endorsement_link) }}
+				{{ endorsed(candidate_info.endorsement_link) }}
+			{% endif %}
+			{% if candidate_responses.website %}
+				<dl class='candidate__meta'>
+					<dt>Website</dt>
+					<dd>{{ candidate_responses.website }}</dd>
+				</dl>
+			{% endif %}
+			{% if candidate_info.twitter %}
+				{# TODO: ICON #}
+				{{ candidate_info.twitter }}
 			{% endif %}
 		</div>
+
 	</div>
 	<div class='candidate__main-column'>
-		
-		{{ candidate_info }}
 		<section>
 			{% include "base-subtemplates/_social-share.html" %}
 			<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
-				{% set office_sought =  candidate_info.race_office %}
-			{% if candidate_info.race_district %}
-				{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
-			{% endif %}
 			<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
 
 			{% if candidate_info.running_mate %}
@@ -40,60 +64,37 @@
 			{% endif %}
 		</section>
 		<section>
+			{% if candidate_bio.education %}
 			<dl class='candidate__meta'>
 				<dt>Education</dt>
-				<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
+				<dd>{{ candidate_bio.education }}</dd>
 			</dl>
+			{% endif %}
+			{% if candidate_bio.occupation_and_employer %}
 			<dl class='candidate__meta'>
 				<dt>Occupation</dt>
-				<dd>LOREM</dd>
+				<dd>{{ candidate_bio.occupation_and_employer }}</dd>
 			</dl>
+			{% endif %}
+			{% if candidate_bio.city_home_address %}
 			<dl class='candidate__meta'>
 				<dt>Home</dt>
-				<dd>LOREM LOREM</dd>
-			</dl>
+				<dd>{{ candidate_bio.city_home_address }}</dd>
+			</dl>{% endif %}
+			{% if candidate_bio.previous_political_experience %}
 			<dl class='candidate__meta'>
 				<dt>Past Political/Civic Experience</dt>
-				<dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem similique quos, beatae doloribus consequuntur sed, accusantium aliquid repellat. Odio fuga, reprehenderit ea velit voluptates repudiandae expedita molestias dolorem, magni ab.</dd>
+				<dd>{{ candidate_bio.previous_political_experience }}</dd>
 			</dl>
+			{% endif %}
 		</section>
 		<section class='responses'>
 			<h1 class='responses-header'>Responses to our questions</h1>
-			<p class='question'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae</p>
-			 <p>vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
 
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
-			<p class='question'>Lorem ipsum dolor sLorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti it amet, consectetur adipisicing elit. Molestiae</p>
-			 <p>vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
-
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
-
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!etur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae vel officiis illum, labore quibusdam repellat qui eum consectetur pariatur sed minima velit deleniti dolore distinctio perspiciatis vitae consequuntur provident rerum!</p>
+ 			{% for key in candidate_question_keys %}
+				<p class='question'>{{ candidate_questions[key|trim] }}</p>
+				{{ candidate_responses[key|trim]|markdown }}
+			{% endfor %}
 		</section>
 	</div>
 	<div class='candidate__right-column'>
@@ -103,9 +104,9 @@
 				{# Filter to the list of opponents #}
 				{% for opponent in candidates|get_opponents(candidate_info)|sort(attribute="name_last") %}
 				{% if opponent.completed_survey == 1 %}
-				{% set completed = True %}
+					{% set completed = True %}
 				{% else %}
-				{% set completed = False %}
+					{% set completed = False %}
 				{% endif  %}
 				<li class='opponent {% if not completed %}opponent--muted{% endif %} {% if opponent.current %}opponent--current{% endif %} opponent--{{ opponent.party|lower }}'>
 					{% if completed %}<a href="#">{% endif %}
