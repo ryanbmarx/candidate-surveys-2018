@@ -5,13 +5,15 @@
 {% extends "_base.html" %}
 
 
+
+
 {% block sprites %}
 	{{ super() }}
 	<div style="display:none;">{% include 'img/sprite.svg' %}</div>
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="http://{{ ROOT_URL }}/css/styles.css">
 {% endblock stylesheets %}
 
 
