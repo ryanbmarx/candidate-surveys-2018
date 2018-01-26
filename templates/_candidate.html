@@ -29,17 +29,22 @@
 <div class='candidate'>
 	<div class='candidate__left-column'>
 		<div class='candidate__left-column-inner'>
-			<img class='candidate__mug' alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}.jpg">
-			<p>{{ candidate_info.name }}</p>
-			<p>{{ candidate_info.party }} candidate for {{ office_sought }}</p>
-
+			<figure class='candidate__mug'>
+				<img alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}.jpg">
+				<figcaption>
+					<p>{{ candidate_info.name }}</p>
+					<p>{{ candidate_info.party }} candidate for {{ office_sought }}</p>
+				</figcaption>
+	
+			</figure>
+			
 			{% if candidate_info.endorsed == 1 %}
 				{{ endorsed(candidate_info.endorsement_link) }}
 			{% endif %}
 			{% if candidate_responses.website %}
 				<dl class='candidate__meta'>
 					<dt>Website</dt>
-					<dd>{{ candidate_responses.website }}</dd>
+					<dd><a href="http://{{ candidate_responses.website }}" target="_blank">{{ candidate_responses.website }}</a></dd>
 				</dl>
 			{% endif %}
 			{% if candidate_info.twitter %}
@@ -88,7 +93,7 @@
 			{% endif %}
 		</section>
 		<section class='responses'>
-			<h1 class='responses-header'>Responses to our questions</h1>
+			<h1 class='responses__header'>Responses to our questions</h1>
 
  			{% for key in candidate_question_keys %}
 				<p class='question'>{{ candidate_questions[key|trim] }}</p>
