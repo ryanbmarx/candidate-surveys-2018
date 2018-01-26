@@ -55,10 +55,6 @@ def get_survey_keys(context, candidate_key):
     candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
-    # A temporary hack for our test data
-    if ss_tab == "Statewide":
-        ss_tab = "fpo_statewide"
-
     candidate_keys = context["control"][ss_tab]["survey_questions"]
 
     return candidate_keys.split(",")
@@ -70,10 +66,6 @@ def get_survey_questions(context, candidate_key):
     candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
-    # A temporary hack for our test data
-    if ss_tab == "Statewide":
-        ss_tab = "fpo_statewide"
-
     candidate_questions = context[ss_tab][0]
 
     return candidate_questions
@@ -84,10 +76,6 @@ def get_survey_questions(context, candidate_key):
 def get_survey_responses(context, candidate_key):
     candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
-
-    # A temporary hack for our test data
-    if ss_tab == "Statewide":
-        ss_tab = "fpo_statewide"
 
     responses = "Null"
 
@@ -105,10 +93,6 @@ def get_candidate_bio(context, candidate_key):
     candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
 
     ss_tab = candidate_info['race_category']
-
-    # A temporary hack for our test data
-    if ss_tab == "Statewide":
-        ss_tab = "fpo_statewide"
 
     responses = "Null"
 
