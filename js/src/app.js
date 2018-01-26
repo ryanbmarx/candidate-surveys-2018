@@ -1,8 +1,8 @@
 const inView = require('in-view');
 
 
-// Let's set our lazyload offset to 500px into the viewport. 
-// inView.offset(500);
+// Let's set our offset to 33% into the viewport. 
+inView.offset(window.innerWidth / 3);
 
 window.addEventListener('DOMContentLoaded', function(e){
 

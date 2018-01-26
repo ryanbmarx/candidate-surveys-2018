@@ -1,13 +1,24 @@
+$anchor-offset: $navbar-overall-height + 70px;
+
 .category{
 	display:flex;
 	align-items: stretch;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	position: relative;
 
 	// This gives the padding necessary for when navigating using 
 	// the floating buttons. Without this, the page would jump to 
 	// the top, under the navbar
-	padding-top: $navbar-overall-height + 70px; 
+	// padding-top: $navbar-overall-height + 70px; 
+	padding-top: $anchor-offset;
+	margin-top: 0 - $anchor-offset;
+	// &:before{
+	//    content: "";
+	//    display: block;
+	//    height: $navbar-overall-height + 70px;
+	//    margin-top: #{0-$navbar-overall-height + 70px};
+	// }
 }
 
 .office {
