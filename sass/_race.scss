@@ -3,6 +3,11 @@
 	align-items: stretch;
 	justify-content: space-between;
 	flex-wrap: wrap;
+
+	// This gives the padding necessary for when navigating using 
+	// the floating buttons. Without this, the page would jump to 
+	// the top, under the navbar
+	padding-top: $navbar-overall-height + 70px; 
 }
 
 .office {
