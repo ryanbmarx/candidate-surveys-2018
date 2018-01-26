@@ -1,4 +1,13 @@
+.category{
+	display:flex;
+	align-items: stretch;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
 .office {
+	width: calc((100% - 30px) / 2);
+	
 	h5 {
 		@include serif-text(22px, 1.3em);
 		margin: 0 0 10px 0;
