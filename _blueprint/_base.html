@@ -170,10 +170,11 @@
 </head>
 
 <body data-ad-path="{{ ad_path }}" data-ad-ptype="s" data-ad-iframe-url="./ad-iframe.html" itemscope itemtype="http://schema.org/NewsArticle">
+    {% block sprites %}
     <div style="display:none;height:0;visibility:invisible;">
         {% include 'img/base-sprite.svg' ignore missing %}
     </div>
- 
+    {% endblock %}
     {% block nav scoped%}{% include "base-subtemplates/_navbar.html" %}{% endblock %}
 
     {% block content %}{% endblock content %}
