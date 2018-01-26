@@ -21,72 +21,35 @@
 
 	<section id='intro' class='intro container'>
 		<div class='river'>
-			
-		{% set categories = candidates|get_unique_values('race_category') %}
-		{% set offices = candidates|get_unique_values('race_office') %}
-			
-		{% for category in categories %}
-			<div class='category category--{{ category|lower }}'>
-			{{ stars_topper(category) }}
-			{% for office in offices %}
-				{# Check if any candidates are in the category > office #}
-				{% if candidates|has_any(category, office) %}
-					<div class='office office--{{ office|lower }}'>
-						<h2><strong>{{ office }}</strong></h2>
-						{% for c in candidates|sort(attribute="name_last") if c.race_category == category and c.race_office == office %}
-							<p>{{ c.name }}</p>
-						{% endfor %}
-					</div>
-					{% endif %}
-			{% endfor %}
-			</div>
-		{% endfor %}
-
+		
 		</div>
 	</section>
 	<section id='content' class='content container'>
 		<div class='row'>
 			<div class='races'>
-				<div class='category'>
-					{{stars_topper('federal')}}
-					<div class='row'>
-						<div class='races__col'>
-							<div class='race'>
-								<h5>Race name xxx</h5>
+				{% set categories = candidates|get_unique_values('race_category') %}
+				{% set offices = candidates|get_unique_values('race_office') %}
+					
+				{% for category in categories %}
+					<div class='category category--{{ category|lower }}'>
+					{{ stars_topper(category) }}
+					{% for office in offices %}
+						{# Check if any candidates are in the category > office #}
+						{% if candidates|has_any(category, office) %}
+							<div class='office office--{{ office|lower }}'>
+								<h5>{{ office }}</h5>
 								<ul class='opponents'>
-									<li class='opponent opponent--democrat'>
-										Democrat name (D)
+								{% for c in candidates|sort(attribute="name_last") if c.race_category == category and c.race_office == office %}
+									<li class='opponent opponent--{{ c.party|lower }}'>
+										{{ c.name }}
 									</li>
-									<li class='opponent opponent--republican'>
-										Republican name (R)
-									</li>
+								{% endfor %}
 								</ul>
 							</div>
-						</div>
-						<div class='races__col'>
-							<div class='race'>
-								<h5>Race name xxx</h5>
-								<ul class='opponents'>
-									<li class='opponent opponent--democrat'>
-										Democrat name (D)
-									</li>
-									<li class='opponent opponent--republican'>
-										Republican name (R)
-									</li>
-								</ul>
-							</div>
-						</div>
+							{% endif %}
+					{% endfor %}
 					</div>
-				</div>
-				<div class='category'>
-				{{stars_topper('Title goes here')}}
-					<div class='row'>
-						<div class='races__col'>
-						</div>
-						<div class='races__col'>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			<div class='editorials'>
 				{{stars_topper('editorials')}}
