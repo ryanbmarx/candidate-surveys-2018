@@ -18,6 +18,9 @@ $container-max-width: 1100px;
 $candidate-column-width: 150px;
 $extra-wide-min-width: $tablet-min-width + ($candidate-column-width * 2) + ($grid-gap * 2);
 
+// DISPLAY CHOICES
+$border-radius: 5px;
+
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
 // Breakpoints
 // $phablet-min-width:420px;

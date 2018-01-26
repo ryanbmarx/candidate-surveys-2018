@@ -24,7 +24,7 @@
 	padding: #{($grid-gap / 2) + 5px} #{$grid-gap / 2} #{$grid-gap / 2} #{$grid-gap / 2};
 	background: $trib-gray4;
 	position: relative;
-	border-radius: 5px;
+	border-radius: $border-radius;
 
 	a{
 		font-weight: bold;
@@ -69,8 +69,16 @@
 	}
 
 	&__mug{
+		@include trib-image();
 	    max-width: 100%;
 	    margin: 0 0 25px 0;
+		img{
+			border-radius: $border-radius;
+		}
+		
+	    figcaption p{
+	    	@include sans-serif();
+	    }
 	}
 }
 
@@ -83,6 +91,17 @@
 
 	&:before{
 		content: "Q: ";
+	}
+}
+
+.responses{
+	margin-top: $grid-gap;
+	padding-top: $grid-gap;
+	border-top: 1px solid $trib-grey4;
+
+	&__header{
+		@include serif-text(45px, 1.5em, normal);
+		margin: 0 0 #{$grid-gap / 2} 0;
 	}
 }
 

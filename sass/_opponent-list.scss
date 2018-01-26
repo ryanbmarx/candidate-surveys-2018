@@ -12,7 +12,7 @@
 	padding: 3px 0 5px 6px;
 	margin: 0 0 5px 0;
 	border-left: 6px solid #{map-get($candidate-colors, default)};
-	border-radius: 5px;
+	border-radius: $border-radius;
 	cursor:pointer;
 
 	&--current, &.opponent--current:hover{
