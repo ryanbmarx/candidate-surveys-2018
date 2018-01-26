@@ -1,6 +1,6 @@
 
 .opponents{
-	margin: 0;
+	margin: 0 0 #{$grid-gap} 0;
 	padding: 0;
 }
 
@@ -38,6 +38,11 @@
 		text-decoration: none;
 
 	}
+}
+
+.opponent-label{
+	@include agate();
+	font-weight: bold;
 }
 
 // Make the variant classes to assign colors 

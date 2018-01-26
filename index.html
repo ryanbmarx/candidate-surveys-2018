@@ -3,21 +3,6 @@
 
 
 {% block content %}
-	{# <style type="text/css">
-		.category{
-			display:flex;
-			align-items: stretch;
-			justify-content: space-between;
-			flex-wrap: wrap;
-		}
-		.jumptarget{
-			width: 100%;
-		}
-		.office{
-			width: calc((100% - 30px) / 2);
-			/*margin-right: 30px;*/
-		}
-	</style> #}
 
 	<section id='intro' class='intro container'>
 		<div class='river'>
@@ -38,13 +23,7 @@
 						{% if candidates|has_any(category, office) %}
 							<div class='office office--{{ office|lower }}'>
 								<h5>{{ office }}</h5>
-								<ul class='opponents'>
-								{% for c in candidates|sort(attribute="name_last") if c.race_category == category and c.race_office == office %}
-									<li class='opponent opponent--{{ c.party|lower }}'>
-										{{ c.name }}
-									</li>
-								{% endfor %}
-								</ul>
+								{% include 'subtemplates/_opponents-list.html'%}
 							</div>
 							{% endif %}
 					{% endfor %}
@@ -58,13 +37,14 @@
 			</div>
 		</div>
 	</section>
-	{{ refer() }}
-	<section id='credits' class='credits container'>
+	{# {{ refer() }} #}
+{# 	<section id='credits' class='credits container'>
 		<div class='river'>
 			{% if note %}{{ note|markdown }}{% endif %}
 			{% if sources %}{{ sources|markdown }}{% endif %}
 			{% if credit %}{{ credit|markdown }}{% endif %}
 		</div>
-	</section>
+	</section> #}
 {% endblock content %}
 
+{% block comments %}{% endblock %}

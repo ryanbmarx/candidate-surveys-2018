@@ -1,0 +1,23 @@
+
+
+{% for party in ['democratic', 'republican'] %}
+	{% for c in candidates|sort(attribute="name_last") if c.race_category == category and c.race_office == office and c.party|lower == party %}
+		{% if loop.first %}
+		<p class='opponent-label'>{{ party|upper }}</p>
+			<ul class='opponents opponents--{{ party }}'>
+		{% endif %}
+		{% if c.completed_survey == 1 %}
+			{% set completed = True %}
+		{% else %}
+			{% set completed = False %}
+		{% endif  %}
+		<li class='opponent {% if not completed %}opponent--muted{% endif %} opponent--{{ c.party|lower }}'>
+			{% if completed %}<a href="#">{% endif %}
+				{{ c.name }}{% if not completed %} (No survey){% endif %}
+			{% if completed %}</a>{% endif %}
+		</li>
+		{% if loop.last %}
+			</ul>
+		{% endif %}
+	{% endfor %}
+{% endfor %}

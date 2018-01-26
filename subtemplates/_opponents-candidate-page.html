@@ -1,0 +1,26 @@
+{# Filter by party, first #}
+{% for party in ['democratic', 'republican'] %}
+
+	{# Filter to the list of opponents #}
+	{% for opponent in candidates|get_opponents(candidate_info)|sort(attribute="name_last") if opponent.party|lower == party %}
+		{% if loop.first %}
+			<p class='opponent-label'>{{ party|upper }}</p>
+			<ul class='opponents opponents--{{ party }}'>
+		{% endif %}
+
+		{% if opponent.completed_survey == 1 %}
+			{% set completed = True %}
+		{% else %}
+			{% set completed = False %}
+		{% endif  %}
+		<li class='opponent {% if not completed %}opponent--muted{% endif %} {% if opponent.current %}opponent--current{% endif %} opponent--{{ opponent.party|lower }}'>
+			{% if completed %}<a href="#">{% endif %}
+				{{ opponent.name }}{% if not completed %} (No survey){% endif %}
+			{% if completed %}</a>{% endif %}
+		</li>
+
+		{% if loop.last %}
+			</ul>
+		{% endif %}
+	{% endfor %}
+{% endfor %}
