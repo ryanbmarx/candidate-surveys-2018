@@ -4,7 +4,7 @@
 	{% for c in candidates|sort(attribute="name_last") if c.race_category == category and c.race_office == office and c.party|lower == party %}
 		{% if loop.first %}
 		<p class='opponent-label'>{{ party|upper }}</p>
-			<ul class='opponents opponents--{{ party }}'>
+			<ul class='opponents opponents--{{ party }}'> {# Open the list #}
 		{% endif %}
 		{% if c.completed_survey == 1 %}
 			{% set completed = True %}
@@ -12,13 +12,16 @@
 			{% set completed = False %}
 		{% endif  %}
 		<li class='opponent {% if not completed %}opponent--muted{% endif %} opponent--{{ c.party|lower }}'>
-			{% if completed %}<a href="#">{% endif %}
+			{% if completed %}
+				{% set url = url_for("candidate-surveys-2018.candidate_survey_response_page",id=c.email) %}
+				<a href="{{ url }}">
+			{% endif %}
 				{% if c.endorsed == 1 %}{{ endorsed(c.party|lower) }}{% endif %}
 				{{ c.name }}{% if not completed %} (No survey){% endif %}
 			{% if completed %}</a>{% endif %}
 		</li>
 		{% if loop.last %}
-			</ul>
+			</ul> {# Close the list #}
 		{% endif %}
 	{% endfor %}
 {% endfor %}
