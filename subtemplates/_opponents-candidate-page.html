@@ -1,3 +1,5 @@
+{% from 'subtemplates/_macros.html' import endorsed as endorsed %}
+
 {# Filter by party, first #}
 {% for party in ['democratic', 'republican'] %}
 
@@ -15,6 +17,7 @@
 		{% endif  %}
 		<li class='opponent {% if not completed %}opponent--muted{% endif %} {% if opponent.current %}opponent--current{% endif %} opponent--{{ opponent.party|lower }}'>
 			{% if completed %}<a href="#">{% endif %}
+				{% if opponent.endorsed == 1 %}{{ endorsed(opponent.party|lower) }}{% endif %}
 				{{ opponent.name }}{% if not completed %} (No survey){% endif %}
 			{% if completed %}</a>{% endif %}
 		</li>

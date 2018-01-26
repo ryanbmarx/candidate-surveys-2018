@@ -5,29 +5,16 @@
 {% endmacro %}
 
 {% macro stars_topper(label) %}
-{# <div class='jumptarget' id='{{ label|lower|e }}'>
-	<div class='bigstar topper'>
-		<h4>
-			<span class='stars left'>
-				{{ star('star') }}
-				{{ star('star') }}
-			</span>
-			{{label|upper}}
-			<span class='stars right'>
-				{{ star('star') }}
-				{{ star('star') }}
-			</span>
-		</h4>
+	<div class='stars-topper' }}'>
+		{{ star('star') }}
+		{{ star('star') }}
+		<h4 class='stars-topper__label'>{{ label|upper }}</h4>
+		{{ star('star') }}
+		{{ star('star') }}
 	</div>
-</div> #}
-
-<div class='stars-topper' id='{{ label|lower|e }}'>
-	{{ star('star') }}
-	{{ star('star') }}
-	<h4 class='stars-topper__label'>{{ label|upper }}</h4>
-	{{ star('star') }}
-	{{ star('star') }}
-</div>
+{% endmacro %}
 
 
+{% macro endorsed(party) %}
+	{{ star('endorsed endorsed--' ~ party) }}
 {% endmacro %}

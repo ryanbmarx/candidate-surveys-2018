@@ -1,8 +1,12 @@
 {% extends "templates/_base-elex.html" %}
 
-{% block content %}
+{% set categories = candidates|get_unique_values('race_category') %}
+{% set offices = candidates|get_unique_values('race_office') %}
 
+{% block content %}
+	
 	<section id='intro' class='intro container'>
+		{{ stars_topper("Editorial Board Questionnaires") }}
 		<div class='river'>
 			{{ intro|markdown }}
 			{% if bedsheet_text and bedsheet_link != False %}
@@ -18,15 +22,14 @@
 			</dl>
 		</div>
 	</section>
+	
 	<section id='content' class='content container'>
+		{% include "subtemplates/_buttons.html" %}
 		<div class='row'>
 			<div class='races'>
-				{% set categories = candidates|get_unique_values('race_category') %}
-				{% set offices = candidates|get_unique_values('race_office') %}
-					
 				{% for category in categories %}
-					<div class='category category--{{ category|lower }}'>
-					{{ stars_topper(category) }}
+					<div id={{ control[category]['anchor'] }} class='category category--{{ category|lower }}'>
+					{{ stars_topper(control[category]['label']) }}
 					{% for office in offices %}
 						{# Check if any candidates are in the category > office #}
 						{% if candidates|has_any(category, office) %}
@@ -55,5 +58,18 @@
 		</div>
 	</section> #}
 {% endblock content %}
+
+{% block library_scripts %}
+	{{ super() }}
+	<script src="//{{ ROOT_URL }}/js/vendor.min.js" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block scripts %}
+	{{ super() }}
+	<script src="//{{ ROOT_URL }}/js/app.min.js" type="text/javascript"></script>
+}
+}
+{% endblock %}
 
 {% block comments %}{% endblock %}

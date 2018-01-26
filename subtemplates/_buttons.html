@@ -1,0 +1,5 @@
+<div class='nav-buttons'>
+{% for category in categories %}
+	<a href="#{{ control[category]['anchor'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ control[category]['label'] }}</a>
+{% endfor %}
+</div>

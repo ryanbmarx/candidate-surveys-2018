@@ -114,6 +114,10 @@ $endorsed_icon_width: 15px;
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 // MOBILE/DEFAULT STYLES ARE HERE.
 
+.intro{
+	margin-top: $grid-gap;
+}
+
 .candidate-lookup{
 	@include searchbar($border-radius);
 }
@@ -125,6 +129,39 @@ $endorsed_icon_width: 15px;
 	}
 }
 
+
+.nav-buttons{
+	display:flex;
+	justify-content: space-between;
+	align-items:stretch;
+	width: 100%;
+	margin: #{$grid-gap} 0;
+	position: sticky;
+	top: $navbar-overall-height;
+    z-index: 1000;
+    background: white;
+}
+
+.nav-button{
+	@include sans-serif();
+	flex: 1;
+	display:block;
+	padding: #{$grid-gap / 2} 0;
+	background: $trib-grey4;
+	color: set-text-color($trib-grey4, true);
+	text-align: center;
+	margin-right: 5px;
+	cursor:pointer;
+
+	&:last-child{
+		margin-right: 0;
+	}
+	
+	&--active{
+		background: $trib-blue2;
+		color: set-text-color($trib-blue2, true);
+	}
+}
 
 .races-legend{
 	@include trib-legend();
