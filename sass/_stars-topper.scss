@@ -26,17 +26,60 @@
 	z-index: -2;
 }
 
-.glyphicon {
-	position: relative;
-	top: 1px;
-	display: inline-block;
-	font-family: 'Wingdings', sans-serif;
-	font-style: normal;
-	line-height: 1;
-	font-size: 22px;
-	color: $trib_gray3;
+$stars-dimension: 25px;
 
-	&__star:before {
-		content: "\00ab";
+.stars-topper{
+	width: 100%;
+	height: $stars-dimension;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0 #{$grid-gap} 0;
+	position: relative;
+	
+	&:before{
+		content:"";
+		height: 2px;
+		width: 100%;
+		background: black;
+
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translate(0, -50%);
+
+	}
+
+	&__label{
+		@include serif-text(25px, 1em, normal);
+		text-transform: uppercase;
+		padding: 0 5px;
+		background: white;
+		z-index:2;
 	}
 }
+
+.star{
+	width: $stars-dimension;
+	height: $stars-dimension;
+	fill: green;
+	z-index:2;
+	background: white;
+	padding: 0 5px;
+}
+
+// .glyphicon {
+// 	position: relative;
+// 	top: 1px;
+// 	display: inline-block;
+// 	font-family: 'Wingdings', sans-serif;
+// 	font-style: normal;
+// 	line-height: 1;
+// 	font-size: 22px;
+// 	color: $trib_gray3;
+
+// 	&__star:before {
+// 		content: "\00ab";
+// 	}
+// }
+

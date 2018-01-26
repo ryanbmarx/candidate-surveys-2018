@@ -1,17 +1,33 @@
+{% macro star(class) %}
+	<svg class='{{ class }}' viewBox="0 0 30 30">
+		<use xlink:href="#star" />
+	</svg>
+{% endmacro %}
+
 {% macro stars_topper(label) %}
-<div class='jumptarget' id='{{label}}'>
+{# <div class='jumptarget' id='{{ label|lower|e }}'>
 	<div class='bigstar topper'>
 		<h4>
 			<span class='stars left'>
-				<i class='glyphicon glyphicon__star'></i>
-				<i class='glyphicon glyphicon__star'></i>
+				{{ star('star') }}
+				{{ star('star') }}
 			</span>
 			{{label|upper}}
 			<span class='stars right'>
-				<i class='glyphicon glyphicon__star'></i>
-				<i class='glyphicon glyphicon__star'></i>
+				{{ star('star') }}
+				{{ star('star') }}
 			</span>
 		</h4>
 	</div>
+</div> #}
+
+<div class='stars-topper' id='{{ label|lower|e }}'>
+	{{ star('star') }}
+	{{ star('star') }}
+	<h4 class='stars-topper__label'>{{ label|upper }}</h4>
+	{{ star('star') }}
+	{{ star('star') }}
 </div>
+
+
 {% endmacro %}
