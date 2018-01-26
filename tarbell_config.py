@@ -8,6 +8,22 @@ import os.path # for testing for images
 import jinja2 #for context-getting
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
+def get_candidate_info_from_list(candidates_list, key_to_check, desired_value):
+    """
+    takes an array of candidate stuff and finds the specified row by matching emails
+    """
+    for c in candidates_list:
+        if c[key_to_check] == desired_value:
+            return c
+
+@blueprint.app_template_filter('get_candidate_info')
+@jinja2.contextfilter
+def get_candidate_info(context, candidate_key):
+    """
+    This is a filterified version of the reference function
+    """
+    return get_candidate_info_from_list(context['candidates'], "email", candidate_key)
+
 
 @blueprint.app_template_filter('has_any')
 def has_any(candidates, category, office):
@@ -36,7 +52,7 @@ def get_unique_values(candidates, column):
 @blueprint.app_template_filter('get_survey_keys')
 @jinja2.contextfilter
 def get_survey_keys(context, candidate_key):
-    candidate_info = context['candidates'][candidate_key]
+    candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
     # A temporary hack for our test data
@@ -51,7 +67,7 @@ def get_survey_keys(context, candidate_key):
 @blueprint.app_template_filter('get_survey_questions')
 @jinja2.contextfilter
 def get_survey_questions(context, candidate_key):
-    candidate_info = context['candidates'][candidate_key]
+    candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
     # A temporary hack for our test data
@@ -66,7 +82,7 @@ def get_survey_questions(context, candidate_key):
 @blueprint.app_template_filter('get_survey_responses')
 @jinja2.contextfilter
 def get_survey_responses(context, candidate_key):
-    candidate_info = context['candidates'][candidate_key]
+    candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
     # A temporary hack for our test data
@@ -76,7 +92,7 @@ def get_survey_responses(context, candidate_key):
     responses = "Null"
 
     for c in context[ss_tab]:
-        if c['contact_email'] == candidate_info['key']:
+        if c['contact_email'] == candidate_info['email']:
             return c
 
     return False
@@ -86,7 +102,8 @@ def get_survey_responses(context, candidate_key):
 @blueprint.app_template_filter('get_candidate_bio')
 @jinja2.contextfilter
 def get_candidate_bio(context, candidate_key):
-    candidate_info = context['candidates'][candidate_key]
+    candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
+
     ss_tab = candidate_info['race_category']
 
     # A temporary hack for our test data
@@ -96,7 +113,7 @@ def get_candidate_bio(context, candidate_key):
     responses = "Null"
 
     for c in context[ss_tab]:
-        if c['contact_email'] == candidate_info['key']:
+        if c['contact_email'] == candidate_key:
             responses = c
     return responses
 
@@ -108,8 +125,7 @@ def make_photo_slug(candidates, c):
     """
     retval=[]
     race = c['race']
-    for key in candidates.keys():
-        candidate = candidates[key]
+    for candidate in candidates:
         if candidate == c:
             candidate['current'] = True
         if candidate['race'] == race:

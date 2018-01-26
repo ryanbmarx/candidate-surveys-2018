@@ -2,15 +2,14 @@
 {% extends "templates/_base-elex.html" %}
 
 {# GET CANDIDATE INFORMATIONS #}
-{% set candidate_info = candidates[candidate_key] %}
+{% set candidate_info = candidate_key|get_candidate_info %}
 {% set candidate_bio = candidate_key|get_candidate_bio %}
 {% set candidate_question_keys = candidate_key|get_survey_keys %}
 {% set candidate_questions = candidate_key|get_survey_questions %}
 {% set candidate_responses = candidate_key|get_survey_responses %}
 
-
-
-{% set office_sought =  candidate_info.race_office %}
+{# Concat a string of the office being sought #}
+{% set office_sought = candidate_info.race_office %}
 {% if candidate_info.race_district %}
 	{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
 {% endif %}
