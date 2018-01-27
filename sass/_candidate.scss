@@ -1,3 +1,36 @@
+@mixin distribute_across_columns($num_items, $gutter:($grid-gap / 2)){
+
+	@if $num_items == 1{
+		width: 100%;
+	} @else {
+		width: 90% / $num_items; // fallback
+		width: calc((100% - #{($num_items - 1) * $gutter}) / #{$num_items});
+	}
+}
+
+
+.candidate-contact-list{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	flex-wrap: wrap;
+	list-style:none;
+	padding: 0;
+	margin: $grid-gap 0;
+
+	li{
+		@include distribute_across_columns(3);
+	}
+
+	svg{
+		fill: black;
+	}
+}
+
+
+
+
+
 .candidate__meta{
 	margin: 0 0 #{$grid-gap / 2} 0;
 	padding: 0;

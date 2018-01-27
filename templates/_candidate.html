@@ -1,5 +1,13 @@
 {# http://pinterest.com/pin/create/button/?url=http://elections.chicagotribune.com/candidates/raja-krishnamoorthi/description=Learn+About+Raja%20Krishnamoorthi+In+The+Chicago+Tribune%27s+Election+Center #}
 
+{% macro add_contact_icon(link="#", id="star") %}
+	<a href="http://{{ link }}" target="_blank">
+		<svg viewbox="0 0 30 30">
+			<use xlink:href="#{{ id|lower }}" />
+		</svg>
+	</a>
+{% endmacro %}
+
 {% extends "templates/_base-elex.html" %}
 
 {# GET CANDIDATE INFORMATIONS #}
@@ -43,16 +51,18 @@
 			{% if candidate_info.endorsed == 1 %}
 				{{ endorsed(candidate_info.endorsement_link) }}
 			{% endif %}
+			<ul class='candidate-contact-list'>
 			{% if candidate_responses.website %}
-				<dl class='candidate__meta'>
-					<dt>Website</dt>
-					<dd><a href="http://{{ candidate_responses.website }}" target="_blank">{{ candidate_responses.website }}</a></dd>
-				</dl>
+				<li>{{ add_contact_icon(candidate_responses.website, 'website-circle') }}</li>
 			{% endif %}
 			{% if candidate_info.twitter %}
-				{# TODO: ICON #}
-				{{ candidate_info.twitter }}
+				<li>{{ add_contact_icon(candidate_responses.website, 'twitter-circle') }}</li>
 			{% endif %}
+			{% if candidate_info.facebook %}
+				<li>{{ add_contact_icon(candidate_responses.website, 'facebook-circle') }}</li>
+			{% endif %}
+
+			</ul>
 		</div>
 
 	</div>
