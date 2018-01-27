@@ -138,6 +138,11 @@
 	}
 }
 
+.no-response{
+	font-style: italic;
+	color: $trib-gray3;
+}
+
 @media all and (min-width:$tablet-min-width){
 
 	// UNIVERSAL STYLES
