@@ -13,7 +13,7 @@
 		{% endif  %}
 		<li class='opponent {% if not completed %}opponent--muted{% endif %} opponent--{{ c.party|lower }}'>
 			{% if completed %}
-				{% set url = url_for("candidate-surveys-2018.candidate_survey_response_page",id=c.email) %}
+				{% set url = url_for("candidate-surveys-2018.candidate_survey_response_page",id=c.id) %}
 				<a href="{{ url }}">
 			{% endif %}
 				{% if c.endorsed == 1 %}{{ endorsed(c.party|lower) }}{% endif %}

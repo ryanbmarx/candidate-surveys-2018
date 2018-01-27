@@ -14,7 +14,7 @@ blueprint = Blueprint('candidate-surveys-2018', __name__)
 
 
 # This is so we don't need to make physical html files for each one. 
-@blueprint.route('/candidates/<id>.html')
+@blueprint.route('/candidates/<id>')
 def candidate_survey_response_page(id):
     """
     Make a page for each candidate, based on the unique
@@ -28,17 +28,11 @@ def candidate_survey_response_page(id):
     rows = data.get('candidates', [])
 
     # get the row we want, defaulting to an empty dictionary
-    row = next(ifilter(lambda r: r['email'] == id, rows), {})
+    row = next(ifilter(lambda r: r['id'] == id, rows), {})
 
     # render a template, using the same template environment as everywhere else
-    return render_template('templates/_candidate.html', bucket=bucket, id=row['email'],candidate_info=row,**data)
+    return render_template('templates/_candidate.html', bucket=bucket, id=id,candidate_info=row,**data)
 
-# @register_hook('generate')
-# def register_candidate_pages(site, output_root, extra_context):
-#     """
-#     This runs before tarbell builds the static site
-#     """
-#     site.freezer.register_generator(social_stub_urls)
 
 """
 ################################################################
