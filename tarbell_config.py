@@ -6,7 +6,45 @@ Tarbell project configuration
 from flask import Blueprint, g, render_template
 import os.path # for testing for images
 import jinja2 #for context-getting
+
+from itertools import ifilter # For the route
+from tarbell.hooks import register_hook #for the route, too
+
 blueprint = Blueprint('candidate-surveys-2018', __name__)
+
+
+@blueprint.route('/candidates/<id>.html')
+def candidate_survey_response_page(id):
+    """
+    Make a page for each candidate, based on the unique
+    """
+
+    site = g.current_site
+
+    # get our production bucket for URL building
+    bucket = site.project.S3_BUCKETS.get('production', '')
+    data = site.get_context()
+    rows = data.get('candidates', [])
+
+    # get the row we want, defaulting to an empty dictionary
+    row = next(ifilter(lambda r: r['email'] == id, rows), {})
+
+    # render a template, using the same template environment as everywhere else
+    return render_template('templates/_candidate.html', bucket=bucket, id=row['email'],candidate_info=row,**data)
+
+# @register_hook('generate')
+# def register_candidate_pages(site, output_root, extra_context):
+#     """
+#     This runs before tarbell builds the static site
+#     """
+#     site.freezer.register_generator(social_stub_urls)
+
+"""
+################################################################
+FILTERS & FUNCTIONS      #######################################
+################################################################
+"""
+
 
 def get_candidate_info_from_list(candidates_list, key_to_check, desired_value):
     """

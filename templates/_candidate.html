@@ -1,8 +1,11 @@
 {# http://pinterest.com/pin/create/button/?url=http://elections.chicagotribune.com/candidates/raja-krishnamoorthi/description=Learn+About+Raja%20Krishnamoorthi+In+The+Chicago+Tribune%27s+Election+Center #}
+
 {% extends "templates/_base-elex.html" %}
 
 {# GET CANDIDATE INFORMATIONS #}
-{% set candidate_info = candidate_key|get_candidate_info %}
+
+{% set candidate_key = id %}
+{# {% set candidate_info = row %} #}
 {% set candidate_bio = candidate_key|get_candidate_bio %}
 {% set candidate_question_keys = candidate_key|get_survey_keys %}
 {% set candidate_questions = candidate_key|get_survey_questions %}
@@ -55,7 +58,7 @@
 	</div>
 	<div class='candidate__main-column'>
 		<section>
-			{% include "base-subtemplates/_social-share.html" %}
+			{% include "subtemplates/_social-share.html" %}
 			<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
 			<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
 
