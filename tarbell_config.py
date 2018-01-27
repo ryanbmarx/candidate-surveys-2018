@@ -13,6 +13,7 @@ from tarbell.hooks import register_hook #for the route, too
 blueprint = Blueprint('candidate-surveys-2018', __name__)
 
 
+# This is so we don't need to make physical html files for each one. 
 @blueprint.route('/candidates/<id>.html')
 def candidate_survey_response_page(id):
     """
