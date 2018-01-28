@@ -4,11 +4,13 @@
 	</svg>
 {% endmacro %}
 
-{% macro stars_topper(label) %}
+{% macro stars_topper(label, link=False) %}
 	<div class='stars-topper'>
 		{{ star('star') }}
 		{{ star('star') }}
-		<h4 class='stars-topper__label'>{{ label|upper }}</h4>
+		<h4 class='stars-topper__label'>
+			{% if link %}<a href="{{ link }}">{% endif %}{{ label|upper }}{% if link %}</a>{% endif %}
+		</h4>
 		{{ star('star') }}
 		{{ star('star') }}
 	</div>
@@ -17,4 +19,12 @@
 
 {% macro endorsed(party) %}
 	{{ star('endorsed endorsed--' ~ party) }}
+{% endmacro %}
+
+{% macro add_contact_icon(link="#", id="star") %}
+	<a href="http://{{ link }}" target="_blank">
+		<svg viewbox="0 0 30 30">
+			<use xlink:href="#{{ id|lower }}" />
+		</svg>
+	</a>
 {% endmacro %}

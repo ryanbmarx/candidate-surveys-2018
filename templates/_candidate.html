@@ -1,12 +1,6 @@
 {# http://pinterest.com/pin/create/button/?url=http://elections.chicagotribune.com/candidates/raja-krishnamoorthi/description=Learn+About+Raja%20Krishnamoorthi+In+The+Chicago+Tribune%27s+Election+Center #}
 
-{% macro add_contact_icon(link="#", id="star") %}
-	<a href="http://{{ link }}" target="_blank">
-		<svg viewbox="0 0 30 30">
-			<use xlink:href="#{{ id|lower }}" />
-		</svg>
-	</a>
-{% endmacro %}
+
 
 {% extends "templates/_base-elex.html" %}
 

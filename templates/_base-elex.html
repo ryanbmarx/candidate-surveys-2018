@@ -1,11 +1,11 @@
 {% from 'subtemplates/_macros.html' import stars_topper as stars_topper %}
 {% from 'subtemplates/_macros.html' import endorsed as endorsed %}
-
+{% from 'subtemplates/_macros.html' import add_contact_icon as add_contact_icon %}
 
 {% extends "_base.html" %}
 
 {% block content %}
-	{{ stars_topper("Editorial Board Questionnaires") }}
+	{{ stars_topper("Editorial Board Questionnaires", "http://" + ROOT_URL) }}
 {% endblock content %}
 
 {% block sprites %}
