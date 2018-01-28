@@ -22,7 +22,7 @@
 {# Concat a string of the office being sought #}
 {% set office_sought = candidate_info.race_office %}
 {% if candidate_info.race_district %}
-	{% set office_sought = office_sought + ", " + candidate_info.race_district + " district" %}
+	{% set office_sought = office_sought + " district" %}
 {% endif %}
 
 
@@ -36,13 +36,14 @@
 {% endmacro %}
 
 {% block content %}
+{{ super() }}
 <div class='candidate'>
 	<div class='candidate__left-column'>
 		<div class='candidate__left-column-inner'>
 			<figure class='candidate__mug'>
 				<img alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}.jpg">
 				<figcaption>
-					<p>{{ candidate_info.name }}</p>
+					<p><strong>{{ candidate_info.name }}</strong></p>
 					<p>{{ candidate_info.party }} candidate for {{ office_sought }}</p>
 				</figcaption>
 	
@@ -110,7 +111,7 @@
  			{% for key in candidate_question_keys %}
 				<p class='question'>{{ candidate_questions[key|trim] }}</p>
 				{% if candidate_responses[key|trim] %}
-					{{ candidate_responses[key|trim]|markdown }}
+					{{ candidate_responses[key|trim] }}
 				{% else %}
 					<p class='no-response'>Candidate did not respond</p>
 				{% endif %}
