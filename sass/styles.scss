@@ -37,6 +37,15 @@ $endorsed_icon_width: 15px;
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
 
+@mixin distribute_across_columns($num_items, $gutter:($grid-gap / 2)){
+	@if $num_items == 1{
+		width: 100%;
+	} @else {
+		width: 90% / $num_items; // fallback
+		width: calc((100% - #{($num_items - 1) * $gutter}) / #{$num_items});
+	}
+}
+
 @mixin searchbar($border-radius: 0, $button_color: $trib-gray4, $button-width: 100px){
 	// This mixin takes a basic form and turns it into a single piece.
 	/*
