@@ -56,13 +56,13 @@
 			{% endif %}
 			<ul class='candidate-contact-list'>
 			{% if candidate_responses.website %}
-				<li>{{ add_contact_icon(candidate_responses.website, 'website-circle') }}</li>
+				<li>{{ add_contact_icon(candidate_info.website, 'website-circle') }}</li>
 			{% endif %}
 			{% if candidate_info.twitter %}
-				<li>{{ add_contact_icon(candidate_responses.website, 'twitter-circle') }}</li>
+				<li>{{ add_contact_icon(candidate_info.twitter, 'twitter-circle') }}</li>
 			{% endif %}
-			{% if candidate_info.facebook %}
-				<li>{{ add_contact_icon(candidate_responses.website, 'facebook-circle') }}</li>
+			{% if candidate_info.public_facebook %}
+				<li>{{ add_contact_icon(candidate_info.public_facebook, 'facebook-circle') }}</li>
 			{% endif %}
 
 			</ul>
