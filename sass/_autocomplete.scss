@@ -1,0 +1,18 @@
+.candidate-lookup{
+	@include searchbar($border-radius);
+}
+
+.awesomplete{
+    flex: 1;
+    box-sizing: border-box;
+	
+	input{
+		width: 100%;
+	}
+
+    & > ul{
+        // This is the autocomplete list
+        @include sans-serif();
+        z-index: 1001;
+    }
+}

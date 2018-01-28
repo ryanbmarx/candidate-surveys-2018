@@ -29,6 +29,10 @@ $endorsed_icon_width: 15px;
 // $tablet-min-width:650px;
 // $desktop-min-width:850px;
 
+// ---- HELPFUL Z INDECES ---------------------------------------------
+// NAV BUTTONS: 1000;
+// AUTOCOMPLETE BOX: 1001;
+// MAIN NAVBAR: 10000;
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
@@ -94,18 +98,8 @@ $endorsed_icon_width: 15px;
 @import 'candidate';
 @import 'race';
 @import 'opponent-list';
-// @import 'ngux-visibility-toggles';
-// @import 'trib-bulletbox';
-// @import 'trib-buttons';
-// @import 'trib-colors';
-// @import 'trib-images-charts';
-// @import 'trib-legends';
-// @import 'trib-skeleton';
-// @import 'trib-tables';
-// @import 'trib-timeline-basic';
-// @import 'trib-typography';
-// @import 'trib-utilities';
-
+@import "../node_modules/awesomplete/awesomplete"; // For the autocomplete
+@import "autocomplete"; // For the autocomplete modifications
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 
@@ -118,9 +112,6 @@ $endorsed_icon_width: 15px;
 	margin-top: $grid-gap;
 }
 
-.candidate-lookup{
-	@include searchbar($border-radius);
-}
 
 
 .trb_mainContent .credits {

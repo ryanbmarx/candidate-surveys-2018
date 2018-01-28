@@ -37,6 +37,7 @@
   },
   "tribune": {},
   "dependencies": {
+    "awesomplete": "^1.1.2",
     "in-view": "^0.6.1"
   }
 }
