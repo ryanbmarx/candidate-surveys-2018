@@ -65,14 +65,7 @@
 	<script>
 		{# // We'll use this to power the autocomplete #}
 		window.ROOT_URL = "http://{{ ROOT_URL }}";
-		window.candidates = [
-			{% for c in candidates if c.completed_survey == 1 %}
-			{
-				label: "{{ c.name }}",
-				value: "{{ c.id }}"
-			}{% if not loop.last %},{% endif %}
-			{% endfor %}
-		];
+		window.candidates = {{ candidates|generate_autocomplete_list|tojson }}
 	</script>
 {% endblock %}
 
