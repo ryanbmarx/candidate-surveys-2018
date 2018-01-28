@@ -6,13 +6,26 @@ import clickTrack from "./click-track.js";
 inView.offset(window.innerWidth / 3);
 
 window.addEventListener('DOMContentLoaded', function(e){
-	// These waypoints power the navbar buttons
+
+    // ----------------------------
+    // RACES NAV WAYPOINTS --------
+    // ----------------------------
+	
 	inView('.category')
 	    .on('enter', el => {
 	        let raceID =  el.getAttribute('id');
 	        document.querySelector('.nav-button--active').classList.remove('nav-button--active');
 	        document.querySelector(`.nav-button[href="#${raceID}"]`).classList.add('nav-button--active');
+	        document.querySelector(`#nav-select option[value=${raceID}]`).selected=true;
 	    });
+
+    document.querySelector(`#nav-select`).addEventListener('change', function(e){
+    	const targetScroll = document.querySelector(`#${this.value}`).getBoundingClientRect().top;
+
+    	console.log(targetScroll);
+    	window.scroll(0,targetScroll);
+    })
+
 
     // ----------------------------
     // AUTOCOMPLETE ---------------
@@ -45,6 +58,6 @@ window.addEventListener('DOMContentLoaded', function(e){
 
 		// Trigger an omniture link track
 		clickTrack('Elex 2018 - surveys - candidate search');
-	})
+	});
 });
 
