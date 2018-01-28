@@ -29,6 +29,9 @@
 </div>
 {% endmacro %}
 
+{% block title %}<title> {{ candidate_info['name'] }} candidate survey -- Chicago Tribune</title>{% endblock title %}
+{% block canonical %}<link rel="canonical" href="http://{{ ROOT_URL }}{{ url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) }}" />{% endblock canonical %}
+
 {% block content %}
 {{ super() }}
 <div class='candidate'>
