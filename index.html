@@ -32,7 +32,7 @@
 					{% for office in offices %}
 						{# Check if any candidates are in the category > office #}
 						{% if candidates|has_any(category, office) %}
-							<div class='office office--{{ office|lower }}'>
+							<div class='office office--{{ office|lower|slugify }}'>
 								<h5>{{ office }}</h5>
 								{% include 'subtemplates/_opponents-list.html'%}
 							</div>

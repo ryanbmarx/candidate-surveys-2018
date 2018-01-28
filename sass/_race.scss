@@ -35,4 +35,26 @@ $anchor-offset: $navbar-overall-height + 70px;
 	    border: 1px solid $trib-gray4;
 	    border-radius: $border-radius;
 	}	
+
+	// add exception for the uber-long cook co. circuit
+	// and other really long ones.
+	.office--cook_county_circuit,
+	.office--governor, 
+	.office--cook_county_board {
+		width: 100%;
+
+		.opponents{
+			display: flex;
+			justify-content: space-between;
+			align-items: stretch;
+			flex-wrap: wrap;
+
+			li{
+				@include distribute-across-columns(3, 45px);
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+			}
+		}
+	}
 }
