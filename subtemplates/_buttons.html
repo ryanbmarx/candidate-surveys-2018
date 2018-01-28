@@ -1,5 +1,11 @@
 <div class='nav-buttons'>
 {% for category in categories %}
-	<a href="#{{ control[category]['anchor'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ control[category]['label'] }}</a>
+	
+	{% if control[category]['anchor']|lower == "mwrd" %}
+		{% set button_text = "MWRD" %}
+	{% else %}
+		{% set button_text = control[category]['label'] %}
+	{% endif %}
+	<a href="#{{ control[category]['anchor'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ button_text }}</a>
 {% endfor %}
 </div>

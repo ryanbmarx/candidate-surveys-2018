@@ -1,0 +1,37 @@
+.nav-buttons{
+	display:flex;
+	justify-content: space-between;
+	align-items:stretch;
+	width: 100%;
+	margin: #{$grid-gap} 0;
+	position: sticky;
+	top: $navbar-overall-height;
+    z-index: 1000;
+    background: white;
+}
+
+.nav-button{
+	@include sans-serif();
+	flex: 1;
+	
+	display:flex;
+	justify-content: center;
+	align-items:center;	
+	text-align:center;
+
+
+	padding: #{$grid-gap / 2} 0;
+	background: $trib-grey4;
+	color: set-text-color($trib-grey4, true);
+	margin-right: 5px;
+	cursor:pointer;
+
+	&:last-child{
+		margin-right: 0;
+	}
+	
+	&--active{
+		background: $trib-blue2;
+		color: set-text-color($trib-blue2, true);
+	}
+}
