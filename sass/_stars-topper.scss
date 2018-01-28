@@ -1,41 +1,41 @@
-.bigstar {
-	margin: 30px 0;
-	text-align: center;
-	position: relative;
-	z-index: -1;
+// .bigstar {
+// 	margin: 30px 0;
+// 	text-align: center;
+// 	position: relative;
+// 	z-index: -1;
 
-	h4 {
-		display: inline;
-		background-color: white;
-		padding: 0 4px;
-		@include serif-text(18px, 1.3em, bold);
-	}
-}
+// 	h4 {
+// 		display: inline;
+// 		background-color: white;
+// 		padding: 0 4px;
+// 		@include serif-text(18px, 1.3em, bold);
+// 	}
+// }
 
-.bigstar:before {
-	border-top: 2px solid $trib_gray3;
-	content: "";
-	display: inline;
-	margin: 0 auto;
-	position: absolute;
-	top: 10px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	z-index: -2;
-}
+// .bigstar:before {
+// 	border-top: 2px solid $trib_gray3;
+// 	content: "";
+// 	display: inline;
+// 	margin: 0 auto;
+// 	position: absolute;
+// 	top: 10px;
+// 	left: 0;
+// 	right: 0;
+// 	bottom: 0;
+// 	width: 100%;
+// 	z-index: -2;
+// }
 
-$stars-dimension: 25px;
+
 
 .stars-topper{
 	width: 100%;
-	height: $stars-dimension;
 	display:flex;
 	justify-content: center;
 	align-items: center;
-	margin: 0 0 #{$grid-gap} 0;
+	margin: #{$grid-gap} 0;
 	position: relative;
+	text-align: center;
 	
 	&:before{
 		content:"";
@@ -51,11 +51,13 @@ $stars-dimension: 25px;
 	}
 
 	&__label{
-		@include serif-text(25px, 1em, normal);
+		@include serif-text(20px, 1em, normal);
+	    flex-basis: 200px;
 		text-transform: uppercase;
 		padding: 0 5px;
 		background: white;
 		z-index:2;
+		margin: 0;
 	}
 }
 
@@ -68,18 +70,16 @@ $stars-dimension: 25px;
 	padding: 0 5px;
 }
 
-// .glyphicon {
-// 	position: relative;
-// 	top: 1px;
-// 	display: inline-block;
-// 	font-family: 'Wingdings', sans-serif;
-// 	font-style: normal;
-// 	line-height: 1;
-// 	font-size: 22px;
-// 	color: $trib_gray3;
+@media all and (min-width: $tablet-min-width){
+	.stars-topper{
+		height: $stars-dimension;
+		&__label{
+			font-size: 25px;
+			flex-basis: auto;
+		}
+	}
+}
 
-// 	&__star:before {
-// 		content: "\00ab";
-// 	}
-// }
-
+@media all and (min-width: $desktop-min-width){
+	
+}
