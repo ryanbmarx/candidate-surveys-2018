@@ -11,7 +11,7 @@
 
 {# %23 is the url-encoded hash tag #}
 
-{% set target_url = ROOT_URL + url_for("candidate-surveys-2018.candidate_survey_response_page",id=id) %}
+{% set target_url = "http://" + ROOT_URL + url_for("candidate-surveys-2018.candidate_survey_response_page",id=id) %}
 
 
 {% set networks = [

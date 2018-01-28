@@ -19,6 +19,9 @@
 	{% set office_sought = office_sought + " district" %}
 {% endif %}
 
+{% set page_title = candidate_info['name'] + "candidate survey" %}
+{% set page_url = "http://" + ROOT_URL + url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) %}
+{% set shareline = "Find out what " + candidate_info.name + " would do if elected to the " + candidate_info.race_office + ". Here is the candidate's responses to our survey." %}
 
 {% macro endorsed(link) %}
 <div class='candidate__endorsed'>
@@ -29,8 +32,8 @@
 </div>
 {% endmacro %}
 
-{% block title %}<title> {{ candidate_info['name'] }} candidate survey -- Chicago Tribune</title>{% endblock title %}
-{% block canonical %}<link rel="canonical" href="http://{{ ROOT_URL }}{{ url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) }}" />{% endblock canonical %}
+{% block title %}<title>{{ page_title }} -- Chicago Tribune</title>{% endblock title %}
+{% block canonical %}<link rel="canonical" href="{{ page_url }}" />{% endblock canonical %}
 
 {% block content %}
 {{ super() }}
@@ -56,7 +59,7 @@
 			{% endif %}
 			<ul class='candidate-contact-list'>
 			{% if candidate_responses.website %}
-				<li>{{ add_contact_icon(candidate_info.website, 'website-circle') }}</li>
+				<li>{{ add_contact_icon(candidate_responses.website, 'website-circle') }}</li>
 			{% endif %}
 			{% if candidate_info.twitter %}
 				<li>{{ add_contact_icon(candidate_info.twitter, 'twitter-circle') }}</li>
@@ -123,4 +126,27 @@
 
 </div>
 {% endblock %}
+
 {% block comments %}{% endblock comments %}
+
+{% block twitter scoped%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@chicagotribune" />
+    <meta name="twitter:title" content="{{ page_title }}" />
+    <meta name="twitter:description" content="{{ shareline }} via @trib_ed_board" />
+	{#<meta name="twitter:image" content="http://{{ ROOT_URL}}/{{ thumbnail_image }}" />
+    <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />#}
+    <meta name="twitter:creator" content="@chicagotribune" />
+    <meta name="twitter:creator" content="@trib_ed_board" />
+{% endblock twitter %}
+
+{% block opengraph scoped %}
+    <meta property="og:url" content="{{ page_url }}" />
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="{{ page_title }}" />
+    <meta property="og:description" content="{{ shareline }}" />
+{#     <meta property="og:image" content="http://{{ ROOT_URL}}/{{ thumbnail_image }}" />
+    <meta name="og:image:alt" content="{{ thumbnail_alt }}" />
+    <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+    <meta name="og:image:width" content="{{ thumbnail.width }}px" /> #}
+{% endblock opengraph %}

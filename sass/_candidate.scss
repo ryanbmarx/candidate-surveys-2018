@@ -43,7 +43,7 @@
 
 .candidate-contact-list{
 	display:flex;
-	justify-content:space-between;
+	justify-content:flex-start;
 	align-items:center;
 	flex-wrap: wrap;
 	list-style:none;
@@ -51,12 +51,17 @@
 	margin: 0;
 
 	li{
-		@include distribute_across_columns(3);
+		@include distribute_across_columns(4);
+		margin-right: 5px;
 	}
 
 	svg{
-		fill: black;
+		fill: $trib-gray3;
 		cursor: pointer;
+
+		&:hover{
+			fill:black;
+		}
 	}
 }
 
