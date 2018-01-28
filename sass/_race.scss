@@ -13,6 +13,7 @@ $anchor-offset: $navbar-overall-height + 70px;
 	// padding-top: $navbar-overall-height + 70px; 
 	padding-top: $anchor-offset;
 	margin-top: 0 - $anchor-offset;
+	width: 100%;
 
 }
 
