@@ -1,15 +1,15 @@
 <p class='nav-label'>Jump to races:</p>
-<div class='nav-buttons'>
-{% for category in categories %}
-	{% if control[category]['anchor']|lower == "mwrd" %}
-		{% set button_text = "MWRD" %}
-	{% else %}
-		{% set button_text = control[category]['label'] %}
-	{% endif %}
-	<a href="#{{ control[category]['anchor'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ button_text }}</a>
-{% endfor %}
-</div>
-<div class='nav-select-wrapper'>
+<div class='nav-wrapper'>
+	<div class='nav-buttons'>
+	{% for category in categories %}
+		{% if control[category]['anchor']|lower == "mwrd" %}
+			{% set button_text = "MWRD" %}
+		{% else %}
+			{% set button_text = control[category]['label'] %}
+		{% endif %}
+		<a href="#{{ control[category]['anchor'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ button_text }}</a>
+	{% endfor %}
+	</div>
 	<select id='nav-select' class='nav-select'>
 		{% for category in categories %}
 			{% if control[category]['anchor']|lower == "mwrd" %}
