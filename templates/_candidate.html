@@ -38,6 +38,11 @@
 {% block content %}
 {{ super() }}
 <div class='candidate'>
+	<div class='candidate__top'>
+		{% include "subtemplates/_social-share.html" %}
+		<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
+		<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
+	</div>
 	<div class='candidate__left-column'>
 		<div class='candidate__left-column-inner'>
 			<figure class='candidate__mug'>
@@ -68,19 +73,13 @@
 
 	</div>
 	<div class='candidate__main-column'>
-		<section>
-			{% include "subtemplates/_social-share.html" %}
-			<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
-			<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
-
+		<section class='candidate__bio'>
 			{% if candidate_info.running_mate %}
 				<dl class='candidate__meta'>
 					<dt>Running mate</dt>
 					<dd>{{ candidate_info.running_mate }}</dd>
 				</dl>
 			{% endif %}
-		</section>
-		<section>
 			{% if candidate_bio.education %}
 			<dl class='candidate__meta'>
 				<dt>Education</dt>
