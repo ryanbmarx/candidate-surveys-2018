@@ -7,12 +7,11 @@
 	background:$hamburger-background-color;
 
 	position:absolute;
-	left: auto;
-	right: 100%;
-	top: $navbar-overall-height;
+	left: 0;
+	top: -100000vw;
 	z-index: 1000;
 
-	transition: left 150ms ease;
+	transition: top 150ms ease;
 	text-align:center;
 
 	li {
@@ -31,9 +30,8 @@
 }
 
 .burger--visible{
-	left: 0;
-	right: auto;
-	transition: left 150ms ease;
+	top: $navbar-overall-height;
+	transition: top 150ms ease;
 }
 
 @media all and (min-width: $tablet-min-width){
