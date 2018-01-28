@@ -4,9 +4,8 @@
 {% set offices = candidates|get_unique_values('race_office') %}
 
 {% block content %}
-	
+	{{ super() }}
 	<section id='intro' class='intro container'>
-		{{ stars_topper("Editorial Board Questionnaires") }}
 		<div class='river'>
 			{{ intro|markdown }}
 			{% if bedsheet_text and bedsheet_link != False %}
