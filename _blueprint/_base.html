@@ -38,9 +38,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta property="fb:app_id" content="306836229411287">
         {% set url = "http://" ~ ROOT_URL ~ "/" ~ PATH %}
-        <link rel="canonical" href="{{ url }}" />
         <meta name="google-site-verification" content="TKTKTK">
     {% endblock meta %}
+
+    {% block canonical %}<link rel="canonical" href="{{ url }}" />{% endblock canonical %}
+
 
     {% block title %}<title>{{ title }} -- Chicago Tribune</title>{% endblock title %}
 
