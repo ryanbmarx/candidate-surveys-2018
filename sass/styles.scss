@@ -174,11 +174,13 @@ $stars-dimension: 25px;
 	}
 
 	.editorials {
-		width: 33%;
+		width: 25%;
+		margin: 0 0 $grid-gap $grid-gap
 	}
 
 	.races {
-		width: 64%;
+		// width: 64%;
+		flex: 1;
 
 		&__col {
 			width: 48%;
