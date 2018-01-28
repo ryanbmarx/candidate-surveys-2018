@@ -13,16 +13,17 @@ $anchor-offset: $navbar-overall-height + 70px;
 	// padding-top: $navbar-overall-height + 70px; 
 	padding-top: $anchor-offset;
 	margin-top: 0 - $anchor-offset;
-	// &:before{
-	//    content: "";
-	//    display: block;
-	//    height: $navbar-overall-height + 70px;
-	//    margin-top: #{0-$navbar-overall-height + 70px};
-	// }
+
 }
 
 .office {
-	width: calc((100% - 30px) / 2);
+	@include distribute-across-columns(2, $grid-gap);
+	// width: calc((100% - 30px) / 2);
+    box-sizing: border-box;
+    padding: #{$grid-gap / 2};
+    border: 1px solid $trib-gray4;
+    border-radius: $border-radius;
+
 	
 	h5 {
 		@include serif-text(22px, 1.3em);
