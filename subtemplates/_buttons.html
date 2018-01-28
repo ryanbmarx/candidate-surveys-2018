@@ -1,3 +1,4 @@
+<p class='nav-label'>Jump to races:</p>
 <div class='nav-buttons'>
 {% for category in categories %}
 	{% if control[category]['anchor']|lower == "mwrd" %}
@@ -8,7 +9,6 @@
 	<a href="#{{ control[category]['anchor'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ button_text }}</a>
 {% endfor %}
 </div>
-<p class='nav-select-label'>Jump to races</p>
 <div class='nav-select-wrapper'>
 	<select id='nav-select' class='nav-select'>
 		{% for category in categories %}
