@@ -14,7 +14,7 @@ blueprint = Blueprint('candidate-surveys-2018', __name__)
 
 
 # This is so we don't need to make physical html files for each one. 
-@blueprint.route('/candidates/<id>')
+@blueprint.route('/candidates/<id>.html')
 def candidate_survey_response_page(id):
     """
     Make a page for each candidate, based on the unique
@@ -40,6 +40,36 @@ FILTERS & FUNCTIONS      #######################################
 ################################################################
 """
 
+def use_this_candidate(candidate, context):
+    """
+    Autocomplete list helper func to do the actual checking if there are responses
+    """
+    ss_tab = candidate['race_category']
+    responses = context[ss_tab]
+    for response in responses:
+        if candidate['email'].lower().strip() == response['contact_email'].lower().strip():
+            return True
+    return False
+
+@blueprint.app_template_filter('generate_autocomplete_list')
+@jinja2.contextfilter
+def generate_autocomplete_list(context, candidates):
+    """
+    Takes the list of candidates and checks each one for existing survey responses.
+    returns an array of objects to power the autocomplete javascript.
+
+    format => [{label: <readable>, value:<url_id>}, ... ]
+
+    """
+    retval = []
+    for c in candidates:
+        if use_this_candidate(c, context):
+            retval.append({
+                "label":c['name'],
+                "value": c['id']
+            })
+
+    return retval
 
 def get_candidate_info_from_list(candidates_list, key_to_check, desired_value):
     """
