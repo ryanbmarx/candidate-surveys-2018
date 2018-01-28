@@ -19,7 +19,7 @@
 	{% set office_sought = office_sought + " district" %}
 {% endif %}
 
-{% set page_title = candidate_info['name'] + "candidate survey" %}
+{% set page_title = candidate_info['name'] + " candidate survey" %}
 {% set page_url = "http://" + ROOT_URL + url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) %}
 {% set shareline = "Find out what " + candidate_info.name + " would do if elected to the " + candidate_info.race_office + ". Here is the candidate's responses to our survey." %}
 
