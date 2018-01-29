@@ -1,0 +1,15 @@
+{% for article in editorials %}
+<div class='editorial'>
+	{% if article.img %}
+	<a href='{{article.link}}'>
+		<img src='{{article.img}}'>
+	</a>
+	{% endif %}
+	<a href='{{article.link}}'>
+		<h4 class='editorial--hed'>
+			{{article.hed}}
+		</h4>
+	</a>
+	<p class='time'>{{article.time}}</p>
+</div>
+{% endfor %}

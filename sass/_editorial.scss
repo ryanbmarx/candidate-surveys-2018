@@ -1,0 +1,21 @@
+.editorial {
+	img {
+		float: left;
+		margin-right: 10px;
+		width: 100px;
+	}
+
+	&--hed {
+		@include serif-text(20px, 1.3em, bold);
+		margin: 0 0 5px 0;
+	}
+
+	margin-bottom: 20px;
+}
+
+.time {
+	@include sans-serif-text(14px, 1.4em);
+	font-style: italic;
+	color: $trib_gray2;
+	margin: 0;
+}

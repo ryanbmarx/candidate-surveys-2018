@@ -113,6 +113,7 @@ $stars-dimension: 25px;
 @import "../node_modules/awesomplete/awesomplete"; // For the autocomplete
 @import "autocomplete"; // For the autocomplete modifications
 @import 'nav-buttons';
+@import 'editorial';
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 
@@ -160,10 +161,6 @@ $stars-dimension: 25px;
 .editorials {
 	width: 100%;
 
-	&__col {
-		background-color: gray;
-		height: 250px;
-	}
 }
 
 @media all and (min-width: $tablet-min-width){
