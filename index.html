@@ -27,11 +27,11 @@
 		<div class='row'>
 			<div class='races'>
 				{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
-					<div id={{ category.anchor|lower }} class='category category--{{ category.anchor|lower }}'>
+					<div id={{ category.id|lower }} class='category category--{{ category.id|lower }}'>
 					{{ stars_topper(category.label) }}
 					{% for office in offices %}
 						{# Check if any candidates are in the category > office #}
-						{% if candidates|has_any(category.anchor, office) %}
+						{% if candidates|has_any(category.id, office) %}
 							<div class='office office--{{ office|lower|slugify }}'>
 								<h5>{{ office }}</h5>
 								{% include 'subtemplates/_opponents-list.html'%}

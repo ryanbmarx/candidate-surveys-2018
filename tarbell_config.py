@@ -97,7 +97,6 @@ def get_control_row(context, control_row_key):
     for c in context['control']:
         if c['id'] == control_row_key:
             return c
-    return False
 
 
 @blueprint.app_template_filter('has_any')
@@ -131,7 +130,8 @@ def get_survey_keys(context, candidate_key):
     ss_tab = candidate_info['race_category']
 
     control_tab_row = get_control_row(context, ss_tab)
-
+    
+    print ("Fetching for ",candidate_key)
     candidate_keys = control_tab_row["survey_questions"]
 
     return candidate_keys.split(",")
