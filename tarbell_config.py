@@ -179,7 +179,7 @@ def get_candidate_bio(context, candidate_key):
     return responses
 
 @blueprint.app_template_filter('get_opponents')
-def make_photo_slug(candidates, c):
+def get_opponents(candidates, c):
     """
         Takes the current candidate (c) and returns a list of their opponents.
         it also marks the candidate on whose page this is displaying.
@@ -197,12 +197,19 @@ def make_photo_slug(candidates, c):
 @blueprint.app_template_filter('make_photo_slug')
 def make_photo_slug(name_str):
     """
-        takes a name, and formats it to be filename compatible
+        Takes a name, and formats it to be filename compatible.
+        It then checks for both a jpeg, jpg and png, returning 
+        the version it found.
     """
-    retval = name_str.lower().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
+    retval = name_str.lower().strip().replace(" ", "-").replace(".", "").replace("'", "").replace('"', "")
     if os.path.isfile('img/candidates/' + retval + ".jpg"):
-        return retval
-    return "missing"
+        return "{}.jpg".format(retval)
+    elif os.path.isfile('img/candidates/' + retval + ".jpeg"):
+        return "{}.jpeg".format(retval)
+    elif os.path.isfile('img/candidates/' + retval + ".png"):
+        return "{}.png".format(retval)
+    else:
+        return "missing.jpg"
 
 
 # BACKUP FO DEV PURPOSES:

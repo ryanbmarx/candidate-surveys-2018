@@ -45,7 +45,7 @@
 	<div class='candidate__left-column'>
 		<div class='candidate__left-column-inner'>
 			<figure class='candidate__mug'>
-				<img alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}.jpg">
+				<img alt="{{ candidate_info.name }}" title="{{ candidate_info.name }}" src="http://{{ ROOT_URL }}/img/candidates/{{ candidate_info.name|make_photo_slug }}">
 				<figcaption>
 					<p><strong>{{ candidate_info.name }}</strong></p>
 					<p>{{ candidate_info.party }} candidate for {{ office_sought }}</p>
@@ -140,7 +140,6 @@
 {% endblock twitter %}
 
 {% block opengraph scoped %}
-	{% set thumbnail %}
     <meta property="og:url" content="{{ page_url }}" />
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ page_title }}" />
