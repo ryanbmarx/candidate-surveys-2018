@@ -130,7 +130,8 @@ def get_survey_keys(context, candidate_key):
     candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
-    control_tab_row = get_control_row(ss_tab)
+    control_tab_row = get_control_row(context, ss_tab)
+
     candidate_keys = control_tab_row["survey_questions"]
 
     return candidate_keys.split(",")
