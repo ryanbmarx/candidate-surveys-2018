@@ -6,13 +6,13 @@
 
 {% macro stars_topper(label, link=False) %}
 	<div class='stars-topper'>
-		{{ star('star') }}
-		{{ star('star') }}
+{#		{{ star('star') }}
+		{{ star('star') }} #}
 		<h4 class='stars-topper__label'>
 			{% if link %}<a href="{{ link }}">{% endif %}{{ label|upper }}{% if link %}</a>{% endif %}
 		</h4>
-		{{ star('star') }}
-		{{ star('star') }}
+{#		{{ star('star') }}
+		{{ star('star') }} #}
 	</div>
 {% endmacro %}
 
