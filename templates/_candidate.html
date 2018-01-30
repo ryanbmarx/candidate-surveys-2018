@@ -109,7 +109,7 @@
  			{% for key in candidate_question_keys %}
 				<p class='question'>{{ candidate_questions[key|trim] }}</p>
 				{% if candidate_responses[key|trim] %}
-					{{ candidate_responses[key|trim] }}
+					{{ candidate_responses[key|trim]|markdown }}
 				{% else %}
 					<p class='no-response'>Candidate did not respond</p>
 				{% endif %}
