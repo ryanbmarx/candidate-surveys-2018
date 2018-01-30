@@ -1,6 +1,6 @@
 {% extends "templates/_base-elex.html" %}
 
-{% set categories = candidates|get_unique_values('race_category') %}
+{# {% set categories = candidates|get_unique_values('race_category') %} #}
 {% set offices = candidates|get_unique_values('race_office') %}
 
 {% block content %}
@@ -16,7 +16,7 @@
 				<button type='submit'>Search</button>
 			</form>
 			<dl class='races-legend'>
-				<dt>{{ endorsed() }}</dt>
+				<dt>{{ endorsed('default') }}</dt>
 				<dd>= Endorsed by Chicago Tribune</dd>
 			</dl>
 		</div>
@@ -26,12 +26,12 @@
 		{% include "subtemplates/_buttons.html" %}
 		<div class='row'>
 			<div class='races'>
-				{% for category in categories %}
-					<div id={{ control[category]['anchor'] }} class='category category--{{ category|lower }}'>
-					{{ stars_topper(control[category]['label']) }}
+				{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
+					<div id={{ category.anchor|lower }} class='category category--{{ category.anchor|lower }}'>
+					{{ stars_topper(category.label) }}
 					{% for office in offices %}
 						{# Check if any candidates are in the category > office #}
-						{% if candidates|has_any(category, office) %}
+						{% if candidates|has_any(category.anchor, office) %}
 							<div class='office office--{{ office|lower|slugify }}'>
 								<h5>{{ office }}</h5>
 								{% include 'subtemplates/_opponents-list.html'%}

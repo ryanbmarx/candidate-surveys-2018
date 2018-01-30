@@ -48,7 +48,7 @@
 		text-align:center;
 
 
-		padding: #{$grid-gap / 2} 0;
+		padding: #{$grid-gap / 2} 5px; // Just a little horiz padding to keep text wrapping
 		background: rgba(black, .15);
 		color: black;
 		margin-right: 5px;

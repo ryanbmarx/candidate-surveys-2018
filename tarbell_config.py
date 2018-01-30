@@ -88,6 +88,18 @@ def get_candidate_info(context, candidate_key):
     return get_candidate_info_from_list(context['candidates'], "email", candidate_key)
 
 
+@blueprint.app_template_filter('get_control_row')
+@jinja2.contextfilter
+def get_control_row(context, control_row_key):
+    """
+    Finds and returns the appropriate row from the control tab
+    """
+    for c in context['control']:
+        if c['id'] == control_row_key:
+            return c
+    return False
+
+
 @blueprint.app_template_filter('has_any')
 def has_any(candidates, category, office):
     """
@@ -118,7 +130,8 @@ def get_survey_keys(context, candidate_key):
     candidate_info = get_candidate_info_from_list(context['candidates'], "email", candidate_key)
     ss_tab = candidate_info['race_category']
 
-    candidate_keys = context["control"][ss_tab]["survey_questions"]
+    control_tab_row = get_control_row(ss_tab)
+    candidate_keys = control_tab_row["survey_questions"]
 
     return candidate_keys.split(",")
 
