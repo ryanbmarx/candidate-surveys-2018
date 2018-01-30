@@ -10,14 +10,11 @@
 		<a href="#{{ category['id'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ button_text }}</a>
 	{% endfor %}
 	</div>
-	<select id='nav-select' class='nav-select'>
-		{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
-			{% if category['id']|lower == "mwrd" %}
-				{% set button_text = "MWRD" %}
-			{% else %}
-				{% set button_text = category['label'] %}
-			{% endif %}
-			<option value="{{ category['id'] }}">{{ button_text }}</option>
-		{% endfor %}
-	</select>
+	<div class='styled-select'>
+		<select id='nav-select' class='nav-select'>
+			{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
+				<option value="{{ category['id'] }}">{{ category['label'] }}</option>
+			{% endfor %}
+		</select>
+	</div>
 </div>
