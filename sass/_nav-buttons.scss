@@ -23,7 +23,7 @@
     margin: 0 auto;
     border: 1px solid #ccc;
     border-radius: 3px;
-	max-width: 320px;
+	max-width: $phablet-min-width;
     width: 100%;
     overflow: hidden;
     background-color: #fff;
