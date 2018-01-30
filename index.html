@@ -21,9 +21,8 @@
 			</dl>
 		</div>
 	</section>
-	
+	{% include "subtemplates/_buttons.html" %}	
 	<section id='content' class='content container'>
-		{% include "subtemplates/_buttons.html" %}
 		<div class='row'>
 			<div class='races'>
 				{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}

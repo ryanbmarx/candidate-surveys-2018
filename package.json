@@ -8,7 +8,8 @@
     "build": "mkdir -p css && grunt",
     "watch": "grunt watch",
     "publish": "grunt && tarbell publish",
-    "publish:production": "grunt && tarbell publish production"
+    "publish:production": "grunt && tarbell publish production",
+    "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg"
   },
   "repository": {
     "type": "git",
@@ -39,5 +40,10 @@
   "dependencies": {
     "awesomplete": "^1.1.2",
     "in-view": "^0.6.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie >= 11"
+  ]
 }

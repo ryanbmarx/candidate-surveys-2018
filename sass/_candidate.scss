@@ -149,6 +149,11 @@
 	&__bio{
 		@include clearfix();
 	}
+
+	&__opponents-label{
+		@include sans-serif();
+		font-weight: bold;
+	}
 }
 
 // ------------------------------------------------------------------
