@@ -7,7 +7,6 @@
 {# GET CANDIDATE INFORMATIONS #}
 
 {% set candidate_key = candidate_info['email'] %}
-{# {% set candidate_info = row %} #}
 {% set candidate_bio = candidate_key|get_candidate_bio %}
 {% set candidate_question_keys = candidate_key|get_survey_keys %}
 {% set candidate_questions = candidate_key|get_survey_questions %}
