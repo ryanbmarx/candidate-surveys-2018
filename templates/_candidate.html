@@ -133,19 +133,20 @@
     <meta name="twitter:site" content="@chicagotribune" />
     <meta name="twitter:title" content="{{ page_title }}" />
     <meta name="twitter:description" content="{{ shareline }} via @trib_ed_board" />
-	{#<meta name="twitter:image" content="http://{{ ROOT_URL}}/{{ thumbnail_image }}" />
-    <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />#}
+	<meta name="twitter:image" content="http://{{ ROOT_URL}}/img/thumbnail-twitter.jpg" />
+    <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />
     <meta name="twitter:creator" content="@chicagotribune" />
     <meta name="twitter:creator" content="@trib_ed_board" />
 {% endblock twitter %}
 
 {% block opengraph scoped %}
+	{% set thumbnail %}
     <meta property="og:url" content="{{ page_url }}" />
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ page_title }}" />
     <meta property="og:description" content="{{ shareline }}" />
-{#     <meta property="og:image" content="http://{{ ROOT_URL}}/{{ thumbnail_image }}" />
+    <meta property="og:image" content="http://{{ ROOT_URL}}/img/thumbnail-facebook.jpg" />
     <meta name="og:image:alt" content="{{ thumbnail_alt }}" />
-    <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+{#     <meta name="og:image:height" content="{{ thumbnail.height }}px" />
     <meta name="og:image:width" content="{{ thumbnail.width }}px" /> #}
 {% endblock opengraph %}
