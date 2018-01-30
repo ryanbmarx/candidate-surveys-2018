@@ -57,7 +57,7 @@ fs.readdir(`.${path.sep}${imageSrc}${path.sep}`, function(err, files){
 
 			sized.resize(imageDimension, Jimp.AUTO)
 				.quality(imageQuality)
-				.write(`${imageDest}${path.sep}${imageName}`);
+				.write(`${imageDest}${path.sep}${imageName.toLowerCase()}`);
 		});
 		
 	});
