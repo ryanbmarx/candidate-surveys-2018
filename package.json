@@ -8,7 +8,8 @@
     "build": "mkdir -p css && grunt",
     "watch": "grunt watch",
     "publish": "grunt && tarbell publish",
-    "publish:production": "grunt && tarbell publish production"
+    "publish:production": "grunt && tarbell publish production",
+    "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg"
   },
   "repository": {
     "type": "git",
