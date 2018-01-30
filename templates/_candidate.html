@@ -105,7 +105,7 @@
 		</section>
 		<section class='responses'>
 			<h1 class='responses__header'>Responses to our questions</h1>
-
+			{% set refer_placed = False %}
  			{% for key in candidate_question_keys %}
 				<p class='question'>{{ candidate_questions[key|trim] }}</p>
 				{% if candidate_responses[key|trim] %}
@@ -113,8 +113,16 @@
 				{% else %}
 					<p class='no-response'>Candidate did not respond</p>
 				{% endif %}
+
+				{% if loop.index > loop.length / 2 and loop.length > 5 and not refer_placed %}
+					{# Just drop one CTA in the long responses #}
+					{# Just put one roughly halfway through #}
+					{{ elex_refer() }}
+					{% set refer_placed = True %}
+				{% endif %}
 			{% endfor %}
 		</section>
+		{{ elex_refer() }}
 	</div>
 	<div class='candidate__right-column'>
 		<div class='candidate__right-column-inner'>

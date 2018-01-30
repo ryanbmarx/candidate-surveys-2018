@@ -1,3 +1,5 @@
+{% from 'base-subtemplates/_macros.html' import cta as refer with context %}
+
 {% macro star(class) %}
 	<svg class='{{ class }}' viewBox="0 0 30 30">
 		<use xlink:href="#star" />
@@ -27,4 +29,8 @@
 			<use xlink:href="#{{ id|lower }}" />
 		</svg>
 	</a>
+{% endmacro %}
+
+{% macro elex_refer() %}
+	{{ refer(header=refer_header, link=refer_link)}}
 {% endmacro %}
