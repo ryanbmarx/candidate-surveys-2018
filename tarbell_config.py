@@ -219,7 +219,7 @@ def make_photo_slug(name_str):
 SPREADSHEET_KEY = "11TAK4CxsSFhZOMXeGVN2ejmqb-NU2WmiXcFzSB_GavQ"
 
 # Exclude these files from publication
-EXCLUDES = ['*.md', 'subtemplates', 'img/svgs' ,'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'package-lock.json', 'Gruntfile.js']
+EXCLUDES = ['*.md', 'subtemplates','img/candidates/src' ,'img/svgs' ,'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'package-lock.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4

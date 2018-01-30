@@ -9,7 +9,9 @@
     "watch": "grunt watch",
     "publish": "grunt && tarbell publish",
     "publish:production": "grunt && tarbell publish production",
-    "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg"
+    "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg",
+    "build:candidate_mugs": "node js/src/resize-photos.js 300 50 ./img/candidates/src ./img/candidates"
+
   },
   "repository": {
     "type": "git",
