@@ -39,5 +39,10 @@
   "dependencies": {
     "awesomplete": "^1.1.2",
     "in-view": "^0.6.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie >= 11"
+  ]
 }
