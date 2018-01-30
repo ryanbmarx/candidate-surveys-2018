@@ -24,6 +24,9 @@ js/*.map
 
 # Don't keep generated content
 sprite.svg
+img/candidates/*.jpg
+img/candidates/*.jpeg
+img/candidates/*.png
 
 # Local storage of assets, such as .PSDs
 _vault
