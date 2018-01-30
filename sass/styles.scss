@@ -26,6 +26,17 @@ $endorsed_icon_width: 15px;
 // STARS TOPPER
 $stars-dimension: 20px;
 
+// CALLS TO ACTION
+$cta-background-color: rgba(black, .1);
+// $cta-text-color: set-text-color($cta-background-color, true);
+// $cta-button-base-color: $trib-orange !default;
+// $cta-button-color: lighten($cta-button-base-color, 5%) !default;
+$cta-button-color-text: set-text-color($cta-button-color, true);
+// $cta-button-hover-color: $cta-button-base-color !default;
+// $cta-button-hover-color-text: set-text-color($cta-button-base-color, true) !default;
+// $cta-right-max-width: ($tablet-min-width / 2) - $grid-gap !default;
+
+
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
 // Breakpoints
 // $phablet-min-width:420px;
@@ -164,6 +175,15 @@ $stars-dimension: 20px;
 
 }
 
+// tweaks to calls to action
+.cta{
+	padding: $grid-gap / 2;
+	
+	// Because of the padding/margin scrollTo hack
+	z-index: 100;
+	position: relative;
+}
+
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 	.row {
@@ -185,6 +205,10 @@ $stars-dimension: 20px;
 		}
 	}
 
+	// tweaks to calls to action
+	.cta_button{
+		padding: 10px 0;
+	}
 
 }
 
