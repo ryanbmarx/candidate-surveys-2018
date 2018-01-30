@@ -10,8 +10,7 @@
 .nav-wrapper{
 	box-sizing: border-box;
 	padding: $grid-gap / 2;
-	background: #efefef;
-	border-radius: $border-radius;
+	background: rgba($trib-gray4, .95);
 
 	position:sticky;
 	top: 0;

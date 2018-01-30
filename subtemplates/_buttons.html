@@ -1,6 +1,6 @@
 <p class='nav-label'>Jump to races:</p>
 <div class='nav-wrapper'>
-	<div class='nav-buttons'>
+	<div class='nav-buttons container'>
 	{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
 		{% if category['id']|lower == "mwrd" %}
 			{% set button_text = "MWRD" %}
