@@ -178,10 +178,21 @@ $cta-button-color-text: set-text-color($cta-button-color, true);
 // tweaks to calls to action
 .cta{
 	padding: $grid-gap / 2;
+	border-radius: $border-radius;
 	
 	// Because of the padding/margin scrollTo hack
 	z-index: 100;
 	position: relative;
+
+	&__button{
+		border-radius: $border-radius;
+		border: 3px solid shade($cta-button-base-color, 10%);
+		border-width: 0px 0px 3px;
+		&:hover{
+				border-width: 2px 0px 1px;
+	
+		}
+	}
 }
 
 @media all and (min-width: $tablet-min-width){
@@ -206,7 +217,7 @@ $cta-button-color-text: set-text-color($cta-button-color, true);
 	}
 
 	// tweaks to calls to action
-	.cta_button{
+	.cta__button{
 		padding: 10px 0;
 	}
 
