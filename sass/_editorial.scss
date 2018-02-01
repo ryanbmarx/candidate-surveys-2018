@@ -1,13 +1,20 @@
 .editorial {
-	
+	@include clearfix();	
 	margin-bottom: #{$grid-gap / 2};
 	padding-bottom: #{$grid-gap / 2};
 	border-bottom: 1px solid $trib-gray4;
 
+	&:last-child{
+		padding-bottom:0;
+		border-bottom:none;
+	}
+
 	img {
-		float: left;
-		margin-right: 10px;
-		width: 100px;
+		width: 100%;
+		margin: 0 0 #{$grid-gap / 2} 0
+		// float: left;
+		// margin-right: 10px;
+		// width: 100px;
 	}
 
 	&--hed {
@@ -19,8 +26,8 @@
 }
 
 .time {
-	@include sans-serif-text(14px, 1.4em);
-	font-style: italic;
+	@include agate();
+	// font-style: italic;
 	color: $trib_gray2;
-	margin: 0;
+	margin: 7px 0 0 0;
 }

@@ -23,6 +23,9 @@ $border-radius: 5px;
 $endorsed_icon_height: 15px;
 $endorsed_icon_width: 15px;
 
+$editorial-column-width: 200px;
+$editorials-background-color: rgba($trib_tan,.5);
+
 // STARS TOPPER
 $stars-dimension: 20px;
 
@@ -172,7 +175,7 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 
 .editorials {
 	width: 100%;
-
+	box-sizing:border-box;
 }
 
 // tweaks to calls to action
@@ -214,8 +217,13 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 	}
 
 	.editorials {
-		width: 25%;
-		margin: 0 0 $grid-gap $grid-gap
+		width: $editorial-column-width;
+		margin: $grid-gap 0 $grid-gap $grid-gap;
+
+		box-sizing: border-box;
+		padding: $grid-gap / 2;
+		background: $editorials-background-color;
+		border-radius: $border-radius;
 	}
 
 	.races {
