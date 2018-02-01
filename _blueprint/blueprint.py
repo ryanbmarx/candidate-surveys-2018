@@ -100,3 +100,41 @@ def format_date_with_strftime(date_to_format, format):
 	markup easier. You're welcome.
 	"""
 	return date_to_format.strftime(format) if format.upper() == "ISO" else date_to_format.strftime(format) 
+
+@blueprint.app_template_filter('get_ordinal_suffix')
+def get_ordinal_suffix(n):
+    
+    """
+    Takes a number (n) and adds the ordinal suffix. If the value cannot be converted
+    to an integer, then the number (string?) is simply returned 
+
+    1 => 1st
+    303 => 303rd
+
+    """
+    suffixes = ["st", "nd", "rd"]
+    suffix = "th"
+
+    try:
+        n = int(n)
+        if n % 100//10 != 1:
+            if n % 10 == 1:
+                suffix = "st"
+            elif n % 10 == 2:
+                suffix = "nd"
+            elif n % 10 == 3:
+                suffix = "rd"
+            else:
+                suffix = "th"
+        else:
+            suffix = "th"
+
+           
+        return "{}{}".format(n, suffix)
+    except ValueError:
+        # There is a "Cook County" eventually coming through this function, so just return it
+        return n
+
+
+
+
