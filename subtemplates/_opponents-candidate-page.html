@@ -19,10 +19,16 @@
 			{% if completed %}
 				{% set url = url_for("candidate-surveys-2018.candidate_survey_response_page",id=opponent.id) %}
 				<a href="{{ url }}">
+			{% else %}
+				<span>
 			{% endif %}
 				{% if opponent.endorsed == 1 %}{{ endorsed(opponent.party|lower) }}{% endif %}
 				{{ opponent.name }}{% if not completed %} (No survey){% endif %}
-			{% if completed %}</a>{% endif %}
+			{% if completed %}
+				</a>
+			{% else %}
+				<span>
+			{% endif %}
 		</li>
 
 		{% if loop.last %}
