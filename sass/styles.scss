@@ -31,7 +31,7 @@ $cta-background-color: rgba(black, .1);
 // $cta-text-color: set-text-color($cta-background-color, true);
 // $cta-button-base-color: $trib-orange !default;
 // $cta-button-color: lighten($cta-button-base-color, 5%) !default;
-$cta-button-color-text: set-text-color($cta-button-color, true);
+$cta-button-color-text: #{set-text-color($cta-button-color, true)};
 // $cta-button-hover-color: $cta-button-base-color !default;
 // $cta-button-hover-color-text: set-text-color($cta-button-base-color, true) !default;
 // $cta-right-max-width: ($tablet-min-width / 2) - $grid-gap !default;

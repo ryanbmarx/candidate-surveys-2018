@@ -2,7 +2,7 @@
 {% from 'subtemplates/_macros.html' import elex_refer as elex_refer with context%}
 
 {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
-{% set candidates = candidates_test %}
+{% set candidates = candidates %}
 {% set offices = candidates|get_unique_values('race_office') %}
 
 {# 
@@ -30,7 +30,7 @@
 				{% for office in offices %}
 					{# Check if any candidates are in the category > office #}
 
-					{% if candidates_test|has_any(['race_category', controller.id], ["race_office", office]) %}
+					{% if candidates|has_any(['race_category', controller.id], ["race_office", office]) %}
 						<div class='office office--{{ office|lower|slugify }}'>
 						<h2 class='office__subhede'>{{ office }}</h2>
 						{% for party in parties %}

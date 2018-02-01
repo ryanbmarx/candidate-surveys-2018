@@ -1,18 +1,18 @@
 {% from 'subtemplates/_macros.html' import add_candidate as add_candidate with context%}
 
-{% set circuits = candidates_test|get_judicial_circuits %}
-{% set subcircuits = candidates_test|get_unique_values("race_subcircuit")|sort() %}
-{% set vacancies = candidates_test|get_unique_values("race_vacancy")|sort() %}
+{% set circuits = candidates|get_judicial_circuits %}
+{% set subcircuits = candidates|get_unique_values("race_subcircuit")|sort() %}
+{% set vacancies = candidates|get_unique_values("race_vacancy")|sort() %}
 {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
 
 <h1 class='category__subhede'>Cook County circuit</h1>
 {% for subcircuit in subcircuits %}
 	{% for vacancy in vacancies %}
-		{% if candidates_test|has_any(['race_vacancy', vacancy], ['race_subcircuit', subcircuit]) %}
+		{% if candidates|has_any(['race_vacancy', vacancy], ['race_subcircuit', subcircuit]) %}
 			<div class='office office--{{ district|lower|slugify }}'>
 				<h2 class='office__subhede'>{{ subcircuit|get_ordinal_suffix }} subcircuit, {{ vacancy }} vacancy</h2>
 				{% for party in parties %}
-					{% for c in candidates_test|sort(attribute="name_last") if c.race_subcircuit == subcircuit and c.race_vacancy == vacancy and c.race_district == "Cook County" and c.party|lower == party|lower %}
+					{% for c in candidates|sort(attribute="name_last") if c.race_subcircuit == subcircuit and c.race_vacancy == vacancy and c.race_district == "Cook County" and c.party|lower == party|lower %}
 						{% if loop.first %}
 							<p class='opponent-label'>{{ party|upper }}</p>
 							<ul class='opponents opponents--{{ party }}'> {# Open the list #}
@@ -35,7 +35,7 @@
 		<h1 class='office__subhede'>{{ circuit|get_ordinal_suffix }} circuit</h1>
 		{% for party in parties %}
 			{% set party_loop = loop %}
-			{% for c in candidates_test|sort(attribute="name_last") if c.race_category == controller.id and c.race_district == circuit and c.party|lower == party|lower %}
+			{% for c in candidates|sort(attribute="name_last") if c.race_category == controller.id and c.race_district == circuit and c.party|lower == party|lower %}
 				{% if c.completed_survey == 1 %}
 					{% set completed = True %}
 				{% else %}

@@ -1,4 +1,9 @@
 .editorial {
+	
+	margin-bottom: #{$grid-gap / 2};
+	padding-bottom: #{$grid-gap / 2};
+	border-bottom: 1px solid $trib-gray4;
+
 	img {
 		float: left;
 		margin-right: 10px;

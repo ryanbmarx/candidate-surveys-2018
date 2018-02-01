@@ -50,12 +50,12 @@ $comments-button-text-color: black !default;
 // CALLS TO ACTION
 
 $cta-background-color: $trib-blue4 !default;
-$cta-text-color: set-text-color($cta-background-color, true) !default;
+$cta-text-color: #{set-text-color($cta-background-color, true)} !default;
 $cta-button-base-color: $trib-orange !default;
 $cta-button-color: lighten($cta-button-base-color, 5%) !default;
-$cta-button-color-text: set-text-color($cta-button-color, true) !default;
+$cta-button-color-text: #{set-text-color($cta-button-color, true)} !default;
 $cta-button-hover-color: $cta-button-base-color !default;
-$cta-button-hover-color-text: set-text-color($cta-button-base-color, true) !default;
+$cta-button-hover-color-text: #{set-text-color($cta-button-base-color, true)} !default;
 $cta-right-max-width: ($tablet-min-width / 2) - $grid-gap !default;
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
