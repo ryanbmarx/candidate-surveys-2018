@@ -73,38 +73,5 @@
 	.styled-select select { font-size: 20px; }
 }
 
-@media all and (min-width: $container-max-width){
-	.nav-select, .styled-select { display:none; }
-	
-	.nav-buttons{
-		display:flex;
-		justify-content: space-between;
-		align-items:stretch;
-	}
-
-	.nav-button{
-		@include sans-serif();
-		flex: 1;
-		
-		display:flex;
-		justify-content: center;
-		align-items:center;	
-		text-align:center;
-
-
-		padding: #{$grid-gap / 2} 5px; // Just a little horiz padding to keep text wrapping
-		background: rgba(black, .15);
-		color: black;
-		margin-right: 5px;
-		cursor:pointer;
-
-		&:last-child{
-			margin-right: 0;
-		}
-		
-		&--active{
-			background: $trib-blue2;
-			color: set-text-color($trib-blue2, true);
-		}
-	}	
-}
+// @media all and (min-width: $container-max-width){	
+// }

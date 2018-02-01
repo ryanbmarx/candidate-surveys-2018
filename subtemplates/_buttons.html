@@ -1,15 +1,5 @@
 <p class='nav-label'>Jump to races:</p>
 <div class='nav-wrapper'>
-	<div class='nav-buttons container'>
-	{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
-		{% if category['id']|lower == "mwrd" %}
-			{% set button_text = "MWRD" %}
-		{% else %}
-			{% set button_text = category['label'] %}
-		{% endif %}
-		<a href="#{{ category['id'] }}" class='nav-button {% if loop.first %}nav-button--active{% endif %}'>{{ button_text }}</a>
-	{% endfor %}
-	</div>
 	<div class='styled-select'>
 		<select id='nav-select' class='nav-select'>
 			{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
