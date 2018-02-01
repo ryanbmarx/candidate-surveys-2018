@@ -1,10 +1,15 @@
+{% extends "_base.html" %}
+
 {% from 'subtemplates/_macros.html' import stars_topper as stars_topper %}
 {% from 'subtemplates/_macros.html' import endorsed as endorsed %}
 {% from 'subtemplates/_macros.html' import add_contact_icon as add_contact_icon %}
 {% from 'subtemplates/_macros.html' import elex_refer as elex_refer with context%}
+{% from 'subtemplates/_macros.html' import add_candidate as add_candidate with context%}
 
 
-{% extends "_base.html" %}
+
+{% set offices = candidates|get_unique_values('race_office') %}
+{% set parties = ['democratic', 'republican']%}
 
 {% block content %}
 	{{ stars_topper("Editorial Board Questionnaires", "http://" + ROOT_URL) }}

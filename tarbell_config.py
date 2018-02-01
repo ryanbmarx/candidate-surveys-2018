@@ -100,14 +100,44 @@ def get_control_row(context, control_row_key):
 
 
 @blueprint.app_template_filter('has_any')
-def has_any(candidates, category, office):
+def has_any(candidates, *args):
     """
     returns true if there is even one single lousy candidate who meets the criteria
     """
+    
+    final_list = candidates
+
+    for arg in args: # ... test each k-v pair
+        final_list = filter((lambda c: arg[0] in c and c[arg[0]] == arg[1]), final_list)
+        # final_list = list(filter(lambda c: ))
+    return True if len(final_list) else False
+
+
+# @blueprint.app_template_filter('has_any')
+# def has_any(candidates, category, office_category, office):
+#     """
+#     returns true if there is even one single lousy candidate who meets the criteria
+#     """
+#     for c in candidates:
+#         if c['race_category'] == category and c[office_category] and c[office_category] == office:
+#             return True
+#     return False
+
+
+@blueprint.app_template_filter('get_judicial_circuits')
+def get_judicial_circuits(candidates):
+    filtered_data = []
     for c in candidates:
-        if c['race_category'] == category and c['race_office'] == office:
-            return True
-    return False
+        if c['race_category'] == "judicial":
+            try:
+                filtered_data.append(c['race_district'])
+            except:
+                # print "skipping", c
+                pass
+    
+    filtered_data = list(set(filtered_data))
+    
+    return filtered_data
 
 @blueprint.app_template_filter('get_unique_values')
 def get_unique_values(candidates, column):
@@ -116,9 +146,10 @@ def get_unique_values(candidates, column):
         try:
             filtered_data.append(c[column])
         except:
-            print "skipping", c
+            # print "skipping", c
+            pass
     
-    filtered_data = set(filtered_data)
+    filtered_data = list(set(filtered_data))
     
     return filtered_data
 

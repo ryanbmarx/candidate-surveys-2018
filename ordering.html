@@ -1,0 +1,59 @@
+{% extends 'templates/_base-elex.html' %}
+{% from 'subtemplates/_macros.html' import add_candidate as add_candidate with context%}
+{% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
+
+{% set candidates = candidates_test %}
+
+{# 
+
+	Automatically sorts by race_category/top level.
+	Second-level sort key is pulled from control. U.S. Senate/U.S. House, etc.
+
+
+ #}
+
+{% block content %}
+<style type="text/css">
+	p{
+		font: 14px/1.3em sans-serif;
+		margin: 0;
+	}
+</style>
+	<div class='container'>
+	{%- for controller in control|sort(attribute="order") if controller.Status|lower == "on" %}
+		<section>
+			<h1>{{ controller.label }}</h1>
+				{# This is first-order sorting seperates by the spreadsheet tabs #}
+				
+			{% if controller.sort_2 %}
+				{# there are special instructions #}
+				{% include 'subtemplates/_sorting-' + controller.id + '.html' ignore missing with context %}
+			{% else %}
+				{% for office in offices %}
+					{# Check if any candidates are in the category > office #}
+
+					{% if candidates_test|has_any(['race_category', controller.id], ["race_office", office]) %}
+						<div class='office office--{{ office|lower|slugify }}'>
+							<h2>{{ office }}</h2>
+						{% for party in parties %}
+							{% for c in candidates|sort(attribute="name_last") if c.race_office == office and c.party|lower == party %}			
+								{% if loop.first %}
+									<p class='opponent-label'>{{ party|upper }}</p>
+									<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+								{% endif %}
+								{{ add_candidate(c) }}
+								{% if loop.last %}
+									</ul> {# Closes the list #}
+								{% endif %}
+							{% endfor %}  <!--end candidate loop-->
+							{% endfor %}  <!--end party loop-->
+						</div>
+					{% endif %} {# end check for any candidates in this race  #}
+				{% endfor %} {# end offices loop #}
+			{% endif %} {# end check for special sorting instructions #}
+		</section>
+	{% endfor %}{# end controller loop #}
+	</div>
+{% endblock %}
+
+{% block comments %}{% endblock comments %}

@@ -1,0 +1,25 @@
+
+{% from 'subtemplates/_macros.html' import add_candidate as add_candidate with context%}
+
+{% set chambers = [ "Senate", "House" ] %}
+{% set districts = candidates_test|get_unique_values("race_district") %}
+{% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
+
+{% for chamber in chambers %}
+	{% for district in districts %}
+		{% for party in parties %}
+			{% set party_loop = loop %}
+			{% for c in candidates_test|sort(attribute="name_last") if c.race_chamber|lower == chamber|lower and c.race_district == district and c.party|lower == party %}
+				{% if loop.first %}
+					{% if party_loop.first %}<h2>{{ chamber }}, {{ district|get_ordinal_suffix }} district</h2>{% endif %}
+					<p class='opponent-label'>{{ party|upper }}</p>
+					<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+				{% endif %}
+				{{ add_candidate(c) }}
+				{% if loop.last %}
+					</ul> {# Closes the list #}
+				{% endif %}
+			{% endfor %}{# Close candidates loop #}
+		{% endfor %}{# Close party loop #}
+	{% endfor %}{# Close districts loop #}
+{% endfor %} {# Close chambers loop #}
