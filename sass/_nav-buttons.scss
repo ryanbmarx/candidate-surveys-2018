@@ -31,13 +31,17 @@
 
 .styled-select {
     margin: 0 10px;
-    border-bottom: 2px solid black;
     overflow: hidden;
     box-sizing:border-box;
     // background: url("../img/arrow-down.svg") no-repeat calc(100% - 15px) 50%;
     // background-size: 20px;
 	padding-right: 20px;
 	position: relative;
+
+
+    background: white;
+    padding: 5px 20px 5px 5px;
+    border-radius: $border-radius;
 
 	&:after{
 		content:"";
@@ -49,7 +53,7 @@
 
 	    position:absolute;
 	    top: 50%;
-	    right: 0;
+	    right: 5px;
 	    transform: translate(0, -50%);
 	}
 	select {
@@ -80,6 +84,10 @@
 	.nav-wrapper{
 		top: $navbar-overall-height;
 	}
+}
+
+@media all and (min-width: $tablet-min-width){	
+	.nav-label{display:none;}
 
 	.nav-wrapper{
 
@@ -88,8 +96,15 @@
 		&__label, & select{
 			font-size: 20px;
 		}
+
+		.styled-select{
+		    border-bottom: 2px solid black;
+			background: none;
+		    padding: 0 20px 0 0;
+		    border-radius: 0;
+		    &:after{
+		    	right: 0;
+		    }
+		}
 	}
 }
-
-// @media all and (min-width: $container-max-width){	
-// }

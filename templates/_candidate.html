@@ -15,12 +15,14 @@
 {# Concat a string of the office being sought #}
 {% set office_sought = candidate_info.race_office %}
 {% if candidate_info.race_district %}
-	{% set office_sought = office_sought + " district" %}
+	{% set office_sought = office_sought + " district)" %}
+	{% set office_sought = office_sought.replace(', ', " (") %}
 {% endif %}
 
 {% set page_title = candidate_info['name'] + " candidate survey" %}
 {% set page_url = "http://" + ROOT_URL + url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) %}
-{% set shareline = "Find out what " + candidate_info.name + " would do if elected to the " + candidate_info.race_office + ". Here is the candidate's responses to our survey." %}
+
+{% set shareline = "Ahead of the primary, we asked " ~ office_sought ~ " candidate " ~ candidate_info.name ~ " the tough questions. Read the responses here." %}
 
 {% macro endorsed(link) %}
 <div class='candidate__endorsed'>
@@ -38,7 +40,12 @@
 {{ super() }}
 <div class='candidate'>
 	<div class='candidate__top'>
-		{% include "subtemplates/_social-share.html" %}
+		{% with %}
+			{% set shareline = shareline %}
+			{% set target_url = page_url %}
+			{% include "subtemplates/_social-share.html" with context%}
+		{% endwith %}
+
 		<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
 		<h2 class='candidate__race'>{{ candidate_info.party }} candidate for {{ office_sought }}</h2>
 	</div>
@@ -142,7 +149,7 @@
     <meta name="twitter:site" content="@chicagotribune" />
     <meta name="twitter:title" content="{{ page_title }}" />
     <meta name="twitter:description" content="{{ shareline }} via @trib_ed_board" />
-	<meta name="twitter:image" content="http://{{ ROOT_URL}}/img/thumbnail-twitter.jpg" />
+	<meta name="twitter:image" content="http://{{ ROOT_URL}}/img/thumbnail/thumb_twitter.png" />
     <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />
     <meta name="twitter:creator" content="@chicagotribune" />
     <meta name="twitter:creator" content="@trib_ed_board" />
@@ -153,8 +160,15 @@
     <meta property="og:type" content="article" /> 
     <meta property="og:title" content="{{ page_title }}" />
     <meta property="og:description" content="{{ shareline }}" />
-    <meta property="og:image" content="http://{{ ROOT_URL}}/img/thumbnail-facebook.jpg" />
+    <meta property="og:image" content="http://{{ ROOT_URL}}/img/thumbnail/thumb_facebook.png" />
     <meta name="og:image:alt" content="{{ thumbnail_alt }}" />
 {#     <meta name="og:image:height" content="{{ thumbnail.height }}px" />
     <meta name="og:image:width" content="{{ thumbnail.width }}px" /> #}
 {% endblock opengraph %}
+
+{% block structured_data_meta scoped %}
+    {# METS/STRUCTURED DATA #}
+    <meta name="description" content="{{ shareline }}" />
+    <meta name="keywords" content="{{ candidate_info.name }}, {{ candidate_info.race_office }}, {{ seo_keywords }}" />
+    <meta name="author" content="Chicago Tribune" />
+{% endblock structured_data_meta %}

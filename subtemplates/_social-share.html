@@ -1,3 +1,4 @@
+
 {% macro social_icon(network) %}
 	<li class='network network--{{ network.slug|lower }}'>
 		<a target="_blank" href="{{ network.url }}" aria-label="Share this on {{ network.network }}">
@@ -11,21 +12,21 @@
 
 {# %23 is the url-encoded hash tag #}
 
-{% set target_url = "http://" + ROOT_URL + url_for("candidate-surveys-2018.candidate_survey_response_page",id=id) %}
-
+{# {% set target_url = "http://" + ROOT_URL + url_for("candidate-surveys-2018.candidate_survey_response_page",id=id) %}
+ #}
 
 {% set networks = [
 	{
 		"network":"Facebook",
-		"url":"http://www.facebook.com/sharer.php?u=" + target_url + "&t=" + opengraph_title|urlencode,
+		"url":"http://www.facebook.com/sharer.php?u=" + target_url + "&t=" + shareline|urlencode,
 		"slug":"facebook"
 	},{
 		"network":"Twitter",
-		"url":"http://twitter.com/share?url=" + target_url + "&text=" + twitter_title|urlencode,
+		"url":"http://twitter.com/share?url=" + target_url + "&text=" + shareline|urlencode,
 		"slug":"twitter"
 	},{
 		"network":"Email",
-		"url":"mailto:?&body=" ~ opengraph_title ~ " " ~ target_url,
+		"url":"mailto:?&body=" ~ shareline ~ " " ~ target_url,
 		"slug":"email"
 	}
 ]%}

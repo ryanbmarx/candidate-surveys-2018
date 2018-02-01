@@ -1,11 +1,28 @@
 {% extends "templates/_base-elex.html" %}
 
-{# {% set categories = candidates|get_unique_values('race_category') %} #}
+
+
+{# Concat a string of the office being sought #}
+
+{% set page_title = "Primary election candidate surveys" %}
+{% set page_url = "http://" + ROOT_URL %}
+
+{% set shareline = "Ahead of the primary elections, we ask the candidates tough questions. Read their responses here." %}
+
+{% block title %}<title>{{ page_title }}  -- Chicago Tribune</title>{% endblock title %}
+{% block canonical %}<link rel="canonical" href="{{ page_url }}" />{% endblock canonical %}
+
 
 {% block content %}
 	{{ super() }}
 	<section id='intro' class='intro container'>
 		<div class='river'>
+			{% with %}
+				{% set shareline = shareline %}
+				{% set target_url = page_url %}
+
+				{% include "subtemplates/_social-share.html" with context%}
+			{% endwith %}
 			{{ intro|markdown }}
 			{% if bedsheet_text and bedsheet_link != False %}
 				<p><a href="http://{{ ROOT_URL }}/{{bedsheet_link}}">{{ bedsheet_text }}</a></p>
@@ -54,3 +71,33 @@
 {% endblock %}
 
 {% block comments %}{% endblock %}
+
+
+{% block structured_data_meta scoped %}
+    {# METS/STRUCTURED DATA #}
+    <meta name="description" content="{{ shareline }}" />
+    <meta name="keywords" content="Illinois governor election, Cook County Board election,Cook County Assessor election, Illinois Attorney General election, {{ seo_keywords }}" />
+    <meta name="author" content="Chicago Tribune" />
+{% endblock structured_data_meta %}
+
+{% block twitter scoped%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@chicagotribune" />
+    <meta name="twitter:title" content="{{ page_title }}" />
+    <meta name="twitter:description" content="{{ shareline }} via @trib_ed_board" />
+	<meta name="twitter:image" content="http://{{ ROOT_URL}}/img/thumbnail/thumb_twitter.png" />
+    <meta name="twitter:image:alt" content="{{ thumbnail_alt }}" />
+    <meta name="twitter:creator" content="@chicagotribune" />
+    <meta name="twitter:creator" content="@trib_ed_board" />
+{% endblock twitter %}
+
+{% block opengraph scoped %}
+    <meta property="og:url" content="{{ page_url }}" />
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="{{ page_title }}" />
+    <meta property="og:description" content="{{ shareline }}" />
+    <meta property="og:image" content="http://{{ ROOT_URL}}/img/thumbnail/thumb_facebook.png" />
+    <meta name="og:image:alt" content="{{ thumbnail_alt }}" />
+{#     <meta name="og:image:height" content="{{ thumbnail.height }}px" />
+    <meta name="og:image:width" content="{{ thumbnail.width }}px" /> #}
+{% endblock opengraph %}
