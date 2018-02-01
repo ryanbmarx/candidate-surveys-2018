@@ -48,22 +48,24 @@ $anchor-offset: 0;
 	// add exception for the uber-long cook co. circuit
 	// and other really long ones.
 	
-	// .office--governor, 
-	// .office--cook_county_board {
-	// 	width: 100%;
+	.office--governor, 
+	.office--attorney_general{
+		width: 100%;
+	    // columns: 2;
+	    // column-gap: 30px;
 
-	// 	.opponents{
-	// 		display: flex;
-	// 		justify-content: space-between;
-	// 		align-items: stretch;
-	// 		flex-wrap: wrap;
+	    .opponents{
+	    	display: flex;
+		    justify-content: space-between;
+		    align-items: stretch;
+		    flex-wrap:wrap;
+	    }
 
-	// 		li{
-	// 			@include distribute-across-columns(3, 45px);
-	// 			display: flex;
-	// 			justify-content: flex-start;
-	// 			align-items: center;
-	// 		}
-	// 	}
-	// }
+	    .opponent{
+			@include distribute-across-columns(2, $grid-gap);
+	    }
+
+		.office__subhede{display:none;}
+
+	} 
 }
