@@ -7,7 +7,8 @@ module.exports = function(grunt) {
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
     'in-view',
-    'awesomplete'
+    'awesomplete',
+    'smoothscroll-polyfill'
   ];
 
   config.browserify = {
@@ -73,8 +74,8 @@ module.exports = function(grunt) {
       sourceMap: true,
       includePaths: [ 
         'sass/', 
-        'node_modules/trib-styles/sass/',
-        '_blueprint/sass/'
+        '_blueprint/sass/',
+        'node_modules/trib-styles/sass/'
       ]
     },
     app: {

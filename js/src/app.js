@@ -1,9 +1,10 @@
 const inView = require('in-view');
 import 'awesomplete';
 import clickTrack from "./click-track.js";
+require('smoothscroll-polyfill').polyfill();
 
-// Let's set our offset to 33% into the viewport. 
-inView.offset(window.innerWidth / 3);
+// Let's set our offset to 33% into the viewport height. 
+inView.offset(window.innerHeight / 3);
 
 window.addEventListener('DOMContentLoaded', function(e){
 
@@ -14,16 +15,20 @@ window.addEventListener('DOMContentLoaded', function(e){
 	inView('.category')
 	    .on('enter', el => {
 	        let raceID =  el.getAttribute('id');
-	        document.querySelector('.nav-button--active').classList.remove('nav-button--active');
-	        document.querySelector(`.nav-button[href="#${raceID}"]`).classList.add('nav-button--active');
 	        document.querySelector(`#nav-select option[value=${raceID}]`).selected=true;
 	    });
 
     document.querySelector(`#nav-select`).addEventListener('change', function(e){
-    	const targetScroll = document.querySelector(`#${this.value}`).getBoundingClientRect().top;
+    	console.log(`now seeking #${this.value}`)
+    	console.log(document.querySelector(`#${this.value}`).getBoundingClientRect())
+    	// const targetScroll = document.querySelector(`#${this.value}`).getBoundingClientRect().top;
+    	// window.scroll(0,targetScroll);
+    	document.querySelector(`#${this.value}`).scrollIntoView({ 
+    		behavior: 'smooth',
+    		block: 'start',
+    		inline: 'start'
+    	});
 
-    	console.log(targetScroll);
-    	window.scroll(0,targetScroll);
     })
 
 

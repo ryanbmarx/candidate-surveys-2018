@@ -1,5 +1,5 @@
-<p class='nav-label'>Jump to races:</p>
 <div class='nav-wrapper'>
+	<p class='nav-wrapper__label'>Now showing</p>
 	<div class='styled-select'>
 		<select id='nav-select' class='nav-select'>
 			{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
@@ -7,4 +7,5 @@
 			{% endfor %}
 		</select>
 	</div>
+	<p class='nav-wrapper__label'>races</p>
 </div>

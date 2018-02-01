@@ -1,8 +1,9 @@
-{% extends 'templates/_base-elex.html' %}
 {% from 'subtemplates/_macros.html' import add_candidate as add_candidate with context%}
-{% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
+{% from 'subtemplates/_macros.html' import elex_refer as elex_refer with context%}
 
+{% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
 {% set candidates = candidates_test %}
+{% set offices = candidates|get_unique_values('race_office') %}
 
 {# 
 
@@ -13,9 +14,11 @@
  #}
 
 {% block content %}
-	<div class='container'>
 	{%- for controller in control|sort(attribute="order") if controller.Status|lower == "on" %}
 		<div id={{ controller.id|lower }} class='category category--{{ controller.id|lower }}'>
+			{% if not loop.first %}
+				{{ elex_refer() }}
+			{% endif %}
 			{{ stars_topper(controller.label) }}
 			{# This is first-order sorting seperates by the spreadsheet tabs #}
 				
@@ -47,9 +50,7 @@
 				{% endfor %} {# end offices loop #}
 			{% endif %} {# end check for special sorting instructions #}
 		</div>
-		{{ elex_refer() }}
 	{% endfor %}{# end controller loop #}
-	</div>
 {% endblock %}
 
 {% block comments %}{% endblock comments %}

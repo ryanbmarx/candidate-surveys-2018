@@ -40,7 +40,8 @@
   "tribune": {},
   "dependencies": {
     "awesomplete": "^1.1.2",
-    "in-view": "^0.6.1"
+    "in-view": "^0.6.1",
+    "smoothscroll-polyfill": "^0.4.0"
   },
   "browserslist": [
     "> 1%",
