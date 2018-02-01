@@ -1,7 +1,6 @@
 {% extends "templates/_base-elex.html" %}
 
 {# {% set categories = candidates|get_unique_values('race_category') %} #}
-{% set offices = candidates|get_unique_values('race_office') %}
 
 {% block content %}
 	{{ super() }}
@@ -25,7 +24,7 @@
 	<section id='content' class='content container'>
 		<div class='row'>
 			<div class='races'>
-				{% include 'subtemplates/_ordering.html' %}
+				{% include 'subtemplates/_ordering.html' with context %}
 			</div>
 			<div class='editorials'>
 				{{stars_topper('editorials')}}
