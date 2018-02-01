@@ -15,6 +15,13 @@ $anchor-offset: $navbar-overall-height + 85px;
 	margin-top: 0 - $anchor-offset;
 	width: 100%;
 
+	&__subhede{
+		@include label4();
+		width: 100%;
+		margin: #{$grid-gap / 2} 0;
+		text-align:center;
+	}
+
 }
 
 .office {
@@ -23,9 +30,9 @@ $anchor-offset: $navbar-overall-height + 85px;
 	margin-bottom: 20px;
 
 	
-	h5 {
+	&__subhede{
 		@include serif-text(22px, 1.3em);
-		margin: 0 0 10px 0;
+		margin: 0 0 #{$grid-gap / 2} 0;
 	}
 }
 
@@ -39,23 +46,23 @@ $anchor-offset: $navbar-overall-height + 85px;
 
 	// add exception for the uber-long cook co. circuit
 	// and other really long ones.
-	.office--cook_county_circuit,
-	.office--governor, 
-	.office--cook_county_board {
-		width: 100%;
+	
+	// .office--governor, 
+	// .office--cook_county_board {
+	// 	width: 100%;
 
-		.opponents{
-			display: flex;
-			justify-content: space-between;
-			align-items: stretch;
-			flex-wrap: wrap;
+	// 	.opponents{
+	// 		display: flex;
+	// 		justify-content: space-between;
+	// 		align-items: stretch;
+	// 		flex-wrap: wrap;
 
-			li{
-				@include distribute-across-columns(3, 45px);
-				display: flex;
-				justify-content: flex-start;
-				align-items: center;
-			}
-		}
-	}
+	// 		li{
+	// 			@include distribute-across-columns(3, 45px);
+	// 			display: flex;
+	// 			justify-content: flex-start;
+	// 			align-items: center;
+	// 		}
+	// 	}
+	// }
 }

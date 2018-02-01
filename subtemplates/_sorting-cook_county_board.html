@@ -3,19 +3,21 @@
 {% set districts = candidates_test|get_unique_values("race_district") %}
 {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
 {% for district in districts %}
-	{% for party in parties %}
-		{% set party_loop = loop %}
-		{% for c in candidates_test|sort(attribute="name_last") if c.race_chamber|lower == chamber|lower and c.race_district == district and c.party|lower == party %}
-			{% if loop.first %}
-				{% if party_loop.first %}<h2>{{ district|get_ordinal_suffix }} district</h2>
-				{% endif %}
-				<p class='opponent-label'>{{ party|upper }}</p>
-				<ul class='opponents opponents--{{ party }}'> {# Open the list #}
-			{% endif %}
-			{{ add_candidate(c) }}
-			{% if loop.last %}
-				</ul> {# Closes the list #}
-			{% endif %}
-		{% endfor %}{# Close candidates loop #}
-	{% endfor %}{# Close party loop #}
+	{% if candidates_test|has_any(['race_district', district], ['race_category', controller.id]) %}
+		<div class='office office--{{ district|lower|slugify }}'>
+			<h2 class='office__subhede'>{{ district|get_ordinal_suffix }} district</h2>
+			{% for party in parties %}
+				{% for c in candidates_test|sort(attribute="name_last") if c.race_category == controller.id and c.race_district == district and c.party|lower == party %}
+					{% if loop.first %}
+						<p class='opponent-label'>{{ party|upper }}</p>
+						<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+					{% endif %}
+					{{ add_candidate(c) }}
+					{% if loop.last %}
+						</ul> {# Closes the list #}
+					{% endif %}
+				{% endfor %}{# Close candidates loop #}
+			{% endfor %}{# Close party loop #}
+		</div> {# close district div #}
+	{% endif %} {# close hasany check #}
 {% endfor %}{# Close districts loop #}

@@ -13,17 +13,12 @@
  #}
 
 {% block content %}
-<style type="text/css">
-	p{
-		font: 14px/1.3em sans-serif;
-		margin: 0;
-	}
-</style>
 	<div class='container'>
 	{%- for controller in control|sort(attribute="order") if controller.Status|lower == "on" %}
-		<section>
-			<h1>{{ controller.label }}</h1>
-				{# This is first-order sorting seperates by the spreadsheet tabs #}
+		<div id={{ controller.id|lower }} class='category category--{{ controller.id|lower }}'>
+			{{ stars_topper(controller.label) }}
+			{# This is first-order sorting seperates by the spreadsheet tabs #}
+				
 				
 			{% if controller.sort_2 %}
 				{# there are special instructions #}
@@ -34,7 +29,7 @@
 
 					{% if candidates_test|has_any(['race_category', controller.id], ["race_office", office]) %}
 						<div class='office office--{{ office|lower|slugify }}'>
-							<h2>{{ office }}</h2>
+						<h2 class='office__subhede'>{{ office }}</h2>
 						{% for party in parties %}
 							{% for c in candidates|sort(attribute="name_last") if c.race_office == office and c.party|lower == party %}			
 								{% if loop.first %}
@@ -51,7 +46,7 @@
 					{% endif %} {# end check for any candidates in this race  #}
 				{% endfor %} {# end offices loop #}
 			{% endif %} {# end check for special sorting instructions #}
-		</section>
+		</div>
 	{% endfor %}{# end controller loop #}
 	</div>
 {% endblock %}

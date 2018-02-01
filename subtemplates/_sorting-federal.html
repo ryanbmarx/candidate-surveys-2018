@@ -6,19 +6,22 @@
 
 {% for chamber in chambers %}
 	{% for district in districts %}
-		{% for party in parties %}
-			{% set party_loop = loop %}
-			{% for c in candidates_test|sort(attribute="name_last") if c.race_chamber == chamber and c.race_district == district and c.party|lower == party %}
-				{% if loop.first %}
-					{% if party_loop.first %}<h2>{{ chamber }}, {{ district|get_ordinal_suffix }} district</h2>{% endif %}
-					<p class='opponent-label'>{{ party|upper }}</p>
-					<ul class='opponents opponents--{{ party }}'> {# Open the list #}
-				{% endif %}
-				{{ add_candidate(c) }}
-				{% if loop.last %}
-					</ul> {# Closes the list #}
-				{% endif %}
-			{% endfor %}{# Close candidates loop #}
-		{% endfor %}{# Close party loop #}
+		{% if candidates_test|has_any(['race_district', district], ['race_category', controller.id], ['race_chamber', chamber]) %}
+			<div class='office office--{{ district|lower|slugify }}'>
+				<h2 class='office__subhede'>{{ chamber }}, {{ district|get_ordinal_suffix }} district</h2>
+				{% for party in parties %}
+					{% for c in candidates_test|sort(attribute="name_last") if c.race_chamber == chamber and c.race_district == district and c.party|lower == party %}
+						{% if loop.first %}
+							<p class='opponent-label'>{{ party|upper }}</p>
+							<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+						{% endif %}
+						{{ add_candidate(c) }}
+						{% if loop.last %}
+							</ul> {# Closes the list #}
+						{% endif %} {# Closes loop.last check #}
+					{% endfor %}{# Close candidates loop #}
+				{% endfor %}{# Close party loop #}
+			</div>
+		{% endif %}{# Close has_any district check #}	
 	{% endfor %}{# Close districts loop #}
 {% endfor %} {# Close chambers loop #}

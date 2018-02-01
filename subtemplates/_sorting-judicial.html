@@ -5,46 +5,51 @@
 {% set vacancies = candidates_test|get_unique_values("race_vacancy")|sort() %}
 {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
 
-<h1>Cook County Circuit</h1>
+<h1 class='category__subhede'>Cook County circuit</h1>
 {% for subcircuit in subcircuits %}
 	{% for vacancy in vacancies %}
 		{% if candidates_test|has_any(['race_vacancy', vacancy], ['race_subcircuit', subcircuit]) %}
-			<h2>{{ subcircuit|get_ordinal_suffix }} subcircuit, {{ vacancy }} vacancy</h2>
-			{% for party in parties %}
-				{% for c in candidates_test|sort(attribute="name_last") if c.race_subcircuit == subcircuit and c.race_vacancy == vacancy and c.race_district == "Cook County" and c.party|lower == party|lower %}
-					{% if loop.first %}
-						<p class='opponent-label'>{{ party|upper }}</p>
-						<ul class='opponents opponents--{{ party }}'> {# Open the list #}
-					{% endif %}
-					{{ add_candidate(c) }}
-					{% if loop.last %}
-						</ul> {# Closes the list #}
-					{% endif %}
-				{% endfor %}{# Close candidates loop #}
-			{% endfor %} {# Close party loop #}
+			<div class='office office--{{ district|lower|slugify }}'>
+				<h2 class='office__subhede'>{{ subcircuit|get_ordinal_suffix }} subcircuit, {{ vacancy }} vacancy</h2>
+				{% for party in parties %}
+					{% for c in candidates_test|sort(attribute="name_last") if c.race_subcircuit == subcircuit and c.race_vacancy == vacancy and c.race_district == "Cook County" and c.party|lower == party|lower %}
+						{% if loop.first %}
+							<p class='opponent-label'>{{ party|upper }}</p>
+							<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+						{% endif %}
+						{{ add_candidate(c) }}
+						{% if loop.last %}
+							</ul> {# Closes the list #}
+						{% endif %}
+					{% endfor %}{# Close candidates loop #}
+				{% endfor %} {# Close party loop #}
+			</div>
 		{% endif %} {# Close has_any check #}
 	{% endfor %} {# Close vacancies loop #}
 
 {% endfor %} {# Close subcircuit loop #}
 
+<h1 class='category__subhede'>Other judicial circuits</h1>
 {% for circuit in circuits if circuit != "Cook County" %}
-	<h1>{{ circuit|get_ordinal_suffix }} circuit</h1>
-	{% for party in parties %}
-		{% set party_loop = loop %}
-		{% for c in candidates_test|sort(attribute="name_last") if c.race_category == controller.id and c.race_district == circuit and c.party|lower == party|lower %}
-			{% if c.completed_survey == 1 %}
-				{% set completed = True %}
-			{% else %}
-				{% set completed = False %}
-			{% endif  %}
-			{% if loop.first %}
-				<p class='opponent-label'>{{ party|upper }}</p>
-				<ul class='opponents opponents--{{ party }}'> {# Open the list #}
-			{% endif %}
-			{{ add_candidate(c) }}
-			{% if loop.last %}
-				</ul> {# Closes the list #}
-			{% endif %}
-		{% endfor %}{# Close candidates loop #}
-	{% endfor %} {# Close party loop #}
+	<div class='office office--{{ circuit|lower|slugify }}'>
+		<h1 class='office__subhede'>{{ circuit|get_ordinal_suffix }} circuit</h1>
+		{% for party in parties %}
+			{% set party_loop = loop %}
+			{% for c in candidates_test|sort(attribute="name_last") if c.race_category == controller.id and c.race_district == circuit and c.party|lower == party|lower %}
+				{% if c.completed_survey == 1 %}
+					{% set completed = True %}
+				{% else %}
+					{% set completed = False %}
+				{% endif  %}
+				{% if loop.first %}
+					<p class='opponent-label'>{{ party|upper }}</p>
+					<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+				{% endif %}
+				{{ add_candidate(c) }}
+				{% if loop.last %}
+					</ul> {# Closes the list #}
+				{% endif %}
+			{% endfor %}{# Close candidates loop #}
+		{% endfor %} {# Close party loop #}
+	</div>
 {% endfor %}{# Close circuit loop #}

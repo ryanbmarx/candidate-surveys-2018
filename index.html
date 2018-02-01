@@ -25,21 +25,7 @@
 	<section id='content' class='content container'>
 		<div class='row'>
 			<div class='races'>
-				{% for category in control|sort(attribute="order") if category.Status|lower == "on" %}
-					<div id={{ category.id|lower }} class='category category--{{ category.id|lower }}'>
-					{{ stars_topper(category.label) }}
-					{% for office in offices %}
-						{# Check if any candidates are in the category > office #}
-						{% if candidates|has_any(category.id, office) %}
-							<div class='office office--{{ office|lower|slugify }}'>
-								<h5>{{ office }}</h5>
-								{% include 'subtemplates/_opponents-list.html'%}
-							</div>
-							{% endif %}
-					{% endfor %}
-					</div>
-					{{ elex_refer() }}
-				{% endfor %}
+				{% include 'subtemplates/_ordering.html' %}
 			</div>
 			<div class='editorials'>
 				{{stars_topper('editorials')}}
