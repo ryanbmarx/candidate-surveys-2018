@@ -197,9 +197,20 @@ $cta-button-color-text: set-text-color($cta-button-color, true);
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
+
+	// tweaks to calls to action
+	.cta__button{
+		padding: 10px 0;
+	}
+
+}
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
 	.row {
 		display: flex;
 		justify-content: space-between;
+		align-content:flex-start;
 	}
 
 	.editorials {
@@ -215,15 +226,5 @@ $cta-button-color-text: set-text-color($cta-button-color, true);
 			width: 48%;
 		}
 	}
-
-	// tweaks to calls to action
-	.cta__button{
-		padding: 10px 0;
-	}
-
-}
-
-@media all and (min-width: $desktop-min-width){
-	// ONLY CHANGES FOR DESKTOPS
 
 }
