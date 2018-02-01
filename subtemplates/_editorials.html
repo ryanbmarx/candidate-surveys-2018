@@ -1,5 +1,5 @@
 {% for article in editorials %}
-	<div class='editorial'>
+	<article class='editorial'>
 		{% if article.img %}
 			<a href='{{article.link}}'>
 				<img src='{{article.img}}'>
@@ -10,6 +10,6 @@
 				{{article.hed}}
 			</h4>
 		</a>
-		<p class='time'>{{article.time}}</p>
-	</div>
+		<time class='time'>{{article.time}}</time>
+	</article>
 {% endfor %}

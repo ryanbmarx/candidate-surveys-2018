@@ -1,6 +1,3 @@
-{# http://pinterest.com/pin/create/button/?url=http://elections.chicagotribune.com/candidates/raja-krishnamoorthi/description=Learn+About+Raja%20Krishnamoorthi+In+The+Chicago+Tribune%27s+Election+Center #}
-
-
 
 {% extends "templates/_base-elex.html" %}
 
@@ -38,7 +35,7 @@
 
 {% block content %}
 {{ super() }}
-<div class='candidate'>
+<article class='candidate'>
 	<div class='candidate__top'>
 		{% with %}
 			{% set shareline = shareline %}
@@ -138,8 +135,7 @@
 			{# <div class="advert" data-ad-type="shrinky-cube"></div> #}
 		</div>
 	</div>
-
-</div>
+</article>
 {% endblock %}
 
 {% block comments %}{% endblock comments %}
