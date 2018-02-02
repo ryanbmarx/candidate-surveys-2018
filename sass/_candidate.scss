@@ -109,7 +109,7 @@
 	&__mug{
 		@include trib-image();
 	    max-width: 100%;
-	    margin: 0;
+	    margin: 0 0 #{$grid-gap / 2} 0;
 
 		img{
 			border-radius: $border-radius;
