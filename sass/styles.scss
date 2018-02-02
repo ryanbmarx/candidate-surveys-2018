@@ -138,6 +138,12 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 
 .intro{
 	margin-top: $grid-gap;
+
+	.headline{
+		@include responsive-font(6vw, 40px, 60px, 45px);
+		margin: #{$grid-gap / 2} 0;
+		padding: 0;
+	}
 }
 
 

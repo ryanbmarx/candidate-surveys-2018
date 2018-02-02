@@ -4,7 +4,7 @@
 
 {# Concat a string of the office being sought #}
 
-{% set page_title = "Primary election candidate surveys" %}
+{% set page_title = "Illinois primary election candidate surveys" %}
 {% set page_url = "http://" + ROOT_URL %}
 
 {% set shareline = "Ahead of the primary elections, we ask the candidates tough questions. Read their responses here." %}
@@ -23,6 +23,7 @@
 
 				{% include "subtemplates/_social-share.html" with context%}
 			{% endwith %}
+			<h1 class='headline'>{{ page_title }}</h1>
 			{{ intro|markdown }}
 			{% if bedsheet_text and bedsheet_link != False %}
 				<p><a href="http://{{ ROOT_URL }}/{{bedsheet_link}}">{{ bedsheet_text }}</a></p>
@@ -73,8 +74,10 @@
 {% block structured_data_meta scoped %}
     {# METS/STRUCTURED DATA #}
     <meta name="description" content="{{ shareline }}" />
-    <meta name="keywords" content="Illinois governor election, Cook County Board election,Cook County Assessor election, Illinois Attorney General election, {{ seo_keywords }}" />
-    <meta name="author" content="Chicago Tribune" />
+    <meta name="news_keywords" content="Illinois governor election, Cook County Board election,Cook County Assessor election, Illinois Attorney General election, {{ seo_keywords }}" />
+{#     <meta name="keywords" content="Illinois governor election, Cook County Board election,Cook County Assessor election, Illinois Attorney General election, {{ seo_keywords }}" />
+ #}    <meta name="author" content="Chicago Tribune" />
+
 {% endblock structured_data_meta %}
 
 {% block twitter scoped%}
