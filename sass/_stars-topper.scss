@@ -29,6 +29,7 @@
 		z-index:2;
 		margin: 0;
 		color: $trib_gray1;
+		margin-top: 1px;
 	}
 
 	a{
@@ -40,10 +41,13 @@
 .star{
 	width: $stars-dimension;
 	height: $stars-dimension;
-	fill: green;
+	fill: black;
 	z-index:2;
 	background: white;
-	padding: 0 5px;
+	padding: 0 2px;
+
+	&:first-child{ padding-left: 8px; }
+	&:last-child{ padding-right: 8px; }
 }
 
 #mwrd .stars-topper__label{
