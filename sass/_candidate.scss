@@ -51,7 +51,7 @@
 	margin: 0;
 
 	li{
-		@include distribute_across_columns(4);
+		@include distribute_across_columns(2, $grid-gap / 2);
 		margin-right: 5px;
 	}
 
@@ -192,22 +192,21 @@
 	color: $trib-gray3;
 }
 
-@media all and (min-width:$tablet-min-width){
+// @media all and (min-width:$tablet-min-width){}
 
-	// UNIVERSAL STYLES
-	.candidate{
-		&__left-column-inner, &__right-column-inner {
-			// Stick the opponents nav 
-			position: sticky;
-			top: $navbar_overall_height + $grid-gap;
-		}
-	}
+@media all and (min-width:$desktop-min-width){
 
 	.candidate{
 		display:flex;
 		justify-content: center;
 		align-items: stretch;
 		flex-wrap:wrap;
+
+		&__left-column-inner, &__right-column-inner {
+			// Stick the opponents nav 
+			position: sticky;
+			top: $navbar_overall_height + $grid-gap;
+		}
 
 		&__left-column{
 			float: none;
@@ -231,16 +230,10 @@
 			display:block;
 		}
 	}
-}
-@media all and (min-width:$desktop-min-width){
 
-	// UNIVERSAL STYLES
-	// .candidate{
-	// 	&__left-column-inner, &__right-column-inner {
-	// 		position: sticky;
-	// 		top: $navbar_overall_height + $grid-gap;
-	// 	}
-	// }
+	.candidate-contact-list li{
+		@include distribute_across_columns(3, $grid-gap / 2);
+	}
 }
 
 @media all and (min-width:$extra-wide-min-width){
