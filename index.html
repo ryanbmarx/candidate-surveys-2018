@@ -44,10 +44,12 @@
 			<div class='races'>
 				{% include 'subtemplates/_ordering.html' with context %}
 			</div>
+			{% if editorials|length > 1 %}
 			<aside class='editorials'>
 				{# {{stars_topper('editorials')}} #}
 				{% include 'subtemplates/_editorials.html' %}
 			</aside>
+			{% endif %}
 		</div>
 	</section>
 {% endblock content %}

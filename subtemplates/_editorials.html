@@ -1,14 +1,12 @@
-{% for article in editorials %}
+{% for article in editorials[1:] %}
 	<article class='editorial'>
 		{% if article.img %}
-			<a href='{{article.link}}'>
-				<img src='{{article.img}}'>
+			<a href='{{ article.link }}'>
+				<img src='{{ article.img }}'>
 			</a>
 		{% endif %}
 		<a href='{{article.link}}'>
-			<h4 class='editorial--hed'>
-				{{article.hed}}
-			</h4>
+			<h4 class='editorial--hed'>{{ article.hed }}</h4>
 		</a>
 		<time class='time'>{{article.time}}</time>
 	</article>
