@@ -9,7 +9,7 @@
 		border-bottom:none;
 	}
 
-	img {
+	&__image {
 		width: 100%;
 		margin: 0 0 #{$grid-gap / 2} 0
 		// float: left;
@@ -17,12 +17,21 @@
 		// width: 100px;
 	}
 
-	&--hed {
+	&__hed {
 		@include serif-text(18px, 1.3em, bold);
 		margin: 0 0 5px 0;
 	}
-
-	margin-bottom: 20px;
+	
+	&__kicker{
+		@include agate();
+		display:inline-block;
+		background: $trib-gray3;
+		color: white;
+		padding: 3px 5px;
+		// border-radius: $border-radius;
+		margin: 0 0 5px 0;
+		text-transform: uppercase;
+	}
 }
 
 .time {
@@ -30,4 +39,5 @@
 	// font-style: italic;
 	color: $trib_gray2;
 	margin: 7px 0 0 0;
+	text-transform:uppercase;
 }

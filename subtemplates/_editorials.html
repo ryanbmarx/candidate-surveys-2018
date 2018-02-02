@@ -1,13 +1,16 @@
 {% for article in editorials[1:] %}
 	<article class='editorial'>
+		{% if article.kicker %}
+			<span class="editorial__kicker">{{ article.kicker }}</span>
+		{% endif %}
 		{% if article.img %}
 			<a href='{{ article.link }}'>
-				<img src='{{ article.img }}'>
+				<img  class="editorial__image" src='{{ article.img }}'>
 			</a>
 		{% endif %}
-		<a href='{{article.link}}'>
-			<h4 class='editorial--hed'>{{ article.hed }}</h4>
+		<a href='{{ article.link }}'>
+			<h4 class='editorial__hed'>{{ article.hed }}</h4>
 		</a>
-		<time class='time'>{{article.time}}</time>
+		<time class='time'>{{ article.time|xldate_to_datetime|format_date_with_strftime("%B %-d") }}</time>
 	</article>
 {% endfor %}
