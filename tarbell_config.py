@@ -65,8 +65,8 @@ def generate_autocomplete_list(context, candidates):
     for c in candidates:
         if use_this_candidate(c, context):
             retval.append({
-                "label":c['name'],
-                "value": c['id']
+                "label":c['name'].strip(),
+                "value": c['id'].strip()
             })
 
     return retval
