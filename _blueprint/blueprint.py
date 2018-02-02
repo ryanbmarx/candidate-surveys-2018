@@ -75,7 +75,7 @@ def get_thumbnail_info(image):
             "height": height
         }
     except IOError:
-        print("Can't find ", id)
+        pass
 
 @blueprint.app_template_filter('xldate_to_datetime')
 def xldate_to_datetime(xldate):
