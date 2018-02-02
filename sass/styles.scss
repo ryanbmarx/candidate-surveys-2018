@@ -147,14 +147,6 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 }
 
 
-
-.trb_mainContent .credits {
-	p{
-		@include agate();
-	}
-}
-
-
 .races-legend{
 	@include trib-legend();
 	.endorsed{

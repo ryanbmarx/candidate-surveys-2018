@@ -154,6 +154,10 @@
 		@include sans-serif();
 		font-weight: bold;
 	}
+
+	ul, ol{
+		@include serif();
+	}
 }
 
 // ------------------------------------------------------------------
