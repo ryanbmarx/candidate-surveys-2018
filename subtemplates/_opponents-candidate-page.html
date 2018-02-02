@@ -15,6 +15,7 @@
 		{% else %}
 			{% set completed = False %}
 		{% endif  %}
+		
 		<li class='opponent {% if not completed %}opponent--muted{% endif %} {% if opponent.current %}opponent--current{% endif %} opponent--{{ opponent.party|lower }}'>
 			{% if completed %}
 				{% set url = url_for("candidate-surveys-2018.candidate_survey_response_page",id=opponent.id) %}
