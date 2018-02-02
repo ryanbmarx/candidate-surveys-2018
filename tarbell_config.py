@@ -220,6 +220,9 @@ def get_opponents(candidates, c):
     for candidate in candidates:
         if candidate == c:
             candidate['current'] = True
+        else: 
+            candidate['current'] = False
+            
         if candidate['race'] == race:
             retval.append(candidate)
     return retval
