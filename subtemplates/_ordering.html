@@ -1,57 +1,35 @@
 {% from 'subtemplates/_macros.html' import add_candidate as add_candidate with context%}
+{% from 'subtemplates/_macros.html' import add_candidates as add_candidates with context%}
 {% from 'subtemplates/_macros.html' import elex_refer as elex_refer with context%}
 {% from 'subtemplates/_macros.html' import stars_topper as stars_topper with context%}
 
-{% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
-{% set candidates = candidates %}
-{% set offices = candidates|get_unique_values('race_office') %}
-
-{# 
-
-	Automatically sorts by race_category/top level.
-	Second-level sort key is pulled from control. U.S. Senate/U.S. House, etc.
-
-
- #}
 
 {% block content %}
-	{%- for controller in control|sort(attribute="order") if controller.Status|lower == "on" %}
-		<div id={{ controller.id|lower }} class='category category--{{ controller.id|lower }}'>
-			{% if not loop.first %}
-				{{ elex_refer() }}
-			{% endif %}
-			{{ stars_topper(controller.label) }}
-			{# This is first-order sorting seperates by the spreadsheet tabs #}
-				
-				
-			{% if controller.sort_2 %}
-				{# there are special instructions #}
-				{% include 'subtemplates/_sorting-' + controller.id + '.html' ignore missing with context %}
-			{% else %}
-				{% for office in offices %}
-					{# Check if any candidates are in the category > office #}
-
-					{% if candidates|has_any(['race_category', controller.id], ["race_office", office]) %}
-						<div class='office office--{{ office|lower|slugify }}'>
-						<h2 class='office__subhede'>{{ office }}</h2>
-						{% for party in parties %}
-							{% for c in candidates|sort(attribute="name_last") if c.race_office == office and c.party|lower == party %}			
-								{% if loop.first %}
-									<p class='opponent-label'>{{ party|upper }}</p>
-									<ul class='opponents opponents--{{ party }}'> {# Open the list #}
-								{% endif %}
-								{{ add_candidate(c) }}
-								{% if loop.last %}
-									</ul> {# Closes the list #}
-								{% endif %}
-							{% endfor %}  {# <!--end candidate loop--> #}
-							{% endfor %}  {# <!--end party loop--> #}
-						</div>
-					{% endif %} {# end check for any candidates in this race  #}
-				{% endfor %} {# end offices loop #}
-			{% endif %} {# end check for special sorting instructions #}
-		</div>
-	{% endfor %}{# end controller loop #}
+	{% with %}
+		{# Using the WITH tag, these variables are made universal throughout the block #}
+		{% set parties = ['democratic', 'republican', 'libertarian', 'green'] %}
+		{% set offices = candidates|get_unique_values('race_office') %}
+		{%- for controller in control|sort(attribute="order") if controller.Status|lower == "on" %}
+			<div id={{ controller.id|lower }} class='category category--{{ controller.id|lower }}'>
+				{% if not loop.first %}
+					{{ elex_refer() }}
+				{% endif %}
+				{{ stars_topper(controller.label) }}
+				{# This is first-order sorting seperates by the spreadsheet tabs #}
+					
+				{% if controller.sort_2 %}
+					{# there are special instructions #}
+					{% include 'subtemplates/_sorting-' + controller.id + '.html' ignore missing with context %}
+				{% else %}
+					{# There are no special instructions #}
+					{% for office in offices %}
+						{# Check if any candidates are in the category > office #}
+						{{ add_candidates(office, parties, candidates|has_any(['race_category', controller.id], ["race_office", office]))}}
+					{% endfor %} {# end offices loop #}
+				{% endif %} {# end check for special sorting instructions #}
+			</div>
+		{% endfor %}{# end controller loop #}
+	{% endwith %}
 {% endblock %}
 
 {% block comments %}{% endblock comments %}

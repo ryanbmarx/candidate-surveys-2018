@@ -109,8 +109,9 @@ def has_any(candidates, *args):
 
     for arg in args: # ... test each k-v pair
         final_list = filter((lambda c: arg[0] in c and c[arg[0]] == arg[1]), final_list)
-        # final_list = list(filter(lambda c: ))
-    return True if len(final_list) else False
+    
+    # The the final_list has any candidates, return it. Otherwise return False
+    return final_list if len(final_list) > 0 else False
 
 
 # @blueprint.app_template_filter('has_any')

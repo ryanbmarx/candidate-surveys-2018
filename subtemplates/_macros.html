@@ -35,6 +35,27 @@
 	{{ refer(header=refer_header, link=refer_link)}}
 {% endmacro %}
 
+{% macro add_candidates(office, parties, candidates_list) %}
+	{% if candidates_list and candidates_list|length > 0 %}
+		<div class='office office--{{ office|lower|slugify }}'>
+		<h2 class='office__subhede'>{{ office }}</h2>
+		{% for party in parties %}
+			{% for c in candidates_list|sort(attribute="name_last") if c.party|lower == party %}
+				{% if loop.first %}
+					<p class='opponent-label'>{{ party|upper }}</p>
+					<ul class='opponents opponents--{{ party }}'> {# Open the list #}
+				{% endif %}
+				{{ add_candidate(c) }}
+				{% if loop.last %}
+					</ul> {# Closes the list #}
+				{% endif %}
+			{% endfor %}  {# <!--end candidate loop--> #}
+			{% endfor %}  {# <!--end party loop--> #}
+		</div>
+	{% endif %}
+{% endmacro %}
+
+
 {% macro add_candidate(c) %}
 	{# For adding candidate to opponent lists #}
 	{% if c.completed_survey == 1 %}
