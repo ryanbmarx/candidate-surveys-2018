@@ -22,7 +22,7 @@
 
 	&__label{
 		@include serif-text(16px, 1em, bold);
-	    flex-basis: 200px;
+	    // flex-basis: 200px;
 		text-transform: uppercase;
 		padding: 0 5px;
 		background: white;
@@ -50,10 +50,10 @@
 	&:last-child{ padding-right: 8px; }
 }
 
-#mwrd .stars-topper__label{
-	// A sad reality, but here is a hack to make things look nicer in one specific instance
-	flex-basis: 320px;
-}
+// #mwrd .stars-topper__label{
+// 	// A sad reality, but here is a hack to make things look nicer in one specific instance
+// 	flex-basis: 320px;
+// }
 
 @media all and (min-width: $tablet-min-width){
 	.stars-topper{

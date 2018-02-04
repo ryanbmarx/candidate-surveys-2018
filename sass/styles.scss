@@ -196,6 +196,10 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 	}
 }
 
+.video-embed{
+	@include responsive-embed();
+}
+
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR TABLETS + DESKTOPS	
 
