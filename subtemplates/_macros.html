@@ -10,9 +10,9 @@
 	<div class='stars-topper'>
 		{{ star('star') }}
 		{{ star('star') }} 
-		<h4 class='stars-topper__label'>
+		<h2 class='stars-topper__label'>
 			{% if link %}<a href="{{ link }}">{% endif %}{{ label|upper }}{% if link %}</a>{% endif %}
-		</h4>
+		</h2>
 		{{ star('star') }}
 		{{ star('star') }} 
 	</div>
@@ -38,7 +38,7 @@
 {% macro add_candidates(office, parties, candidates_list) %}
 	{% if candidates_list and candidates_list|length > 0 %}
 		<div class='office office--{{ office|lower|slugify }}'>
-		<h2 class='office__subhede'>{{ office }}</h2>
+		<h3 class='office__subhede'>{{ office }}</h3>
 		{% for party in parties %}
 			{% for c in candidates_list|sort(attribute="name_last") if c.party|lower == party %}
 				{% if loop.first %}
