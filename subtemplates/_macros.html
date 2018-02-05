@@ -39,13 +39,13 @@
 	{% if candidates_list and candidates_list|length > 0 %}
 		<div class='office office--{{ office|lower|slugify }}'>
 		<h3 class='office__subhede'>{{ office }}</h3>
-		{% for party in parties %}
-			{% for c in candidates_list|sort(attribute="name_last") if c.party|lower == party %}
+		{%- for party in parties %}
+			{%- for c in candidates_list|sort(attribute="name_last") if c.party|lower == party %}
 				{% if loop.first %}
 					<p class='opponent-label'>{{ party|upper }}</p>
 					<ul class='opponents opponents--{{ party }}'> {# Open the list #}
 				{% endif %}
-				{{ add_candidate(c) }}
+				{{ add_candidate(c)|trim }}
 				{% if loop.last %}
 					</ul> {# Closes the list #}
 				{% endif %}
