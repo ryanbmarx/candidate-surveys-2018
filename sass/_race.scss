@@ -2,10 +2,10 @@ $anchor-offset: $navbar-overall-height + 85px;
 $anchor-offset: 0;
 
 .category{
-	display:flex;
-	align-items: stretch;
-	justify-content: space-between;
-	flex-wrap: wrap;
+	// display:flex;
+	// align-items: stretch;
+	// justify-content: space-between;
+	// flex-wrap: wrap;
 	position: relative;
 
 	// This gives the padding necessary for when navigating using 
@@ -14,7 +14,7 @@ $anchor-offset: 0;
 	// padding-top: $navbar-overall-height + 70px; 
 	padding-top: $anchor-offset;
 	margin-top: 0 - $anchor-offset;
-	width: 100%;
+	// width: 100%;
 
 	&__subhede{
 		@include label4();
@@ -25,10 +25,25 @@ $anchor-offset: 0;
 
 }
 
+.offices{
+	width: 100%;
+	display:flex;
+	align-items: stretch;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
 .office {
 	@include distribute-across-columns(1);
     box-sizing: border-box;
 	margin-bottom: 20px;
+
+	&:first-child:last-child{
+		// If the office is both the first and last child, then it is solo.
+		// We want these to be centered.
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 	
 	&__subhede{

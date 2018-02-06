@@ -7,6 +7,7 @@
 
 {% for circuit in circuits %}
 	<h3 class='category__subhede'>{{ circuit|get_ordinal_suffix }} circuit</h3>
+	<div class='offices'>
 	{% for subcircuit in subcircuits %}
 		{% for vacancy in vacancies %}
 			{% if subcircuit > 0 %}
@@ -20,4 +21,5 @@
 			{{ add_candidates(office_name, parties, candidates|has_any(['race_district', circuit], ['race_subcircuit', subcircuit], ['race_vacancy', vacancy])) }}
 		{% endfor %} {# Close vacancies loop #}
 	{% endfor %} {# Close subcircuit loop #}
+	</div>
 {% endfor %}{# Close circuit loop #}

@@ -22,10 +22,12 @@
 					{% include 'subtemplates/_sorting-' + controller.id + '.html' ignore missing with context %}
 				{% else %}
 					{# There are no special instructions #}
-					{% for office in offices %}
-						{# Check if any candidates are in the category > office #}
-						{{ add_candidates(office, parties, candidates|has_any(['race_category', controller.id], ["race_office", office]))}}
-					{% endfor %} {# end offices loop #}
+					<div class='offices'>
+						{% for office in offices %}
+							{# Check if any candidates are in the category > office #}
+							{{ add_candidates(office, parties, candidates|has_any(['race_category', controller.id], ["race_office", office]))}}
+						{% endfor %} {# end offices loop #}
+					</div>
 				{% endif %} {# end check for special sorting instructions #}
 			</div>
 		{% endfor %}{# end controller loop #}

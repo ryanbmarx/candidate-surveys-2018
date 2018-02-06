@@ -5,8 +5,10 @@
 {# {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %} #}
 
 {% for chamber in chambers %}
+	<div class='offices'>
 	{% for district in districts %}
 		{% set office_name = chamber ~ ", " ~ district|get_ordinal_suffix ~ " district" %}
 		{{ add_candidates(office_name, parties, candidates|has_any(['race_district', district], ['race_category', controller.id], ['race_chamber', chamber])) }}
 	{% endfor %}{# Close districts loop #}
+	</div>
 {% endfor %} {# Close chambers loop #}

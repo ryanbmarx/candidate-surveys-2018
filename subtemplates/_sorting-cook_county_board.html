@@ -2,7 +2,9 @@
 
 {% set districts = candidates|get_unique_values("race_district") %}
 {# {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %} #}
+<div class='offices'>
 {% for district in districts %}
 	{% set office_name = district|get_ordinal_suffix ~ " district" %}
 	{{ add_candidates(office_name, parties, candidates|has_any(['race_district', district], ['race_category', controller.id])) }}
 {% endfor %}{# Close districts loop #}
+</div>
