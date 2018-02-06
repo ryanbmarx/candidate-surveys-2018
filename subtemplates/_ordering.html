@@ -11,15 +11,15 @@
 		{% set offices = candidates|get_unique_values('race_office') %}
 		{%- for controller in control|sort(attribute="order") if controller.Status|lower == "on" %}
 			<div id={{ controller.id|lower }} class='category category--{{ controller.id|lower }}'>
-				{% if not loop.first %}
-					{{ elex_refer() }}
-				{% endif %}
 				{{ stars_topper(controller.label) }}
 				{# This is first-order sorting seperates by the spreadsheet tabs #}
 					
 				{% if controller.sort_2 %}
 					{# there are special instructions #}
 					{% include 'subtemplates/_sorting-' + controller.id + '.html' ignore missing with context %}
+					{% if not loop.first %}
+						{{ elex_refer() }}
+					{% endif %}
 				{% else %}
 					{# There are no special instructions #}
 					<div class='offices'>
