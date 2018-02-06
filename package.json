@@ -5,10 +5,9 @@
   "main": "js/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mkdir -p css && grunt",
+    "build": "run-p build:assets build:candidate_mugs",
     "watch": "grunt watch",
-    "publish": "grunt && tarbell publish",
-    "publish:production": "grunt && tarbell publish production",
+    "build:assets":"grunt",
     "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg",
     "build:candidate_mugs": "node js/src/resize-photos.js 300 50 ./img/candidates/src ./img/candidates"
   },
@@ -32,6 +31,7 @@
     "grunt-svgstore": "^1.0.0",
     "jimp": "^0.2.28",
     "minifyify": "^7.3.3",
+    "npm-run-all": "^4.1.2",
     "trib-styles": "git+ssh://git@tribune.unfuddle.com:tribune/trib-styles.git"
   },
   "browserify": {
