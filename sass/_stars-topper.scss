@@ -22,7 +22,6 @@
 
 	&__label{
 		@include serif-text(16px, 1em, bold);
-	    // flex-basis: 200px;
 		text-transform: uppercase;
 		padding: 0 5px;
 		background: white;
@@ -30,6 +29,8 @@
 		margin: 0;
 		color: $trib_gray1;
 		margin-top: 1px;
+		flex-basis: auto;
+	    max-width: 205px;
 	}
 
 	a{
@@ -60,7 +61,7 @@
 		height: $stars-dimension;
 		&__label{
 			font-size: 20px;
-			flex-basis: auto;
+			max-width: none;
 		}
 	}
 }
