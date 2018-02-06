@@ -5,7 +5,6 @@
 {# {% set parties = ['democratic', 'republican', 'libertarian', 'green'] %} #}
 
 {%- for chamber in chambers %}
-	<h3>{{ chamber }}</h3>
 	<div class='offices'>
 	{%- for district in districts %}
 			{% set office_name = chamber ~ ", " ~ district|get_ordinal_suffix ~ " district" %}
