@@ -18,7 +18,7 @@ $anchor-offset: 0;
 
 	&__subhede{
 		@include label4();
-		width: 100%;
+		flex-basis: 100%;
 		margin: #{$grid-gap / 2} 0;
 		text-align:center;
 	}
@@ -36,7 +36,7 @@ $anchor-offset: 0;
 .office {
 	@include distribute-across-columns(1);
     box-sizing: border-box;
-	margin-bottom: 20px;
+	margin: 0 auto $grid-gap auto;
 
 	&:first-child:last-child{
 		// If the office is both the first and last child, then it is solo.

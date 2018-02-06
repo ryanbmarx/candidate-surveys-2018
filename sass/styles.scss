@@ -56,10 +56,10 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 
 @mixin distribute_across_columns($num_items, $gutter:($grid-gap / 2)){
 	@if $num_items == 1{
-		width: 100%;
+		flex-basis: 100%;
 	} @else {
-		width: 90% / $num_items; // fallback
-		width: calc((100% - #{($num_items - 1) * $gutter}) / #{$num_items});
+		flex-basis: 90% / $num_items; // fallback
+		flex-basis: calc((100% - #{($num_items - 1) * $gutter}) / #{$num_items});
 	}
 }
 
