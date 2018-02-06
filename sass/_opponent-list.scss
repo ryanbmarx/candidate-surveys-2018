@@ -1,5 +1,5 @@
 .opponents{
-	margin: 0 0 #{$grid-gap} 0;
+	margin: 0;
 	padding: 0;
 }
 
@@ -48,6 +48,11 @@
 .opponent-label{
 	@include agate();
 	font-weight: bold;
+	margin: #{$grid-gap / 2} 0;
+
+	&:first-of-type{
+		margin-top: 0;
+	}
 }
 
 .endorsed{
