@@ -36,9 +36,33 @@ def candidate_survey_response_page(id):
 
 """
 ################################################################
-FILTERS & FUNCTIONS      #######################################
+FILTERS & FUNCTIONS //// #######################################
 ################################################################
 """
+
+
+@blueprint.app_template_filter('completed_survey')
+@jinja2.contextfilter
+def generate_autocomplete_list(context, candidate):
+    """
+    takes a candidate from the candidates tab 
+    and looks for survey responses. 
+    Returns True if they are found
+    """
+    
+    email = candidate['email']
+    ss_tab = candidate['race_category'] # The name of the tab to check
+
+    for c in context[ss_tab]:
+        # Check each candidate in the specified survey responses tab
+        try:
+            if c["contact_email"] == email:
+                # If an email match is found, then return true
+                return True
+        except:
+            print "No contact email for {}".format(candidate["email"])
+    # If no email match is found, then no repsonses exist.
+    return False
 
 def use_this_candidate(candidate, context):
     """
