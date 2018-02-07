@@ -14,7 +14,7 @@ blueprint = Blueprint('candidate-surveys-2018', __name__)
 
 
 # This is so we don't need to make physical html files for each one. 
-@blueprint.route('/candidates/<id>.html')
+@blueprint.route('/responses/<id>.html')
 def candidate_survey_response_page(id):
     """
     Make a page for each candidate, based on the unique
@@ -302,7 +302,7 @@ S3_BUCKETS = {
     # Provide target -> s3 url pairs, such as:
     #     "mytarget": "mys3url.bucket.url/some/path"
     # then use tarbell publish mytarget to publish to it
-    
+    "elex":"elections.beta.chicagotribune.com/candidates",
     "production": "graphics.chicagotribune.com/candidate-surveys-2018",
     "staging": "apps.beta.tribapps.com/candidate-surveys-2018",
 }
