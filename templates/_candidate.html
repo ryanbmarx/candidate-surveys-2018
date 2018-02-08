@@ -11,7 +11,7 @@
 
 {# Concat a string of the office being sought #}
 {% set office_sought = candidate_info.race_office %}
-{% if candidate_info.race_district %}
+{% if candidate_info.race_district and candidate_info.race_category != "judicial" %}
 	{% set office_sought = office_sought + " district)" %}
 	{% set office_sought = office_sought.replace(', ', " (") %}
 {% endif %}

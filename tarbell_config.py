@@ -302,7 +302,7 @@ S3_BUCKETS = {
     # Provide target -> s3 url pairs, such as:
     #     "mytarget": "mys3url.bucket.url/some/path"
     # then use tarbell publish mytarget to publish to it
-    "elex":"elections.beta.chicagotribune.com/candidates",
+    "elex":"elections.chicagotribune.com/candidates",
     "production": "graphics.chicagotribune.com/candidate-surveys-2018",
     "staging": "apps.beta.tribapps.com/candidate-surveys-2018",
 }
