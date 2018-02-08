@@ -1,0 +1,44 @@
+.voter-info{
+	@include sans-serif-text(14px, 1.3em, normal);
+    width: 40%;
+    float: right;
+    margin-left: $grid-gap;
+
+
+    &__label{
+		font-weight: bold;
+		margin: 0 0 #{$grid-gap / 2} 0;
+    }
+
+	// p{
+	// 	@include sans-serif();
+	// }
+
+    &__list{
+    	list-style:none;
+		padding: 0;
+
+		li{
+			// Use the same style as the candidate opponent lists
+			@extend .opponent;
+			font-size: 14px;
+		}
+    }
+}
+
+
+@media all and (min-width: $phablet-min-width){
+	.voter-info{
+	    width: 160px;
+	    // float: right;
+	}
+}
+
+@media all and (min-width: $tablet-min-width){
+	.voter-info{
+	    margin-left: $grid-gap;
+	    &__list li{
+	    	font-size: 16px;
+	    }
+	}
+}

@@ -133,6 +133,7 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 @import 'nav-buttons';
 @import 'editorial';
 @import 'navbar-elex';
+@import 'sidebar-voter-info';
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 
@@ -145,7 +146,7 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 	margin-top: $grid-gap;
 
 	.headline{
-		@include responsive-font(6vw, 40px, 60px, 45px);
+		@include responsive-font(6vw, 30px, 60px, 45px);
 		margin: #{$grid-gap / 2} 0;
 		padding: 0;
 	}
