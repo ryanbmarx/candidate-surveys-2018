@@ -9,7 +9,8 @@
     "watch": "grunt watch",
     "build:assets":"grunt",
     "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg",
-    "build:candidate_mugs": "node js/src/resize-photos.js 300 50 ./img/candidates/src ./img/candidates"
+    "build:candidate_mugs": "node js/src/resize-photos.js 300 50 ./img/candidates/src ./img/candidates",
+    "publish": "tarbell publish elex && tarbell publish"
   },
   "repository": {
     "type": "git",
