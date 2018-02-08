@@ -1,0 +1,47 @@
+// ###############
+// NAVBAR TWEAKS
+// ###############
+
+
+.navbar{
+	&__election-center-label{
+		display:flex;
+		align-items: center;
+		justify-content: flex-start;
+
+		svg {
+			margin: 0 10px 0 0;
+			width: $navbar_inner_height;
+			height: $navbar_inner_height;
+			fill: $navbar_background_color;
+			background: white;
+			padding: 3px;
+			box-sizing: border-box;
+			border-radius: $border-radius;
+		}
+
+		a{
+			@include serif-text(20px, 1em, bold);
+			color:white;
+			text-transform: uppercase;
+			margin: 0;
+		}
+	}
+
+	[itemprop="publisher"]{
+		display:none;
+	}
+}
+
+@media all and (min-width: $phablet-min-width){
+
+	.navbar [itemprop="publisher"]{
+		display:block;
+	}
+}
+
+@media all and (min-width: $tablet-min-width){
+	.navbar__election-center-label a {
+		font-size: 25px;
+	}
+}

@@ -23,6 +23,10 @@ $border-radius: 5px;
 $endorsed_icon_height: 15px;
 $endorsed_icon_width: 15px;
 
+// NAVBAR EDITS
+$navbar_inner_height: 25px;
+$navbar_background_color: $trib-blue1;
+
 $editorial-column-width: 200px;
 $editorials-background-color: rgba($trib_tan,.5);
 
@@ -128,6 +132,7 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 @import "autocomplete"; // For the autocomplete modifications
 @import 'nav-buttons';
 @import 'editorial';
+@import 'navbar-elex';
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 
@@ -175,6 +180,7 @@ $cta-button-color-text: #{set-text-color($cta-button-color, true)};
 	width: 100%;
 	box-sizing:border-box;
 }
+
 
 // tweaks to calls to action
 .cta{
