@@ -17,9 +17,10 @@
 {% endif %}
 
 {% set page_title = candidate_info['name'] + " candidate survey" %}
-{% set page_url = "http://" + ROOT_URL + url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) %}
-
+{# {% set page_url = "http://" ~ ROOT_URL ~ url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) %} #}
 {% set shareline = "Ahead of the primary, we asked " ~ office_sought ~ " candidate " ~ candidate_info.name ~ " the tough questions. Read the responses here." %}
+
+{% set page_url = "http://" ~ ROOT_URL ~ request.path %}
 
 {% macro endorsed(link) %}
 <div class='candidate__endorsed'>
@@ -38,9 +39,19 @@
 <article class='candidate'>
 	<div class='candidate__top'>
 		{% with %}
+			{# 
+			
+			This can be removed once there is proof there are no problems. -- Ryan
+
+			<p><code>URL_ROOT</code>: {{ request.url_root }}</p>
+			<p><code>ROOT_URL</code>: {{ ROOT_URL }}</p>
+			<p><code>request.path</code>: {{ request.path }}</p>
+			<p><code>"http://" ~ ROOT_URL ~ request.path</code>: {{ page_url }}</p>
+			<p><code>URL_FOR</code>: {{ url_for('candidate-surveys-2018.candidate_survey_response_page',id=candidate_info.id) }}</p> 
+			#}
 			{% set shareline = shareline %}
 			{% set target_url = page_url %}
-			{% include "subtemplates/_social-share.html" with context%}
+			{% include "subtemplates/_social-share.html" with context %}
 		{% endwith %}
 
 		<h1 class='candidate__name'>{{ candidate_info.name }}</h1>
