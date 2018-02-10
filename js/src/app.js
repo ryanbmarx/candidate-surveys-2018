@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', function(e){
 	window.addEventListener('awesomplete-selectcomplete', function(e) {
 		// When the user makes an autocompleted selection, take the "value"
 		// and go to that candidate page
-		window.location = `${window.ROOT_URL}/candidates/${e.text.value}.html`;
+		window.location = `${window.ROOT_URL}/responses/${e.text.value}.html`;
 
 		// Trigger an omniture link track
 		clickTrack('Elex 2018 - surveys - candidate search');
