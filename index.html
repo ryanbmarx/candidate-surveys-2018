@@ -30,7 +30,8 @@
 				<p><a href="http://{{ ROOT_URL }}/{{bedsheet_link}}">{{ bedsheet_text }}</a></p>
 			{% endif %}
 			<form id='candidate-lookup' class='candidate-lookup'>
-				<input type='text' placeholder="Search for a candidate" />
+				<label for="candidate-search-bar" class='sr-only'>Search for a candidate</label>
+				<input id='candidate-search-bar' type='text' placeholder="Search for a candidate" />
 				<button type='submit'>Search</button>
 			</form>
 			<dl class='races-legend'>
