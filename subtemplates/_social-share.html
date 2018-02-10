@@ -1,7 +1,7 @@
 
 {% macro social_icon(network) %}
 	<li class='network network--{{ network.slug|lower }}'>
-		<a target="_blank" href="{{ network.url }}" aria-label="Share this on {{ network.network }}">
+		<a rel="noopener" target="_blank" href="{{ network.url }}" aria-label="Share this on {{ network.network }}">
 			<svg class='network__icon' viewbox="0 0 30 30">
 				<use xlink:href="#{{ network.slug|lower }}"/>
 			</svg>

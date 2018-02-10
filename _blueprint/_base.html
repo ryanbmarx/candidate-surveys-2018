@@ -29,6 +29,8 @@
 
           gtag('config', 'UA-9792248-18');
         </script>
+        {% else %}
+            <!-- GOOGLE ANALYTICS NOT LOADED -->
         {% endif %}
     {% endblock google_analytics %}
     {% block meta scoped %}
@@ -57,12 +59,16 @@
         <link rel="dns-prefetch" href="//www.google-analytics.com">
         <link rel="dns-prefetch" href="http://ssor.tribdss.com">
         <link rel="dns-prefetch" href="http://www.tribdss.com">
+        {% else %}
+            <!-- PREFETCHES NOT LOADED -->
         {% endif %}
     {% endblock prefetch %}
 
     {% block preconnect %}
         {% if not PREVIEW_SERVER %}
         <link rel="preconnect" href="https://www.google-analytics.com">
+        {% else %}
+            <!-- PRE-CONNECTS NOT LOADED -->
         {% endif %}
     {% endblock preconnect %}
 
@@ -140,6 +146,8 @@
             {# METER for Production #}
             <script src="//ssor.tribdss.com/reg/tribune/chinews-apps.min.js" async></script>
             <script src="//www.tribdss.com/meter/chinews-apps.min.js" async></script>
+        {% else %}
+            <!-- METER NOT LOADED -->
         {% endif %}
     {% endblock meter %}
 
@@ -155,7 +163,7 @@
             ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
                     pageName: 'ct:apps:news:{{ name }}:articleproject.',
                     channel: 'news',
-                    server: 'graphics.chicagotribune.com',
+                    server: {% block omniture_server %}'graphics.chicagotribune.com'{% endblock omniture_server %},
                     hier1: 'chicagotribune:news',
                     hier2: 'news',
                     prop1: 'D=pageName',
@@ -170,6 +178,8 @@
                     events:''
             });  
         </script>
+        {% else %}
+            <!-- OMNITURE NOT LOADED -->
         {% endif %}
     {% endblock omniture_config %}
 </head>
@@ -221,8 +231,8 @@
             _sf_async_config.uid = 25745 
             _sf_async_config.domain = 'chicagotribune.com'; 
             _sf_async_config.useCanonical = true;
-            _sf_async_config.sections = 'Data, Dataviz'; 
-            _sf_async_config.authors = 'Tribune Dataviz, Tribune Photo Desk';
+            _sf_async_config.sections = '{% block chartbeat_section %}Data, Dataviz{% endblock chartbeat_section %}'; 
+            _sf_async_config.authors = '{% block chartbeat_author %}Tribune Dataviz{% endblock chartbeat_author %}';
             _sf_async_config.title = pageTitle;
             
             (function() {
@@ -241,6 +251,8 @@
                     };
             })();
         </script>  
+        {% else %}
+            <!-- CHARTBEAT NOT LOADED -->
         {% endif %}
     {% endblock chartbeat %}
 
@@ -248,6 +260,8 @@
         {# OMNITURE but not if running locally. This also loads code needed for comments. #}
         {% if not PREVIEW_SERVER %}
             <script src="//www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script>
+        {% else %}
+            <!-- THIRD-PARTY SERVICES NOT LOADED -->
         {% endif %}
     {% endblock omniture_scripts %}
 

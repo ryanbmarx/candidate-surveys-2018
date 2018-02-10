@@ -2,7 +2,7 @@
     <aside class='cta {% if align_right %}cta--right{% endif %}'>
         {% if header %}<p class='cta__header'>{{ header }}</p>{% endif %}
         {% if text %}<p class='cta__text'>{{ text }}</p>{% endif %}
-        <a class='cta__button' href="{{ link }}" target="_blank">{{ link_text }}</a>
+        <a class='cta__button' href="{{ link }}" target="_blank" rel="noopener">{{ link_text }}</a>
     </aside>
 {% endmacro %}
 
