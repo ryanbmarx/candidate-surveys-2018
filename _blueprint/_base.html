@@ -158,7 +158,7 @@
         {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
         <script type="text/javascript">
             ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
-                    pageName: 'ct:apps:news:{{ name }}:articleproject.',
+                    pageName: 'ct:apps:news:{% block omniture_page_name %}{{ name }}{% endblock omniture_page_name %}:articleproject.',
                     channel: 'news',
                     server: '{% block omniture_server %}graphics.chicagotribune.com{% endblock omniture_server %}',
                     hier1: 'chicagotribune:news',
