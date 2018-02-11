@@ -19,7 +19,7 @@
 <html lang="en" xml:lang="en">
 <head>
     {% block google_analytics %}
-        {% if not PREVIEW_SERVER %}
+        {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
         {# <!-- Global site tag (gtag.js) - Google Analytics --> #}
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9792248-18"></script>
         <script>
@@ -54,7 +54,7 @@
     {% endblock %}
 
     {% block prefetch %}
-        {% if not PREVIEW_SERVER %}
+        {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
         <link rel="dns-prefetch" href="//static.chartbeat.com">
         <link rel="dns-prefetch" href="//www.google-analytics.com">
         <link rel="dns-prefetch" href="http://ssor.tribdss.com">
@@ -65,7 +65,7 @@
     {% endblock prefetch %}
 
     {% block preconnect %}
-        {% if not PREVIEW_SERVER %}
+        {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
         <link rel="preconnect" href="https://www.google-analytics.com">
         {% else %}
             <!-- PRE-CONNECTS NOT LOADED -->
@@ -150,20 +150,17 @@
             <!-- METER NOT LOADED -->
         {% endif %}
     {% endblock meter %}
-
-
     <script>
         window.ROOT_URL = "http://{{ ROOT_URL }}";
     </script>
-
     {% block omniture_config %}
         {# OMNITURE but not if running locally #}
-        {% if not PREVIEW_SERVER %}
+        {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
         <script type="text/javascript">
             ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
                     pageName: 'ct:apps:news:{{ name }}:articleproject.',
                     channel: 'news',
-                    server: {% block omniture_server %}'graphics.chicagotribune.com'{% endblock omniture_server %},
+                    server: '{% block omniture_server %}graphics.chicagotribune.com{% endblock omniture_server %}',
                     hier1: 'chicagotribune:news',
                     hier2: 'news',
                     prop1: 'D=pageName',
@@ -221,12 +218,12 @@
     {% block scripts %}{% endblock scripts %}
 
     {% block chartbeat %}
-        {% if not PREVIEW_SERVER %}
+        {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
         {# CHARTBEAT, but not if running locally #}
         {# Inserts own <script> tag at end of <body> #}
         <script type='text/javascript'>
             var _sf_async_config = _sf_async_config || {};
-            var pageTitle = "{{ title }}";
+            var pageTitle = "{% block chartbeat_page_title %}{{ title }}{% endblock chartbeat_page_title %}";
 
             _sf_async_config.uid = 25745 
             _sf_async_config.domain = 'chicagotribune.com'; 
@@ -258,7 +255,7 @@
 
     {% block omniture_scripts %}
         {# OMNITURE but not if running locally. This also loads code needed for comments. #}
-        {% if not PREVIEW_SERVER %}
+        {% if BUCKET_NAME|lower == "staging" or BUCKET_NAME|lower == "production" %}
             <script src="//www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script>
         {% else %}
             <!-- THIRD-PARTY SERVICES NOT LOADED -->
