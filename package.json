@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "run-p build:assets build:candidate_mugs",
     "watch": "grunt watch",
-    "build:assets":"grunt",
+    "build:assets": "grunt",
     "build:thumbnails": "node js/src/resize-thumbnails.js 30 ./img/thumbnail.jpg",
     "build:candidate_mugs": "node js/src/resize-photos.js 300 50 ./img/candidates/src ./img/candidates",
     "publish": "tarbell publish elex && tarbell publish"
@@ -42,6 +42,7 @@
   "dependencies": {
     "awesomplete": "^1.1.2",
     "in-view": "^0.6.1",
+    "slugify": "^1.2.9",
     "smoothscroll-polyfill": "^0.4.0"
   },
   "browserslist": [
